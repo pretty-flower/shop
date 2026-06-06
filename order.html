@@ -541,17 +541,17 @@
 
   <!-- HEADER -->
   <header>
-    <div class="logo-wrap">
-      <span class="logo-jp">プリキラ</span>
-      <span class="logo-en">Pretty Flower</span>
+    <div class="logo-wrap"><a href="index.html"><img src="logo.png" alt="pretty flower" style="height:44px;width:auto;"></a>
+      
+      
     </div>
     <a href="index.html" class="back-link">← トップに戻る</a>
   </header>
 
   <!-- PAGE HEADER -->
   <div class="page-header">
-    <p class="page-header-eyebrow">RESERVATION FORM</p>
-    <h1>Make a<br><em>Reservation</em></h1>
+    <p class="page-header-eyebrow">来店予約フォーム</p>
+    <h1>ご来店<br><em>予約</em></h1>
     <p class="page-header-jp">来店予約フォーム</p>
     <p class="page-header-note">
       ご来店の際は事前のご予約をお願いしております。<br>
@@ -796,15 +796,15 @@
       </div>
 
       <p class="submit-note">
-        上記内容をご確認の上、送信ボタンを押してください。<br>
-        送信後、確認のご連絡を差し上げます（1〜2営業日以内）。
+        ボタンを押すとGoogleフォームが開きます。<br>
+        そちらでご入力・送信いただくと予約完了です。
       </p>
 
       <div class="btn-row">
         <button class="btn-back" onclick="goStep(3)">← 修正する</button>
-        <button class="btn-submit" onclick="submitForm()">
-          予約を送信する ✓
-        </button>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN2zu1qsLyIZq6UsC-y3YcHAIOK-3uzUvVhBMIECDWwKOLPA/viewform" target="_blank" class="btn-submit" style="text-decoration:none;">
+          予約フォームへ進む →
+        </a>
       </div>
     </div>
 
@@ -822,7 +822,7 @@
         </p>
 
         <div class="completion-note">
-          <strong style="letter-spacing:0.1em; color:var(--bark);">プリキラより</strong><br><br>
+          <strong style="letter-spacing:0.1em; color:var(--bark);">pretty flower より</strong><br><br>
           当店は完全予約制のアトリエ花屋です。<br>
           フラワー装飾士がご希望に合わせてお花を<br>
           おつくりします。当日は気軽にご相談ください。<br><br>
@@ -979,20 +979,7 @@
     }
 
     function submitForm() {
-      // 実際のフォーム送信処理をここに実装
-      // （GitHub Pages では静的なので、Formspree / Google Forms 等と連携推奨）
-      // デモとして完了画面に遷移
-      document.getElementById(`panel-4`).classList.remove('active');
-      document.getElementById(`panel-5`).classList.add('active');
-
-      // step indicators all done
-      for (let i = 1; i <= 4; i++) {
-        const ind = document.getElementById(`step-indicator-${i}`);
-        ind.classList.remove('active');
-        ind.classList.add('done');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLSfN2zu1qsLyIZq6UsC-y3YcHAIOK-3uzUvVhBMIECDWwKOLPA/viewform', '_blank');
     }
 
     // Date min = today
