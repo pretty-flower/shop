@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>よくあるご質問｜pretty flower</title>
+  <link rel="icon" href="logo2.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream:#faf7f2; --warm-white:#f5f0e8; --sand:#e8dfd0; --clay:#c9b8a0; --taupe:#8b7660; --bark:#5a4535; --deep:#2d1f14; --rose-muted:#c4967a; --gold:#c9a84c; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Shippori Mincho',serif; background:var(--cream); color:var(--deep); }
+    header { padding:10px 40px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--sand); background:var(--cream); position:sticky; top:0; z-index:10; }
+    .header-logo img { height:48px; width:auto; }
+    .back-link { font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:0.2em; color:var(--taupe); text-decoration:none; transition:color 0.2s; }
+    .back-link:hover { color:var(--bark); }
+
+    .page-header { background:var(--deep); padding:72px 80px 64px; position:relative; overflow:hidden; }
+    .page-header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 50%, rgba(196,150,122,0.1) 0%, transparent 60%); }
+    .page-eyebrow { font-family:'Cormorant Garamond',serif; font-size:11px; letter-spacing:0.5em; color:var(--rose-muted); margin-bottom:20px; position:relative; }
+    .page-title { font-family:'Cormorant Garamond',serif; font-size:clamp(40px,6vw,68px); font-weight:300; color:var(--cream); line-height:1.1; position:relative; margin-bottom:10px; }
+    .page-title em { font-style:italic; color:var(--rose-muted); }
+    .page-title-jp { font-size:14px; letter-spacing:0.35em; color:var(--clay); position:relative; }
+
+    .faq-wrap { max-width:760px; margin:0 auto; padding:72px 40px 100px; }
+    .faq-intro { font-size:14px; line-height:2.3; color:var(--taupe); margin-bottom:56px; border-left:2px solid var(--sand); padding-left:20px; }
+
+    .faq-list { display:flex; flex-direction:column; }
+    .faq-item { border-bottom:1px solid var(--sand); }
+    .faq-q { display:flex; align-items:flex-start; gap:16px; padding:24px 0; cursor:pointer; }
+    .faq-badge { font-family:'Cormorant Garamond',serif; font-size:14px; color:var(--gold); flex-shrink:0; letter-spacing:0.05em; padding-top:1px; }
+    .faq-question { font-size:15px; letter-spacing:0.05em; color:var(--bark); flex:1; line-height:1.7; }
+    .faq-arrow { font-size:12px; color:var(--clay); flex-shrink:0; transition:transform 0.3s; margin-top:4px; }
+    .faq-a { display:none; padding:0 0 24px 46px; font-size:13px; line-height:2.3; color:var(--taupe); letter-spacing:0.03em; }
+    .faq-item.open .faq-a { display:block; }
+    .faq-item.open .faq-arrow { transform:rotate(180deg); }
+    .faq-item.open .faq-question { color:var(--deep); }
+
+    .contact-box { background:var(--warm-white); border:1px solid var(--sand); padding:40px; margin-top:64px; text-align:center; }
+    .contact-box-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--bark); margin-bottom:8px; }
+    .contact-box-jp { font-size:12px; letter-spacing:0.2em; color:var(--taupe); margin-bottom:24px; }
+    .contact-box p { font-size:13px; line-height:2.2; color:var(--taupe); margin-bottom:28px; }
+    .btn-group { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn-primary { display:inline-flex; align-items:center; gap:10px; background:var(--bark); color:var(--cream); text-decoration:none; padding:14px 28px; font-family:'Shippori Mincho',serif; font-size:13px; letter-spacing:0.2em; transition:background 0.3s; }
+    .btn-primary:hover { background:var(--deep); }
+    .btn-line { display:inline-flex; align-items:center; gap:10px; background:#06c755; color:white; text-decoration:none; padding:14px 28px; font-family:'Shippori Mincho',serif; font-size:13px; letter-spacing:0.15em; transition:opacity 0.2s; }
+    .btn-line:hover { opacity:0.85; }
+
+    footer { background:var(--deep); color:var(--clay); padding:36px 40px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+    footer a { color:var(--clay); text-decoration:none; font-size:11px; letter-spacing:0.15em; transition:color 0.2s; }
+    footer a:hover { color:var(--cream); }
+
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width:640px) {
+      header { padding:10px 20px; }
+      .page-header { padding:52px 24px 48px; }
+      .faq-wrap { padding:48px 20px 72px; }
+      footer { padding:28px 20px; flex-direction:column; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-logo"><a href="index.html"><img src="logo.png" alt="pretty flower"></a></div>
+    <a href="index.html" class="back-link">← トップへ戻る</a>
+  </header>
+
+  <div class="page-header">
+    <p class="page-eyebrow">FREQUENTLY ASKED QUESTIONS</p>
+    <h1 class="page-title"><em>FAQ</em></h1>
+    <p class="page-title-jp">よくあるご質問</p>
+  </div>
+
+  <div class="faq-wrap">
+    <p class="faq-intro reveal">
+      お客様からよくいただくご質問をまとめました。<br>
+      ご不明な点は、お電話・LINE・来店予約フォームよりお気軽にお問い合わせください。
+    </p>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-badge">Q1.</span>
+          <span class="faq-question">お花の種類は選べますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">ご希望のイメージからお選びいただけます。ご注文時にお選びください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-badge">Q2.</span>
+          <span class="faq-question">写真と同じお花が届きますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">写真はイメージです。季節や仕入れ状況により花材・色味が異なります。その時期に一番美しいお花をお届けします。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-badge">Q3.</span>
+          <span class="faq-question">メッセージカードはどうやって申し込みますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">「お誕生日おめでとうございます」「いつもありがとう」「ご結婚おめでとうございます」などの定型文もご用意しています。ご希望のメッセージを入れる場合は、備考欄に20文字程度でご記入ください。無料でお付けします。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-badge">Q4.</span>
+          <span class="faq-question">配送エリア外からご注文いただいた場合はどうなりますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">誠に申し訳ございませんが、配送エリア外のご注文はキャンセルとなります。お届けは九州・四国・中国・関西エリア（離島除く）のみとなりますので、ご注文前に必ずご確認ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-badge">Q5.</span>
+          <span class="faq-question">時間帯指定はできますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">はい、ヤマト運輸の時間帯からご指定いただけます。</div>
+      </div>
+    </div>
+
+    <div class="contact-box reveal">
+      <div class="contact-box-title">お問い合わせ</div>
+      <div class="contact-box-jp">ご不明な点はお気軽にご連絡ください</div>
+      <p>来店予約フォームまたはLINE公式アカウントより<br>お気軽にお問い合わせください。</p>
+      <div class="btn-group">
+        <a href="order.html" class="btn-primary">来店予約・お問い合わせ →</a>
+        <a href="https://lin.ee/n4jGnVo" target="_blank" class="btn-line">💬 LINEで相談する</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html"><img src="logo.png" alt="pretty flower" style="height:36px;"></a>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;">
+      <a href="index.html">トップ</a>
+      <a href="about.html">店主について</a>
+      <a href="order.html">来店予約</a>
+      <a href="https://pretty0204.thebase.in/" target="_blank">BASE</a>
+      <a href="https://lin.ee/n4jGnVo" target="_blank">LINE</a>
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.2em;">© 2024 pretty flower</p>
+  </footer>
+
+  <script>
+    function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
