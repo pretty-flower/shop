@@ -5,738 +5,219 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>プリキラ｜Pretty Flower — 北九州市戸畑区のアトリエ花屋</title>
   <meta name="description" content="北九州市戸畑区のアトリエスタイル花屋。ギフト専門・国家検定フラワー装飾士が手がけるオーダーメイドのフラワーギフト。来店予約受付中。">
-  <meta property="og:title" content="プリキラ｜Pretty Flower">
-  <meta property="og:description" content="北九州市戸畑区のアトリエ花屋。ギフト専門・国家検定フラワー装飾士によるオーダーメイドフラワーギフト。">
-  <meta property="og:type" content="website">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --cream: #faf7f2;
-      --warm-white: #f5f0e8;
-      --sand: #e8dfd0;
-      --clay: #c9b8a0;
-      --taupe: #8b7660;
-      --bark: #5a4535;
-      --deep: #2d1f14;
-      --sage: #7a8c75;
-      --rose-muted: #c4967a;
-      --blush: #e8c4b0;
+      --cream: #faf7f2; --warm-white: #f5f0e8; --sand: #e8dfd0;
+      --clay: #c9b8a0; --taupe: #8b7660; --bark: #5a4535;
+      --deep: #2d1f14; --sage: #7a8c75; --rose-muted: #c4967a; --blush: #e8c4b0;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Shippori Mincho', serif; background: var(--cream); color: var(--deep); overflow-x: hidden; }
 
-    body {
-      font-family: 'Shippori Mincho', serif;
-      background: var(--cream);
-      color: var(--deep);
-      overflow-x: hidden;
-    }
-
-    /* ── HEADER ── */
+    /* HEADER */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 18px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(250, 247, 242, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(139, 118, 96, 0.15);
-      transition: all 0.3s ease;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 40px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(250,247,242,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139,118,96,0.15); transition: box-shadow 0.3s;
     }
-
-    .logo-wrap {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
-    .logo-jp {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      color: var(--bark);
-    }
-    .logo-en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      color: var(--taupe);
-      margin-top: 2px;
-    }
-
-    nav {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-    nav a {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--taupe);
-      text-decoration: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      transition: color 0.2s;
-    }
+    .logo-wrap { display: flex; flex-direction: column; line-height: 1; }
+    .logo-jp { font-size: 15px; font-weight: 500; letter-spacing: 0.3em; color: var(--bark); }
+    .logo-en { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-weight: 300; letter-spacing: 0.25em; color: var(--taupe); margin-top: 2px; }
+    nav { display: flex; gap: 28px; align-items: center; }
+    nav a { font-size: 11px; letter-spacing: 0.18em; color: var(--taupe); text-decoration: none; font-family: 'Cormorant Garamond', serif; transition: color 0.2s; }
     nav a:hover { color: var(--bark); }
+    .nav-reserve { font-family: 'Shippori Mincho', serif !important; font-size: 12px !important; background: var(--bark); color: var(--cream) !important; padding: 9px 20px; letter-spacing: 0.15em !important; transition: background 0.3s !important; }
+    .nav-reserve:hover { background: var(--deep) !important; }
 
-    .nav-reserve {
-      font-family: 'Shippori Mincho', serif !important;
-      font-size: 12px !important;
-      background: var(--bark);
-      color: var(--cream) !important;
-      padding: 9px 20px;
-      letter-spacing: 0.15em !important;
-      transition: background 0.3s !important;
-    }
-    .nav-reserve:hover { background: var(--deep) !important; color: var(--cream) !important; }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 72px;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 60px 80px 80px;
-      position: relative;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.4em;
-      color: var(--taupe);
-      margin-bottom: 32px;
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(52px, 6vw, 88px);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--bark);
-      margin-bottom: 12px;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--rose-muted);
-    }
-
-    .hero-title-jp {
-      font-family: 'Shippori Mincho', serif;
-      font-size: clamp(18px, 2vw, 28px);
-      font-weight: 400;
-      letter-spacing: 0.4em;
-      color: var(--taupe);
-      margin-bottom: 48px;
-    }
-
-    .hero-desc {
-      font-size: 14px;
-      line-height: 2.2;
-      color: var(--taupe);
-      letter-spacing: 0.05em;
-      max-width: 380px;
-      margin-bottom: 56px;
-      border-left: 2px solid var(--sand);
-      padding-left: 20px;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--bark);
-      color: var(--cream);
-      text-decoration: none;
-      padding: 18px 36px;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
-      letter-spacing: 0.2em;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--rose-muted);
-      transform: translateX(-100%);
-      transition: transform 0.4s ease;
-    }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary span { position: relative; z-index: 1; }
-    .btn-primary .arrow {
-      position: relative;
-      z-index: 1;
-      font-size: 18px;
-      transition: transform 0.3s;
-    }
-    .btn-primary:hover .arrow { transform: translateX(4px); }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--taupe);
-      text-decoration: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      letter-spacing: 0.25em;
-      border-bottom: 1px solid var(--sand);
-      padding-bottom: 4px;
-      transition: all 0.3s;
-    }
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 72px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 80px; }
+    .hero-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-weight: 300; letter-spacing: 0.4em; color: var(--taupe); margin-bottom: 32px; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px,6vw,88px); font-weight: 300; line-height: 1.05; color: var(--bark); margin-bottom: 12px; }
+    .hero-title em { font-style: italic; color: var(--rose-muted); }
+    .hero-title-jp { font-size: clamp(18px,2vw,26px); font-weight: 400; letter-spacing: 0.4em; color: var(--taupe); margin-bottom: 48px; }
+    .hero-desc { font-size: 14px; line-height: 2.3; color: var(--taupe); letter-spacing: 0.05em; max-width: 380px; margin-bottom: 52px; border-left: 2px solid var(--sand); padding-left: 20px; }
+    .hero-cta-group { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 14px; background: var(--bark); color: var(--cream); text-decoration: none; padding: 18px 36px; font-family: 'Shippori Mincho', serif; font-size: 15px; letter-spacing: 0.2em; transition: background 0.3s; }
+    .btn-primary:hover { background: var(--deep); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 10px; color: var(--taupe); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.25em; border-bottom: 1px solid var(--sand); padding-bottom: 4px; transition: all 0.3s; }
     .btn-secondary:hover { color: var(--bark); border-color: var(--bark); }
+    .hero-credentials { margin-top: 56px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .credential-item { display: flex; flex-direction: column; gap: 4px; }
+    .credential-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--rose-muted); line-height: 1; }
+    .credential-label { font-size: 10px; letter-spacing: 0.12em; color: var(--clay); }
 
-    .hero-credentials {
-      margin-top: 60px;
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
+    /* HERO RIGHT — photo collage */
+    .hero-right { position: relative; overflow: hidden; background: var(--deep); }
+    .hero-photo-grid {
+      position: absolute; inset: 0;
+      display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px;
     }
-    .credential-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    .hero-photo-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .hero-photo-grid img:hover { transform: scale(1.04); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(45,31,20,0.25) 0%, transparent 60%);
+      pointer-events: none;
     }
-    .credential-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      font-weight: 300;
-      color: var(--rose-muted);
-      line-height: 1;
-    }
-    .credential-label {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--clay);
-    }
-
-    /* hero right — decorative */
-    .hero-right {
-      position: relative;
-      background: var(--warm-white);
-      overflow: hidden;
-    }
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 30% 20%, rgba(196,150,122,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 75% 80%, rgba(122,140,117,0.12) 0%, transparent 50%);
-    }
-
-    .hero-illustration {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .flower-frame {
-      position: relative;
-      width: 320px;
-      height: 420px;
-    }
-    .frame-border {
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(139,118,96,0.25);
-    }
-    .frame-corner {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      border-color: var(--taupe);
-      border-style: solid;
-    }
-    .frame-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-    .frame-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-    .frame-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-    .frame-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-
-    .hero-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
     .hero-location {
-      position: absolute;
-      bottom: 40px;
-      right: 40px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: var(--clay);
-      writing-mode: vertical-rl;
+      position: absolute; bottom: 32px; right: 28px;
+      font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em;
+      color: rgba(250,247,242,0.7); writing-mode: vertical-rl;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
 
-    /* ── MARQUEE ── */
-    .marquee-strip {
-      background: var(--bark);
-      color: var(--cream);
-      padding: 14px 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .marquee-inner {
-      display: inline-flex;
-      animation: marquee 28s linear infinite;
-      gap: 0;
-    }
-    .marquee-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 24px;
-      padding: 0 32px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.3em;
-      font-weight: 300;
-    }
+    /* MARQUEE */
+    .marquee-strip { background: var(--bark); color: var(--cream); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-inner { display: inline-flex; animation: marquee 28s linear infinite; }
+    .marquee-item { display: inline-flex; align-items: center; gap: 24px; padding: 0 32px; font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; font-weight: 300; }
     .marquee-dot { color: var(--rose-muted); font-size: 6px; }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* ── ABOUT ── */
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      min-height: 600px;
-    }
+    /* ABOUT */
+    .about { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+    .about-photo { position: relative; overflow: hidden; min-height: 480px; }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease; }
+    .about-photo:hover img { transform: scale(1.03); }
+    .about-text { padding: 80px 80px 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+    .section-label { font-family: 'Cormorant Garamond', serif; font-size: 10px; letter-spacing: 0.5em; color: var(--rose-muted); margin-bottom: 24px; display: flex; align-items: center; gap: 16px; }
+    .section-label::after { content: ''; display: block; width: 40px; height: 1px; background: var(--rose-muted); }
+    .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3.5vw,48px); font-weight: 300; line-height: 1.2; color: var(--bark); margin-bottom: 8px; }
+    .section-heading-jp { font-size: 15px; letter-spacing: 0.3em; color: var(--taupe); margin-bottom: 36px; }
+    .about-body { font-size: 14px; line-height: 2.4; color: var(--taupe); letter-spacing: 0.05em; margin-bottom: 40px; }
+    .badge-list { display: flex; flex-direction: column; gap: 12px; }
+    .badge { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: 0.1em; color: var(--bark); }
+    .badge-icon { width: 28px; height: 28px; background: var(--warm-white); border: 1px solid var(--sand); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
 
-    .about-visual {
-      background: var(--sand);
-      position: relative;
-      overflow: hidden;
-      min-height: 480px;
-    }
-    .about-visual-inner {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .about-visual::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(90,69,53,0.08) 0%, transparent 60%);
-    }
+    /* PHOTO STRIP — horizontal scroll */
+    .photo-strip-section { padding: 80px 0 0; background: var(--warm-white); overflow: hidden; }
+    .photo-strip-header { padding: 0 80px 48px; }
+    .photo-strip { display: flex; gap: 3px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 0; scrollbar-width: none; }
+    .photo-strip::-webkit-scrollbar { display: none; }
+    .photo-strip-item { flex: 0 0 380px; height: 480px; scroll-snap-align: start; overflow: hidden; position: relative; cursor: pointer; }
+    .photo-strip-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .photo-strip-item:hover img { transform: scale(1.05); }
+    .photo-strip-item .strip-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 20px 20px; background: linear-gradient(transparent, rgba(45,31,20,0.6)); color: rgba(250,247,242,0.9); font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.2em; }
+    .strip-scroll-hint { padding: 20px 80px 60px; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.25em; color: var(--clay); display: flex; align-items: center; gap: 12px; }
+    .strip-scroll-hint::before { content: ''; display: block; width: 30px; height: 1px; background: var(--clay); }
 
-    .about-text {
-      padding: 80px 80px 80px 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+    /* INSTAGRAM CTA */
+    .instagram-cta { background: var(--deep); padding: 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .instagram-text .section-label { color: var(--rose-muted); }
+    .instagram-text .section-label::after { background: var(--rose-muted); }
+    .instagram-text .section-heading { color: var(--cream); }
+    .instagram-text .section-heading-jp { color: var(--clay); margin-bottom: 20px; }
+    .instagram-text p { font-size: 14px; line-height: 2.2; color: var(--clay); max-width: 400px; }
+    .btn-instagram { display: inline-flex; align-items: center; gap: 14px; background: transparent; color: var(--cream); border: 1px solid rgba(250,247,242,0.4); text-decoration: none; padding: 18px 36px; font-family: 'Shippori Mincho', serif; font-size: 14px; letter-spacing: 0.2em; transition: all 0.3s; white-space: nowrap; }
+    .btn-instagram:hover { background: var(--rose-muted); border-color: var(--rose-muted); }
+    .instagram-icon { font-size: 20px; }
 
-    .section-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--rose-muted);
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .section-label::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--rose-muted);
-    }
-
-    .section-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 3.5vw, 48px);
-      font-weight: 300;
-      line-height: 1.2;
-      color: var(--bark);
-      margin-bottom: 8px;
-    }
-    .section-heading-jp {
-      font-size: 16px;
-      letter-spacing: 0.3em;
-      color: var(--taupe);
-      margin-bottom: 40px;
-      font-weight: 400;
-    }
-
-    .about-body {
-      font-size: 14px;
-      line-height: 2.4;
-      color: var(--taupe);
-      letter-spacing: 0.05em;
-      margin-bottom: 48px;
-    }
-
-    .badge-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      color: var(--bark);
-    }
-    .badge-icon {
-      width: 28px;
-      height: 28px;
-      background: var(--warm-white);
-      border: 1px solid var(--sand);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    /* ── SERVICES ── */
-    .services {
-      padding: 100px 80px;
-      background: var(--warm-white);
-    }
-
-    .services-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--sand);
-      border: 1px solid var(--sand);
-    }
-
-    .service-card {
-      background: var(--warm-white);
-      padding: 52px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      transition: background 0.3s;
-    }
-    .service-card:hover { background: var(--cream); }
-
-    .service-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 40px;
-      font-weight: 300;
-      color: var(--sand);
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
+    /* SERVICES */
+    .services { padding: 100px 80px; background: var(--cream); }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--sand); border: 1px solid var(--sand); }
+    .service-card { background: var(--cream); padding: 52px 40px; display: flex; flex-direction: column; transition: background 0.3s; }
+    .service-card:hover { background: var(--warm-white); }
+    .service-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--sand); line-height: 1; margin-bottom: 20px; }
     .service-icon { font-size: 28px; margin-bottom: 20px; }
+    .service-name { font-size: 15px; font-weight: 500; letter-spacing: 0.2em; color: var(--bark); margin-bottom: 16px; }
+    .service-desc { font-size: 13px; line-height: 2.1; color: var(--taupe); }
 
-    .service-name {
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      color: var(--bark);
-      margin-bottom: 16px;
-    }
-
-    .service-desc {
-      font-size: 13px;
-      line-height: 2.1;
-      color: var(--taupe);
-    }
-
-    /* ── RESERVE CTA ── */
-    .reserve-cta {
-      padding: 120px 80px;
-      background: var(--deep);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .reserve-cta-text {}
-
-    .reserve-cta .section-label { color: var(--rose-muted); }
-    .reserve-cta .section-label::after { background: var(--rose-muted); }
-
+    /* RESERVE CTA */
+    .reserve-cta { padding: 120px 80px; background: var(--bark); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .reserve-cta .section-label { color: var(--blush); }
+    .reserve-cta .section-label::after { background: var(--blush); }
     .reserve-cta .section-heading { color: var(--cream); }
-    .reserve-cta .section-heading-jp { color: var(--clay); }
+    .reserve-cta .section-heading-jp { color: rgba(250,247,242,0.7); }
+    .reserve-cta-body { font-size: 14px; line-height: 2.4; color: rgba(250,247,242,0.75); }
+    .reserve-cta-right { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .reserve-box { width: 100%; max-width: 380px; border: 1px solid rgba(250,247,242,0.3); padding: 52px 40px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+    .reserve-box-title { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.4em; color: rgba(250,247,242,0.6); margin-bottom: 16px; }
+    .btn-reserve-large { display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--cream); color: var(--bark); text-decoration: none; padding: 22px 52px; font-family: 'Shippori Mincho', serif; font-size: 17px; letter-spacing: 0.25em; width: 100%; transition: all 0.3s; border: 1px solid var(--cream); }
+    .btn-reserve-large:hover { background: transparent; color: var(--cream); }
+    .reserve-note { font-size: 11px; color: rgba(250,247,242,0.55); letter-spacing: 0.1em; line-height: 2; text-align: center; }
 
-    .reserve-cta-body {
-      font-size: 14px;
-      line-height: 2.4;
-      color: var(--clay);
-      letter-spacing: 0.05em;
-    }
+    /* BASE SHOP CTA */
+    .base-cta { background: var(--warm-white); padding: 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-top: 1px solid var(--sand); }
+    .base-text .section-label { color: var(--rose-muted); }
+    .base-text .section-label::after { background: var(--rose-muted); }
+    .base-text .section-heading { font-size: 36px; }
+    .base-text .section-heading-jp { margin-bottom: 20px; }
+    .base-text p { font-size: 14px; line-height: 2.2; color: var(--taupe); max-width: 400px; }
+    .btn-base { display: inline-flex; align-items: center; gap: 12px; background: var(--bark); color: var(--cream); text-decoration: none; padding: 18px 36px; font-family: 'Shippori Mincho', serif; font-size: 14px; letter-spacing: 0.2em; transition: background 0.3s; white-space: nowrap; }
+    .btn-base:hover { background: var(--deep); }
 
-    .reserve-cta-right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-    }
-
-    .reserve-box {
-      width: 100%;
-      max-width: 380px;
-      border: 1px solid rgba(139,118,96,0.4);
-      padding: 52px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      text-align: center;
-    }
-
-    .reserve-box-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      letter-spacing: 0.4em;
-      color: var(--clay);
-      margin-bottom: 16px;
-    }
-
-    .btn-reserve-large {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: var(--rose-muted);
-      color: var(--cream);
-      text-decoration: none;
-      padding: 22px 52px;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 17px;
-      letter-spacing: 0.25em;
-      width: 100%;
-      transition: all 0.3s;
-      border: 1px solid var(--rose-muted);
-    }
-    .btn-reserve-large:hover {
-      background: transparent;
-      color: var(--rose-muted);
-    }
-
-    .reserve-note {
-      font-size: 11px;
-      color: var(--taupe);
-      letter-spacing: 0.1em;
-      line-height: 2;
-      text-align: center;
-    }
-
-    /* ── INFO ── */
-    .info {
-      padding: 100px 80px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      background: var(--cream);
-    }
-
-    .info-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 300;
-      color: var(--bark);
-      margin-bottom: 8px;
-    }
-    .info-heading-jp {
-      font-size: 13px;
-      letter-spacing: 0.3em;
-      color: var(--taupe);
-      margin-bottom: 40px;
-    }
-
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .info-table tr {
-      border-bottom: 1px solid var(--sand);
-    }
-    .info-table th, .info-table td {
-      padding: 16px 0;
-      text-align: left;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-    }
-    .info-table th {
-      width: 100px;
-      color: var(--taupe);
-      font-weight: 400;
-    }
+    /* INFO */
+    .info { padding: 100px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; background: var(--cream); }
+    .info-heading { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--bark); margin-bottom: 8px; }
+    .info-heading-jp { font-size: 13px; letter-spacing: 0.3em; color: var(--taupe); margin-bottom: 40px; }
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table tr { border-bottom: 1px solid var(--sand); }
+    .info-table th, .info-table td { padding: 16px 0; text-align: left; font-size: 13px; letter-spacing: 0.05em; }
+    .info-table th { width: 100px; color: var(--taupe); font-weight: 400; }
     .info-table td { color: var(--bark); line-height: 1.8; }
+    .info-map-placeholder { background: var(--warm-white); border: 1px solid var(--sand); min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: var(--clay); font-size: 13px; letter-spacing: 0.1em; }
 
-    .info-map-placeholder {
-      background: var(--warm-white);
-      border: 1px solid var(--sand);
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      color: var(--clay);
-      font-size: 13px;
-      letter-spacing: 0.1em;
-    }
-    .map-pin { font-size: 36px; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--deep);
-      color: var(--clay);
-      padding: 60px 80px 40px;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 48px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(139,118,96,0.25);
-    }
-
-    .footer-logo-jp {
-      font-size: 18px;
-      letter-spacing: 0.3em;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-    .footer-logo-en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.3em;
-    }
-    .footer-logo-sub {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      margin-top: 8px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 32px;
-    }
-    .footer-links a {
-      color: var(--clay);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      transition: color 0.2s;
-    }
+    /* FOOTER */
+    footer { background: var(--deep); color: var(--clay); padding: 60px 80px 40px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(139,118,96,0.25); }
+    .footer-logo-jp { font-size: 18px; letter-spacing: 0.3em; color: var(--cream); margin-bottom: 4px; }
+    .footer-logo-en { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-weight: 300; letter-spacing: 0.3em; }
+    .footer-logo-sub { font-size: 11px; letter-spacing: 0.15em; margin-top: 8px; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a { color: var(--clay); text-decoration: none; font-size: 12px; letter-spacing: 0.15em; transition: color 0.2s; }
     .footer-links a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-weight: 300; letter-spacing: 0.2em; }
 
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-copy {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.2em;
-    }
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
-      header { padding: 16px 24px; }
-      nav { gap: 20px; }
+      header { padding: 16px 20px; }
       nav a:not(.nav-reserve) { display: none; }
-
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 60px 28px 48px; }
-      .hero-right { min-height: 320px; }
-      .hero-credentials { gap: 20px; }
-
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 56px 24px 40px; }
+      .hero-right { min-height: 340px; }
       .about { grid-template-columns: 1fr; }
-      .about-visual { min-height: 280px; }
-      .about-text { padding: 48px 28px; }
-
-      .services { padding: 60px 28px; }
+      .about-photo { min-height: 280px; }
+      .about-text { padding: 48px 24px; }
+      .photo-strip-header { padding: 0 24px 36px; }
+      .photo-strip-item { flex: 0 0 280px; height: 360px; }
+      .strip-scroll-hint { padding: 16px 24px 48px; }
+      .instagram-cta { flex-direction: column; padding: 60px 24px; text-align: center; }
+      .instagram-text p { max-width: 100%; }
+      .services { padding: 60px 24px; }
       .services-grid { grid-template-columns: 1fr; }
-
-      .reserve-cta { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
-      .reserve-box { max-width: 100%; }
-
-      .info { grid-template-columns: 1fr; padding: 60px 28px; gap: 48px; }
-
-      footer { padding: 48px 28px 32px; }
-      .footer-top { flex-direction: column; gap: 32px; }
+      .reserve-cta { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+      .base-cta { flex-direction: column; padding: 60px 24px; text-align: center; }
+      .base-text p { max-width: 100%; }
+      .info { grid-template-columns: 1fr; padding: 60px 24px; gap: 48px; }
+      footer { padding: 48px 24px 32px; }
+      .footer-top { flex-direction: column; gap: 28px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-    }
-
-    /* scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="logo-wrap">
       <div class="logo-jp">プリキラ</div>
       <div class="logo-en">Pretty Flower</div>
     </div>
     <nav>
-      <a href="#about">アトリエについて</a>
+      <a href="about.html">店主について</a>
       <a href="#services">ご利用案内</a>
       <a href="#info">アクセス</a>
+      <a href="https://pretty0204.thebase.in/" target="_blank">オンラインショップ</a>
       <a href="order.html" class="nav-reserve">来店予約</a>
     </nav>
   </header>
@@ -745,10 +226,8 @@
   <section class="hero">
     <div class="hero-left">
       <p class="hero-eyebrow">ATELIER FLOWER SHOP — KITAKYUSHU, FUKUOKA</p>
-
       <h1 class="hero-title">Pretty<br><em>Flower</em></h1>
       <div class="hero-title-jp">プリキラ</div>
-
       <p class="hero-desc">
         北九州市戸畑区の静かなアトリエで、<br>
         ひとつひとつ心を込めて作る<br>
@@ -756,23 +235,18 @@
         国家検定フラワー装飾士が<br>
         お花選びからご相談に応じます。
       </p>
-
       <div class="hero-cta-group">
-        <a href="order.html" class="btn-primary">
-          <span>来店予約はこちら</span>
-          <span class="arrow">→</span>
-        </a>
-        <a href="#about" class="btn-secondary">アトリエについて詳しく</a>
+        <a href="order.html" class="btn-primary">来店予約はこちら →</a>
+        <a href="about.html" class="btn-secondary">店主・アトリエについて</a>
       </div>
-
       <div class="hero-credentials">
         <div class="credential-item">
           <div class="credential-num">26</div>
           <div class="credential-label">年の経験</div>
         </div>
         <div class="credential-item">
-          <div class="credential-num">12</div>
-          <div class="credential-label">年のアトリエ運営</div>
+          <div class="credential-num">13</div>
+          <div class="credential-label">年目のアトリエ</div>
         </div>
         <div class="credential-item">
           <div class="credential-num">国家</div>
@@ -782,70 +256,13 @@
     </div>
 
     <div class="hero-right">
-      <div class="hero-illustration">
-        <div class="flower-frame">
-          <div class="frame-border"></div>
-          <div class="frame-corner tl"></div>
-          <div class="frame-corner tr"></div>
-          <div class="frame-corner bl"></div>
-          <div class="frame-corner br"></div>
-          <svg class="hero-svg" viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background wash -->
-            <rect width="320" height="420" fill="none"/>
-            <!-- Botanical illustration — stems and leaves -->
-            <g opacity="0.55" stroke="#7a8c75" stroke-width="1" fill="none">
-              <!-- Main stems -->
-              <path d="M160 420 Q155 340 145 280 Q138 230 150 180"/>
-              <path d="M160 420 Q168 360 175 300 Q182 250 170 190"/>
-              <path d="M160 420 Q150 380 140 320 Q132 270 138 220"/>
-              <path d="M160 420 Q172 390 180 340 Q185 290 175 240"/>
-              <!-- Leaves -->
-              <ellipse cx="138" cy="260" rx="22" ry="10" transform="rotate(-25 138 260)" fill="#7a8c75" opacity="0.3"/>
-              <ellipse cx="180" cy="300" rx="20" ry="9" transform="rotate(20 180 300)" fill="#7a8c75" opacity="0.3"/>
-              <ellipse cx="135" cy="320" rx="18" ry="8" transform="rotate(-35 135 320)" fill="#7a8c75" opacity="0.25"/>
-              <ellipse cx="182" cy="260" rx="16" ry="7" transform="rotate(30 182 260)" fill="#7a8c75" opacity="0.25"/>
-              <ellipse cx="145" cy="230" rx="14" ry="6" transform="rotate(-20 145 230)" fill="#7a8c75" opacity="0.2"/>
-            </g>
-            <!-- Rose — center bloom -->
-            <g transform="translate(155,165)">
-              <circle cx="0" cy="0" r="28" fill="rgba(196,150,122,0.12)"/>
-              <ellipse cx="0" cy="-10" rx="16" ry="18" fill="rgba(196,150,122,0.5)" transform="rotate(-15)"/>
-              <ellipse cx="10" cy="5" rx="15" ry="17" fill="rgba(196,150,122,0.45)" transform="rotate(40)"/>
-              <ellipse cx="-8" cy="8" rx="14" ry="16" fill="rgba(196,150,122,0.4)" transform="rotate(-40)"/>
-              <ellipse cx="0" cy="-5" rx="10" ry="13" fill="rgba(196,150,122,0.6)" transform="rotate(10)"/>
-              <ellipse cx="4" cy="4" rx="9" ry="11" fill="rgba(196,150,122,0.55)" transform="rotate(-20)"/>
-              <circle cx="0" cy="0" r="6" fill="rgba(196,150,122,0.8)"/>
-            </g>
-            <!-- Small accent flowers -->
-            <g transform="translate(108,200)" opacity="0.7">
-              <circle cx="0" cy="0" r="3" fill="rgba(196,150,122,0.8)"/>
-              <circle cx="0" cy="-7" r="4" fill="rgba(232,196,176,0.8)"/>
-              <circle cx="6" cy="3" r="4" fill="rgba(232,196,176,0.75)"/>
-              <circle cx="-6" cy="3" r="4" fill="rgba(232,196,176,0.75)"/>
-              <circle cx="4" cy="-6" r="4" fill="rgba(232,196,176,0.7)"/>
-              <circle cx="-4" cy="-6" r="4" fill="rgba(232,196,176,0.7)"/>
-            </g>
-            <g transform="translate(208,230)" opacity="0.65">
-              <circle cx="0" cy="0" r="3" fill="rgba(122,140,117,0.8)"/>
-              <circle cx="0" cy="-7" r="4" fill="rgba(122,140,117,0.7)"/>
-              <circle cx="6" cy="3" r="4" fill="rgba(122,140,117,0.65)"/>
-              <circle cx="-6" cy="3" r="4" fill="rgba(122,140,117,0.65)"/>
-              <circle cx="4" cy="-6" r="4" fill="rgba(122,140,117,0.6)"/>
-              <circle cx="-4" cy="-6" r="4" fill="rgba(122,140,117,0.6)"/>
-            </g>
-            <!-- Delicate line accents -->
-            <g stroke="rgba(139,118,96,0.15)" stroke-width="0.5" fill="none">
-              <circle cx="160" cy="165" r="60"/>
-              <circle cx="160" cy="165" r="90"/>
-            </g>
-            <!-- Text accent -->
-            <text x="160" y="380" text-anchor="middle"
-              font-family="Cormorant Garamond, serif"
-              font-size="9" letter-spacing="4"
-              fill="rgba(139,118,96,0.5)">GIFT FLOWERS</text>
-          </svg>
-        </div>
+      <div class="hero-photo-grid">
+        <img src="flower2.png" alt="白緑のフラワーアレンジメント">
+        <img src="atelier.jpg" alt="プリキラ外観">
+        <img src="flower1.png" alt="ピンクのフラワーアレンジメント">
+        <img src="atelier2.jpg" alt="アトリエの植物ディスプレイ">
       </div>
+      <div class="hero-overlay"></div>
       <div class="hero-location">北九州市戸畑区</div>
     </div>
   </section>
@@ -860,8 +277,6 @@
       <div class="marquee-item">来店予約受付中 <span class="marquee-dot">●</span></div>
       <div class="marquee-item">KITAKYUSHU <span class="marquee-dot">●</span></div>
       <div class="marquee-item">ギフト専門 <span class="marquee-dot">●</span></div>
-      <div class="marquee-item">26年の経験 <span class="marquee-dot">●</span></div>
-      <!-- duplicate for seamless loop -->
       <div class="marquee-item">GIFT FLOWERS <span class="marquee-dot">●</span></div>
       <div class="marquee-item">ATELIER STYLE <span class="marquee-dot">●</span></div>
       <div class="marquee-item">フラワー装飾士 <span class="marquee-dot">●</span></div>
@@ -869,84 +284,80 @@
       <div class="marquee-item">来店予約受付中 <span class="marquee-dot">●</span></div>
       <div class="marquee-item">KITAKYUSHU <span class="marquee-dot">●</span></div>
       <div class="marquee-item">ギフト専門 <span class="marquee-dot">●</span></div>
-      <div class="marquee-item">26年の経験 <span class="marquee-dot">●</span></div>
     </div>
   </div>
 
-  <!-- ABOUT -->
+  <!-- ABOUT TEASER -->
   <section class="about" id="about">
-    <div class="about-visual">
-      <div class="about-visual-inner">
-        <svg width="280" height="340" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.6">
-            <!-- White birch-like vertical lines -->
-            <line x1="90" y1="0" x2="90" y2="340" stroke="rgba(139,118,96,0.2)" stroke-width="24"/>
-            <line x1="91" y1="0" x2="91" y2="340" stroke="rgba(200,190,178,0.5)" stroke-width="2"/>
-            <line x1="160" y1="0" x2="160" y2="340" stroke="rgba(139,118,96,0.15)" stroke-width="18"/>
-            <line x1="161" y1="0" x2="161" y2="340" stroke="rgba(200,190,178,0.4)" stroke-width="1.5"/>
-            <line x1="210" y1="0" x2="210" y2="340" stroke="rgba(139,118,96,0.1)" stroke-width="12"/>
-          </g>
-          <!-- Botanical sprigs -->
-          <g stroke="#7a8c75" stroke-width="1" fill="none" opacity="0.5">
-            <path d="M80 280 Q78 240 75 200 Q72 170 80 140"/>
-            <path d="M80 280 Q85 250 88 215 Q90 185 84 155"/>
-            <ellipse cx="72" cy="185" rx="16" ry="7" transform="rotate(-30 72 185)" fill="#7a8c75" opacity="0.3"/>
-            <ellipse cx="88" cy="210" rx="14" ry="6" transform="rotate(25 88 210)" fill="#7a8c75" opacity="0.25"/>
-          </g>
-          <!-- Window light suggestion -->
-          <rect x="50" y="60" width="180" height="220" fill="none" stroke="rgba(139,118,96,0.1)" stroke-width="1"/>
-          <!-- Rose cluster -->
-          <g transform="translate(130,130)" opacity="0.75">
-            <ellipse cx="0" cy="-8" rx="13" ry="15" fill="rgba(196,150,122,0.55)" transform="rotate(-10)"/>
-            <ellipse cx="10" cy="5" rx="12" ry="14" fill="rgba(196,150,122,0.5)" transform="rotate(35)"/>
-            <ellipse cx="-8" cy="6" rx="11" ry="13" fill="rgba(196,150,122,0.45)" transform="rotate(-35)"/>
-            <ellipse cx="0" cy="-3" rx="8" ry="11" fill="rgba(196,150,122,0.65)"/>
-            <circle cx="0" cy="0" r="5" fill="rgba(196,150,122,0.8)"/>
-          </g>
-          <!-- Quote-like text -->
-          <text x="140" y="310" text-anchor="middle"
-            font-family="Cormorant Garamond, serif"
-            font-size="8" letter-spacing="3"
-            fill="rgba(139,118,96,0.4)" font-style="italic">pretty flower</text>
-        </svg>
-      </div>
+    <div class="about-photo">
+      <img src="atelier.jpg" alt="プリキラ アトリエ外観">
     </div>
-
     <div class="about-text reveal">
       <div class="section-label">ABOUT</div>
       <h2 class="section-heading">Atelier<br>Flower</h2>
       <p class="section-heading-jp">アトリエについて</p>
-
       <p class="about-body">
-        プリキラは、北九州市戸畑区の静かな住宅街にある<br>
-        一人のフラワー装飾士が営む小さなアトリエ花屋です。<br><br>
-        「大切な人へ届けたい」そのお気持ちに寄り添い、<br>
-        誕生日・記念日・母の日・各種お祝いまで、<br>
-        ギフトシーンに合わせたフラワーアレンジを<br>
-        オーダーメイドでおつくりします。<br><br>
-        来店いただく際は、事前のご予約をお願いしています。
+        結婚式の裏方で花を扱うフローリストの姿に憧れ、<br>
+        花の世界に飛び込んで26年。<br>
+        企業の花屋・個人花屋を経て独立し、<br>
+        今年でアトリエ13年目を迎えました。<br><br>
+        季節の花を丁寧に選び、<br>
+        「この人から買いたい」と思っていただけるような<br>
+        お花づくりを続けています。
       </p>
-
       <div class="badge-list">
-        <div class="badge">
-          <div class="badge-icon">🏅</div>
-          国家検定フラワー装飾士
-        </div>
-        <div class="badge">
-          <div class="badge-icon">📅</div>
-          花業界26年のキャリア
-        </div>
-        <div class="badge">
-          <div class="badge-icon">🏠</div>
-          アトリエスタイル・完全予約制
-        </div>
-        <div class="badge">
-          <div class="badge-icon">🎁</div>
-          ギフト専門・オーダーメイド対応
-        </div>
+        <div class="badge"><div class="badge-icon">🏅</div>国家検定フラワー装飾士</div>
+        <div class="badge"><div class="badge-icon">🌿</div>季節感のある仕入れにこだわる</div>
+        <div class="badge"><div class="badge-icon">🏠</div>完全予約制・アトリエスタイル</div>
+        <div class="badge"><div class="badge-icon">🎁</div>ギフト専門・オーダーメイド対応</div>
+      </div>
+      <div style="margin-top:36px;">
+        <a href="about.html" class="btn-secondary">店主プロフィールを見る →</a>
       </div>
     </div>
   </section>
+
+  <!-- PHOTO STRIP -->
+  <div class="photo-strip-section">
+    <div class="photo-strip-header reveal">
+      <div class="section-label">GALLERY</div>
+      <h2 class="section-heading" style="font-size:36px;">Works</h2>
+      <p class="section-heading-jp">作品・アトリエの様子</p>
+    </div>
+    <div class="photo-strip">
+      <div class="photo-strip-item">
+        <img src="flower2.png" alt="白緑のフラワーアレンジメント">
+        <div class="strip-caption">White & Green Arrangement</div>
+      </div>
+      <div class="photo-strip-item">
+        <img src="flower1.png" alt="ピンクのフラワーアレンジメント">
+        <div class="strip-caption">Pink Rose Arrangement</div>
+      </div>
+      <div class="photo-strip-item">
+        <img src="atelier2.jpg" alt="アトリエ外の植物たち">
+        <div class="strip-caption">Atelier Garden</div>
+      </div>
+      <div class="photo-strip-item">
+        <img src="atelier.jpg" alt="プリキラ 外観">
+        <div class="strip-caption">Pretty Flower — Tobata, Kitakyushu</div>
+      </div>
+    </div>
+    <div class="strip-scroll-hint">スクロールして見る</div>
+  </div>
+
+  <!-- INSTAGRAM CTA -->
+  <div class="instagram-cta">
+    <div class="instagram-text reveal">
+      <div class="section-label">INSTAGRAM</div>
+      <h2 class="section-heading" style="color:var(--cream); font-size:36px;">Latest Works</h2>
+      <p class="section-heading-jp">最新の作品はInstagramで</p>
+      <p>季節のお花・新着アレンジ・アトリエの日常を<br>Instagramで発信しています。</p>
+    </div>
+    <a href="https://www.instagram.com/prettyflower0204/" target="_blank" class="btn-instagram">
+      <span class="instagram-icon">📷</span>
+      Instagramを見る →
+    </a>
+  </div>
 
   <!-- SERVICES -->
   <section class="services" id="services">
@@ -954,44 +365,31 @@
       <div class="section-label" style="justify-content:center">SERVICES</div>
       <h2 class="section-heading" style="text-align:center">ご利用案内</h2>
     </div>
-
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-num">01</div>
         <div class="service-icon">🌹</div>
         <div class="service-name">バースデー&記念日</div>
-        <p class="service-desc">
-          大切な方へのお誕生日や記念日に。<br>
-          ご予算・ご要望に合わせて<br>
-          心を込めてアレンジします。
-        </p>
+        <p class="service-desc">大切な方へのお誕生日や記念日に。ご予算・ご要望に合わせて心を込めてアレンジします。</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">02</div>
         <div class="service-icon">💐</div>
         <div class="service-name">各種お祝い・贈り物</div>
-        <p class="service-desc">
-          出産祝い・結婚祝い・開店祝い・<br>
-          母の日・敬老の日など、<br>
-          あらゆるギフトシーンに対応。
-        </p>
+        <p class="service-desc">出産祝い・結婚祝い・開店祝い・母の日・敬老の日など、あらゆるギフトシーンに対応。</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">03</div>
         <div class="service-icon">✨</div>
         <div class="service-name">オーダーメイド相談</div>
-        <p class="service-desc">
-          「こんな雰囲気に」「この花を使いたい」など<br>
-          イメージをお聞きしながら<br>
-          ご一緒に作り上げます。
-        </p>
+        <p class="service-desc">「こんな雰囲気に」「この花を使いたい」などイメージをお聞きしながらご一緒に作り上げます。</p>
       </div>
     </div>
   </section>
 
   <!-- RESERVE CTA -->
   <section class="reserve-cta">
-    <div class="reserve-cta-text reveal">
+    <div class="reveal">
       <div class="section-label">RESERVATION</div>
       <h2 class="section-heading">ご来店<br>予約</h2>
       <p class="section-heading-jp">完全予約制・ご来店歓迎</p>
@@ -1003,66 +401,48 @@
         確認後、折り返しご連絡いたします。
       </p>
     </div>
-
     <div class="reserve-cta-right reveal">
       <div class="reserve-box">
         <p class="reserve-box-title">MAKE A RESERVATION</p>
-        <a href="order.html" class="btn-reserve-large">
-          来店予約フォームへ →
-        </a>
-        <p class="reserve-note">
-          ご予約後、確認のご連絡を差し上げます。<br>
-          お気軽にお問い合わせください。
-        </p>
+        <a href="order.html" class="btn-reserve-large">来店予約フォームへ →</a>
+        <p class="reserve-note">ご予約後、確認のご連絡を差し上げます。<br>お気軽にお問い合わせください。</p>
       </div>
     </div>
   </section>
+
+  <!-- BASE SHOP -->
+  <div class="base-cta">
+    <div class="base-text reveal">
+      <div class="section-label">ONLINE SHOP</div>
+      <h2 class="section-heading">Online Shop</h2>
+      <p class="section-heading-jp">オンラインショップ（BASE）</p>
+      <p>遠方の方やご来店が難しい方は、オンラインショップもご利用いただけます。<br>季節のフラワーギフトを取り揃えております。</p>
+    </div>
+    <a href="https://pretty0204.thebase.in/" target="_blank" class="btn-base">
+      オンラインショップへ →
+    </a>
+  </div>
 
   <!-- INFO -->
   <section class="info" id="info">
     <div class="reveal">
       <p class="info-heading">Shop Info</p>
       <p class="info-heading-jp">店舗情報</p>
-
       <table class="info-table">
-        <tr>
-          <th>店名</th>
-          <td>プリキラ（Pretty Flower）</td>
-        </tr>
-        <tr>
-          <th>所在地</th>
-          <td>福岡県北九州市戸畑区</td>
-        </tr>
-        <tr>
-          <th>営業スタイル</th>
-          <td>アトリエ型・完全予約制</td>
-        </tr>
-        <tr>
-          <th>専門</th>
-          <td>フラワーギフト（オーダーメイド）</td>
-        </tr>
-        <tr>
-          <th>資格</th>
-          <td>国家検定フラワー装飾士</td>
-        </tr>
-        <tr>
-          <th>予約</th>
-          <td>
-            <a href="order.html" style="color:var(--rose-muted); text-decoration:none;">
-              来店予約フォームよりお申し込みください →
-            </a>
-          </td>
-        </tr>
+        <tr><th>店名</th><td>プリキラ（Pretty Flower）</td></tr>
+        <tr><th>所在地</th><td>福岡県北九州市戸畑区</td></tr>
+        <tr><th>営業スタイル</th><td>アトリエ型・完全予約制</td></tr>
+        <tr><th>専門</th><td>フラワーギフト（オーダーメイド）</td></tr>
+        <tr><th>資格</th><td>国家検定フラワー装飾士</td></tr>
+        <tr><th>予約</th><td><a href="order.html" style="color:var(--rose-muted);text-decoration:none;">来店予約フォームよりお申し込みください →</a></td></tr>
+        <tr><th>ショップ</th><td><a href="https://pretty0204.thebase.in/" target="_blank" style="color:var(--rose-muted);text-decoration:none;">pretty0204.thebase.in →</a></td></tr>
       </table>
     </div>
-
     <div class="reveal">
       <div class="info-map-placeholder">
-        <div class="map-pin">📍</div>
+        <div style="font-size:36px;">📍</div>
         <p>北九州市戸畑区</p>
-        <p style="font-size:11px; color:var(--sand); margin-top:4px;">
-          詳細な住所はご予約確認後にお知らせします
-        </p>
+        <p style="font-size:11px;color:var(--sand);margin-top:4px;">詳細な住所はご予約確認後にお知らせします</p>
       </div>
     </div>
   </section>
@@ -1076,38 +456,27 @@
         <div class="footer-logo-sub">北九州市戸畑区 ／ アトリエ花屋</div>
       </div>
       <div class="footer-links">
-        <a href="#about">アトリエについて</a>
+        <a href="about.html">店主について</a>
         <a href="#services">ご利用案内</a>
         <a href="#info">店舗情報</a>
+        <a href="https://pretty0204.thebase.in/" target="_blank">オンラインショップ</a>
         <a href="order.html">来店予約</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">© 2024 Pretty Flower / プリキラ All rights reserved.</p>
-      <p style="font-size:11px; letter-spacing:0.15em;">Kitakyushu, Fukuoka</p>
+      <p style="font-size:11px;letter-spacing:0.15em;">Kitakyushu, Fukuoka</p>
     </div>
   </footer>
 
   <script>
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
-
-    // Header scroll
     const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-      header.style.boxShadow = window.scrollY > 20
-        ? '0 2px 20px rgba(45,31,20,0.08)'
-        : 'none';
-    });
+    window.addEventListener('scroll', () => { header.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(45,31,20,0.08)' : 'none'; });
   </script>
 </body>
 </html>
