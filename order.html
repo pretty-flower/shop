@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>来店予約｜プリキラ Pretty Flower</title>
+  <meta name="description" content="プリキラ（北九州市戸畑区）の来店予約フォーム。ご希望の日時・ギフト内容をお知らせください。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf7f2;
+      --warm-white: #f5f0e8;
+      --sand: #e8dfd0;
+      --clay: #c9b8a0;
+      --taupe: #8b7660;
+      --bark: #5a4535;
+      --deep: #2d1f14;
+      --sage: #7a8c75;
+      --rose-muted: #c4967a;
+      --blush: #e8c4b0;
+    }
+
+    body {
+      font-family: 'Shippori Mincho', serif;
+      background: var(--cream);
+      color: var(--deep);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--sand);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .logo-jp {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      color: var(--bark);
+    }
+    .logo-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--taupe);
+    }
+    .back-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--taupe);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--bark); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: var(--deep);
+      color: var(--cream);
+      padding: 72px 40px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(196,150,122,0.15) 0%, transparent 60%);
+    }
+
+    .page-header-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.5em;
+      color: var(--rose-muted);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 300;
+      line-height: 1.1;
+      position: relative;
+    }
+    .page-header h1 em {
+      font-style: italic;
+      color: var(--rose-muted);
+    }
+    .page-header-jp {
+      font-size: 14px;
+      letter-spacing: 0.35em;
+      color: var(--clay);
+      margin-top: 12px;
+      position: relative;
+    }
+    .page-header-note {
+      margin-top: 32px;
+      font-size: 13px;
+      line-height: 2;
+      color: var(--clay);
+      position: relative;
+    }
+
+    /* ── STEPS ── */
+    .steps-bar {
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--sand);
+      padding: 20px 40px;
+    }
+    .steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--clay);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--clay);
+      background: transparent;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .step.active .step-num {
+      background: var(--bark);
+      border-color: var(--bark);
+      color: var(--cream);
+    }
+    .step.done .step-num {
+      background: var(--sage);
+      border-color: var(--sage);
+      color: var(--cream);
+    }
+    .step-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--clay);
+      white-space: nowrap;
+    }
+    .step.active .step-label { color: var(--bark); }
+    .step.done .step-label { color: var(--sage); }
+    .step-line {
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+      margin: 0 8px;
+    }
+
+    /* ── FORM ── */
+    .form-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+    }
+
+    /* Step panels */
+    .step-panel {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .step-panel.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-heading {
+      margin-bottom: 40px;
+    }
+    .panel-heading-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--bark);
+    }
+    .panel-heading-jp {
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--taupe);
+      margin-top: 4px;
+    }
+    .panel-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--rose-muted);
+      margin-top: 16px;
+    }
+
+    /* Fields */
+    .field-group {
+      margin-bottom: 32px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--taupe);
+      margin-bottom: 10px;
+    }
+    label .required {
+      color: var(--rose-muted);
+      margin-left: 4px;
+      font-size: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--sand);
+      background: var(--warm-white);
+      font-family: 'Shippori Mincho', serif;
+      font-size: 14px;
+      color: var(--deep);
+      letter-spacing: 0.05em;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--taupe);
+      background: var(--cream);
+    }
+    textarea { resize: vertical; min-height: 120px; line-height: 1.8; }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b7660' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    /* Radio / Checkbox カード */
+    .card-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .card-options.three { grid-template-columns: repeat(3, 1fr); }
+
+    .card-option {
+      position: relative;
+    }
+    .card-option input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .card-option label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px 12px;
+      border: 1px solid var(--sand);
+      background: var(--warm-white);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      margin: 0;
+      color: var(--taupe);
+      letter-spacing: 0.1em;
+    }
+    .card-option input:checked + label {
+      border-color: var(--bark);
+      background: var(--cream);
+      color: var(--bark);
+    }
+    .card-option label .card-icon { font-size: 22px; }
+    .card-option label .card-text { font-size: 12px; line-height: 1.5; }
+
+    /* Budget slider-like select */
+    .budget-display {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .budget-btn {
+      flex: 1;
+      min-width: 100px;
+      padding: 12px 8px;
+      border: 1px solid var(--sand);
+      background: var(--warm-white);
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      color: var(--taupe);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .budget-btn.selected, .budget-btn:hover {
+      border-color: var(--bark);
+      background: var(--cream);
+      color: var(--bark);
+    }
+
+    /* Date/Time row */
+    .date-time-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Confirm panel */
+    .confirm-table {
+      border-top: 1px solid var(--sand);
+    }
+    .confirm-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--sand);
+      align-items: baseline;
+    }
+    .confirm-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--taupe);
+    }
+    .confirm-value {
+      font-size: 14px;
+      color: var(--bark);
+      line-height: 1.7;
+    }
+
+    /* Privacy note */
+    .privacy-note {
+      background: var(--warm-white);
+      border: 1px solid var(--sand);
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 12px;
+      line-height: 2;
+      color: var(--taupe);
+      letter-spacing: 0.05em;
+    }
+
+    /* Submit box */
+    .submit-note {
+      font-size: 12px;
+      line-height: 2;
+      color: var(--taupe);
+      text-align: center;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      margin-top: 48px;
+    }
+    .btn-row.center { justify-content: center; }
+    .btn-row.right { justify-content: flex-end; }
+
+    .btn-next, .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bark);
+      color: var(--cream);
+      border: none;
+      padding: 16px 40px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-next:hover, .btn-submit:hover { background: var(--deep); }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--taupe);
+      border: 1px solid var(--sand);
+      padding: 16px 28px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-back:hover { border-color: var(--taupe); color: var(--bark); }
+
+    .btn-submit {
+      background: var(--rose-muted);
+      padding: 18px 52px;
+      font-size: 15px;
+    }
+    .btn-submit:hover { background: var(--bark); }
+
+    /* Completion */
+    .completion {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .completion-icon {
+      font-size: 56px;
+      margin-bottom: 32px;
+    }
+    .completion-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--bark);
+      margin-bottom: 8px;
+    }
+    .completion-title-jp {
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--taupe);
+      margin-bottom: 40px;
+    }
+    .completion-message {
+      font-size: 14px;
+      line-height: 2.4;
+      color: var(--taupe);
+      letter-spacing: 0.05em;
+      margin-bottom: 48px;
+    }
+    .completion-note {
+      background: var(--warm-white);
+      border: 1px solid var(--sand);
+      padding: 28px 32px;
+      font-size: 13px;
+      line-height: 2.2;
+      color: var(--taupe);
+      text-align: left;
+      max-width: 460px;
+      margin: 0 auto 48px;
+    }
+
+    /* Validation */
+    .field-error {
+      font-size: 11px;
+      color: var(--rose-muted);
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+      display: none;
+    }
+    .field-group.has-error input,
+    .field-group.has-error select,
+    .field-group.has-error textarea {
+      border-color: var(--rose-muted);
+    }
+    .field-group.has-error .field-error { display: block; }
+
+    /* Footer */
+    footer {
+      background: var(--deep);
+      color: var(--clay);
+      padding: 32px 40px;
+      text-align: center;
+    }
+    footer a {
+      color: var(--clay);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+    }
+    footer a:hover { color: var(--cream); }
+    .footer-logo {
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 16px 20px; }
+      .page-header { padding: 52px 24px 48px; }
+      .steps-bar { padding: 16px 20px; }
+      .form-container { padding: 40px 20px 80px; }
+      .card-options { grid-template-columns: 1fr 1fr; }
+      .card-options.three { grid-template-columns: 1fr 1fr; }
+      .date-time-row { grid-template-columns: 1fr; }
+      .confirm-row { grid-template-columns: 1fr; gap: 4px; }
+      .btn-row { flex-direction: column-reverse; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-wrap">
+      <span class="logo-jp">プリキラ</span>
+      <span class="logo-en">Pretty Flower</span>
+    </div>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="page-header-eyebrow">RESERVATION FORM</p>
+    <h1>Make a<br><em>Reservation</em></h1>
+    <p class="page-header-jp">来店予約フォーム</p>
+    <p class="page-header-note">
+      ご来店の際は事前のご予約をお願いしております。<br>
+      フォームにご記入いただくと、確認のご連絡を差し上げます。
+    </p>
+  </div>
+
+  <!-- STEPS BAR -->
+  <div class="steps-bar">
+    <div class="steps">
+      <div class="step active" id="step-indicator-1">
+        <div class="step-num">1</div>
+        <div class="step-label">ご用途</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step-indicator-2">
+        <div class="step-num">2</div>
+        <div class="step-label">日時・予算</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step-indicator-3">
+        <div class="step-num">3</div>
+        <div class="step-label">お客様情報</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step-indicator-4">
+        <div class="step-num">4</div>
+        <div class="step-label">確認・送信</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-container">
+
+    <!-- STEP 1: ご用途 -->
+    <div class="step-panel active" id="panel-1">
+      <div class="panel-heading">
+        <div class="panel-heading-en">Purpose</div>
+        <div class="panel-heading-jp">ご用途をお聞かせください</div>
+        <div class="panel-divider"></div>
+      </div>
+
+      <div class="field-group">
+        <label>ギフトの用途 <span class="required">必須</span></label>
+        <div class="card-options" id="purpose-options">
+          <div class="card-option">
+            <input type="radio" name="purpose" id="p-birthday" value="誕生日・記念日">
+            <label for="p-birthday">
+              <span class="card-icon">🎂</span>
+              <span class="card-text">誕生日・記念日</span>
+            </label>
+          </div>
+          <div class="card-option">
+            <input type="radio" name="purpose" id="p-mothers" value="母の日・父の日">
+            <label for="p-mothers">
+              <span class="card-icon">🌸</span>
+              <span class="card-text">母の日・父の日</span>
+            </label>
+          </div>
+          <div class="card-option">
+            <input type="radio" name="purpose" id="p-wedding" value="結婚・出産のお祝い">
+            <label for="p-wedding">
+              <span class="card-icon">💍</span>
+              <span class="card-text">結婚・出産のお祝い</span>
+            </label>
+          </div>
+          <div class="card-option">
+            <input type="radio" name="purpose" id="p-open" value="開店・就任のお祝い">
+            <label for="p-open">
+              <span class="card-icon">🎊</span>
+              <span class="card-text">開店・就任のお祝い</span>
+            </label>
+          </div>
+          <div class="card-option">
+            <input type="radio" name="purpose" id="p-gift" value="プレゼント・贈り物">
+            <label for="p-gift">
+              <span class="card-icon">🎁</span>
+              <span class="card-text">プレゼント・贈り物</span>
+            </label>
+          </div>
+          <div class="card-option">
+            <input type="radio" name="purpose" id="p-other" value="その他・相談したい">
+            <label for="p-other">
+              <span class="card-icon">✉️</span>
+              <span class="card-text">その他・相談したい</span>
+            </label>
+          </div>
+        </div>
+        <div class="field-error" id="err-purpose">ご用途を選択してください</div>
+      </div>
+
+      <div class="field-group">
+        <label for="purpose-note">イメージや希望の花など（任意）</label>
+        <textarea id="purpose-note" placeholder="例：ピンク系でかわいらしい雰囲気にしたい、バラを多めに使いたい、など"></textarea>
+      </div>
+
+      <div class="btn-row right">
+        <button class="btn-next" onclick="goStep(2)">
+          次へ（日時・予算）<span>→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: 日時・予算 -->
+    <div class="step-panel" id="panel-2">
+      <div class="panel-heading">
+        <div class="panel-heading-en">Date & Budget</div>
+        <div class="panel-heading-jp">ご希望の日時と予算</div>
+        <div class="panel-divider"></div>
+      </div>
+
+      <div class="field-group">
+        <label>ご希望来店日 <span class="required">必須</span></label>
+        <div class="date-time-row">
+          <div>
+            <input type="date" id="visit-date">
+          </div>
+          <div>
+            <select id="visit-time">
+              <option value="">時間帯を選択</option>
+              <option value="10:00〜11:00">10:00〜11:00</option>
+              <option value="11:00〜12:00">11:00〜12:00</option>
+              <option value="13:00〜14:00">13:00〜14:00</option>
+              <option value="14:00〜15:00">14:00〜15:00</option>
+              <option value="15:00〜16:00">15:00〜16:00</option>
+              <option value="16:00〜17:00">16:00〜17:00</option>
+              <option value="ご相談">ご相談（未定）</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-error" id="err-date">ご来店日を入力してください</div>
+      </div>
+
+      <div class="field-group">
+        <label>第2希望日（任意）</label>
+        <input type="date" id="visit-date2">
+      </div>
+
+      <div class="field-group">
+        <label>ご予算 <span class="required">必須</span></label>
+        <div class="budget-display" id="budget-btns">
+          <button type="button" class="budget-btn" data-val="3,000円台">3,000円台</button>
+          <button type="button" class="budget-btn" data-val="5,000円台">5,000円台</button>
+          <button type="button" class="budget-btn" data-val="8,000円台">8,000円台</button>
+          <button type="button" class="budget-btn" data-val="10,000円〜">10,000円〜</button>
+          <button type="button" class="budget-btn" data-val="ご相談">ご相談</button>
+        </div>
+        <input type="hidden" id="budget-val">
+        <div class="field-error" id="err-budget">予算を選択してください</div>
+      </div>
+
+      <div class="field-group">
+        <label for="delivery-note">渡す日・特別なご事情など（任意）</label>
+        <input type="text" id="delivery-note" placeholder="例：当日手渡し、○月○日のパーティー用など">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(1)">← 戻る</button>
+        <button class="btn-next" onclick="goStep(3)">次へ（お客様情報）→</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: お客様情報 -->
+    <div class="step-panel" id="panel-3">
+      <div class="panel-heading">
+        <div class="panel-heading-en">Your Info</div>
+        <div class="panel-heading-jp">お客様情報</div>
+        <div class="panel-divider"></div>
+      </div>
+
+      <div class="field-group" id="fg-name">
+        <label for="customer-name">お名前 <span class="required">必須</span></label>
+        <input type="text" id="customer-name" placeholder="山田 花子">
+        <div class="field-error" id="err-name">お名前を入力してください</div>
+      </div>
+
+      <div class="field-group" id="fg-phone">
+        <label for="customer-phone">お電話番号 <span class="required">必須</span></label>
+        <input type="tel" id="customer-phone" placeholder="090-0000-0000">
+        <div class="field-error" id="err-phone">電話番号を入力してください</div>
+      </div>
+
+      <div class="field-group">
+        <label for="customer-email">メールアドレス（任意）</label>
+        <input type="email" id="customer-email" placeholder="example@email.com">
+      </div>
+
+      <div class="field-group">
+        <label>ご連絡方法のご希望</label>
+        <div class="card-options three">
+          <div class="card-option">
+            <input type="radio" name="contact" id="c-phone" value="お電話" checked>
+            <label for="c-phone">
+              <span class="card-icon">📞</span>
+              <span class="card-text">お電話</span>
+            </label>
+          </div>
+          <div class="card-option">
+            <input type="radio" name="contact" id="c-line" value="LINE">
+            <label for="c-line">
+              <span class="card-icon">💬</span>
+              <span class="card-text">LINE</span>
+            </label>
+          </div>
+          <div class="card-option">
+            <input type="radio" name="contact" id="c-mail" value="メール">
+            <label for="c-mail">
+              <span class="card-icon">✉️</span>
+              <span class="card-text">メール</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="other-note">その他ご要望・ご質問など（任意）</label>
+        <textarea id="other-note" placeholder="アレルギーのある花があれば教えてください。その他、ご要望などお気軽にどうぞ。"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(2)">← 戻る</button>
+        <button class="btn-next" onclick="goStep(4)">内容を確認する →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: 確認・送信 -->
+    <div class="step-panel" id="panel-4">
+      <div class="panel-heading">
+        <div class="panel-heading-en">Confirm</div>
+        <div class="panel-heading-jp">ご予約内容の確認</div>
+        <div class="panel-divider"></div>
+      </div>
+
+      <div class="confirm-table" id="confirm-table">
+        <!-- JS で埋める -->
+      </div>
+
+      <div class="privacy-note">
+        ご記入いただいた個人情報は、ご予約の確認・ご連絡のみに使用し、<br>
+        第三者への提供は一切いたしません。
+      </div>
+
+      <p class="submit-note">
+        上記内容をご確認の上、送信ボタンを押してください。<br>
+        送信後、確認のご連絡を差し上げます（1〜2営業日以内）。
+      </p>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(3)">← 修正する</button>
+        <button class="btn-submit" onclick="submitForm()">
+          予約を送信する ✓
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 5: 完了 -->
+    <div class="step-panel" id="panel-5">
+      <div class="completion">
+        <div class="completion-icon">🌸</div>
+        <div class="completion-title">Thank you</div>
+        <div class="completion-title-jp">ご予約を受け付けました</div>
+
+        <p class="completion-message">
+          ご予約いただきありがとうございます。<br>
+          確認のご連絡を1〜2営業日以内に差し上げます。<br>
+          しばらくお待ちください。
+        </p>
+
+        <div class="completion-note">
+          <strong style="letter-spacing:0.1em; color:var(--bark);">プリキラより</strong><br><br>
+          当店は完全予約制のアトリエ花屋です。<br>
+          フラワー装飾士がご希望に合わせてお花を<br>
+          おつくりします。当日は気軽にご相談ください。<br><br>
+          ご不明な点はお電話にてお気軽にお問い合わせください。
+        </div>
+
+        <a href="index.html" class="btn-next" style="display:inline-flex; text-decoration:none;">
+          トップページへ戻る
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /form-container -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">プリキラ</div>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:0.25em; margin-bottom:16px;">Pretty Flower</p>
+    <a href="index.html">← トップページへ</a>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+
+    function goStep(n) {
+      if (n > currentStep && !validateStep(currentStep)) return;
+
+      if (n === 4) buildConfirm();
+
+      document.getElementById(`panel-${currentStep}`).classList.remove('active');
+      document.getElementById(`panel-${n}`).classList.add('active');
+
+      // update step indicators
+      for (let i = 1; i <= 4; i++) {
+        const ind = document.getElementById(`step-indicator-${i}`);
+        ind.classList.remove('active', 'done');
+        if (i === n) ind.classList.add('active');
+        else if (i < n) ind.classList.add('done');
+      }
+
+      currentStep = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateStep(step) {
+      let ok = true;
+
+      if (step === 1) {
+        const chosen = document.querySelector('input[name="purpose"]:checked');
+        const fg = document.getElementById('err-purpose').parentElement;
+        if (!chosen) {
+          document.getElementById('err-purpose').style.display = 'block';
+          fg.classList.add('has-error');
+          ok = false;
+        } else {
+          document.getElementById('err-purpose').style.display = 'none';
+          fg.classList.remove('has-error');
+        }
+      }
+
+      if (step === 2) {
+        const d = document.getElementById('visit-date').value;
+        const errD = document.getElementById('err-date');
+        if (!d) {
+          errD.style.display = 'block';
+          ok = false;
+        } else {
+          errD.style.display = 'none';
+        }
+
+        const b = document.getElementById('budget-val').value;
+        const errB = document.getElementById('err-budget');
+        if (!b) {
+          errB.style.display = 'block';
+          ok = false;
+        } else {
+          errB.style.display = 'none';
+        }
+      }
+
+      if (step === 3) {
+        const name = document.getElementById('customer-name').value.trim();
+        const phone = document.getElementById('customer-phone').value.trim();
+        const errN = document.getElementById('err-name');
+        const errP = document.getElementById('err-phone');
+        const fgN = document.getElementById('fg-name');
+        const fgP = document.getElementById('fg-phone');
+
+        if (!name) {
+          errN.style.display = 'block'; fgN.classList.add('has-error'); ok = false;
+        } else {
+          errN.style.display = 'none'; fgN.classList.remove('has-error');
+        }
+        if (!phone) {
+          errP.style.display = 'block'; fgP.classList.add('has-error'); ok = false;
+        } else {
+          errP.style.display = 'none'; fgP.classList.remove('has-error');
+        }
+      }
+
+      return ok;
+    }
+
+    // Budget buttons
+    document.querySelectorAll('.budget-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('budget-val').value = btn.dataset.val;
+        document.getElementById('err-budget').style.display = 'none';
+      });
+    });
+
+    function buildConfirm() {
+      const purpose = document.querySelector('input[name="purpose"]:checked')?.value || '';
+      const note = document.getElementById('purpose-note').value.trim();
+      const date = formatDate(document.getElementById('visit-date').value);
+      const date2 = formatDate(document.getElementById('visit-date2').value);
+      const time = document.getElementById('visit-time').value;
+      const budget = document.getElementById('budget-val').value;
+      const delivery = document.getElementById('delivery-note').value.trim();
+      const name = document.getElementById('customer-name').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const email = document.getElementById('customer-email').value.trim();
+      const contact = document.querySelector('input[name="contact"]:checked')?.value || '';
+      const other = document.getElementById('other-note').value.trim();
+
+      const rows = [
+        ['ご用途', purpose],
+        ['イメージ・希望の花', note || '—'],
+        ['第1希望来店日', `${date}　${time}`],
+        ['第2希望来店日', date2 || '—'],
+        ['ご予算', budget],
+        ['渡す日・ご事情', delivery || '—'],
+        ['お名前', name],
+        ['お電話番号', phone],
+        ['メールアドレス', email || '—'],
+        ['ご連絡方法', contact],
+        ['その他ご要望', other || '—'],
+      ];
+
+      document.getElementById('confirm-table').innerHTML = rows.map(([label, val]) =>
+        `<div class="confirm-row">
+          <div class="confirm-label">${label}</div>
+          <div class="confirm-value">${val}</div>
+        </div>`
+      ).join('');
+    }
+
+    function formatDate(val) {
+      if (!val) return '';
+      const [y, m, d] = val.split('-');
+      return `${y}年${Number(m)}月${Number(d)}日`;
+    }
+
+    function submitForm() {
+      // 実際のフォーム送信処理をここに実装
+      // （GitHub Pages では静的なので、Formspree / Google Forms 等と連携推奨）
+      // デモとして完了画面に遷移
+      document.getElementById(`panel-4`).classList.remove('active');
+      document.getElementById(`panel-5`).classList.add('active');
+
+      // step indicators all done
+      for (let i = 1; i <= 4; i++) {
+        const ind = document.getElementById(`step-indicator-${i}`);
+        ind.classList.remove('active');
+        ind.classList.add('done');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Date min = today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('visit-date').min = today;
+    document.getElementById('visit-date2').min = today;
+  </script>
+</body>
+</html>
