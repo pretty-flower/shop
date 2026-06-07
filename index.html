@@ -162,6 +162,12 @@
     .btn-reserve-large:hover { background: transparent; color: var(--cream); border: 1px solid var(--cream); }
     .reserve-note { font-size: 11px; color: rgba(250,247,242,0.5); letter-spacing: 0.08em; line-height: 2; text-align: center; }
 
+    /* FAQ CATS */
+    .faq-cats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+    .faq-cat { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 20px; border: 1px solid var(--sand); background: var(--warm-white); text-decoration: none; color: var(--taupe); font-size: 12px; letter-spacing: 0.1em; transition: all 0.2s; flex: 1; min-width: 80px; text-align: center; }
+    .faq-cat:hover { border-color: var(--bark); background: var(--cream); color: var(--bark); }
+    .faq-cat span { display: block; }
+
     /* FAQ PREVIEW */
     .faq-section { padding: 80px; background: var(--cream); }
     .faq-list { display: flex; flex-direction: column; gap: 0; }
@@ -517,6 +523,16 @@
       <h2 class="section-heading">よくあるご質問</h2>
       <p class="section-heading-jp">お気軽にお問い合わせください</p>
     </div>
+
+    <div class="faq-cats reveal">
+      <a href="#faq-order" class="faq-cat">🌹<span>お花・オーダー</span></a>
+      <a href="#faq-delivery" class="faq-cat">🚚<span>配送</span></a>
+      <a href="#faq-visit" class="faq-cat">🏠<span>来店・予約</span></a>
+      <a href="#faq-shop" class="faq-cat">🛍️<span>オンラインショップ</span></a>
+      <a href="#faq-payment" class="faq-cat">💳<span>お支払い</span></a>
+    </div>
+
+    <div id="faq-order"></div>
     <div class="faq-list reveal">
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
