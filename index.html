@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pretty flower｜北九州市戸畑区のアトリエ花屋</title>
+  <title>pretty flower｜北九州市戸畑区のアトリエショップ</title>
   <meta name="description" content="北九州市戸畑区のアトリエスタイル花屋。ギフト専門・国家検定フラワー装飾士が手がけるオーダーメイドのフラワーギフト。来店予約受付中。">
   <link rel="icon" href="logo2.jpg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,6 +161,12 @@
     .btn-reserve-large { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--cream); color: var(--bark); text-decoration: none; padding: 20px 44px; font-family: 'Shippori Mincho', serif; font-size: 16px; letter-spacing: 0.25em; width: 100%; transition: all 0.3s; }
     .btn-reserve-large:hover { background: transparent; color: var(--cream); border: 1px solid var(--cream); }
     .reserve-note { font-size: 11px; color: rgba(250,247,242,0.5); letter-spacing: 0.08em; line-height: 2; text-align: center; }
+
+    /* FAQ CATS */
+    .faq-cats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+    .faq-cat { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 20px; border: 1px solid var(--sand); background: var(--warm-white); text-decoration: none; color: var(--taupe); font-size: 12px; letter-spacing: 0.1em; transition: all 0.2s; flex: 1; min-width: 80px; text-align: center; }
+    .faq-cat:hover { border-color: var(--bark); background: var(--cream); color: var(--bark); }
+    .faq-cat span { display: block; }
 
     /* FAQ PREVIEW */
     .faq-section { padding: 80px; background: var(--cream); }
@@ -382,7 +388,7 @@
       <div class="badge-list">
         <div class="badge"><div class="badge-icon">🏅</div>国家検定フラワー装飾士</div>
         <div class="badge"><div class="badge-icon">🌿</div>季節感のある仕入れにこだわる</div>
-        <div class="badge"><div class="badge-icon">🏠</div>完全予約制・アトリエスタイル</div>
+        <div class="badge"><div class="badge-icon">🏠</div>事前予約おすすめ・アトリエスタイル</div>
         <div class="badge"><div class="badge-icon">🎁</div>ギフト専門・オーダーメイド対応</div>
       </div>
       <a href="about.html" class="btn-secondary">店主プロフィールを見る →</a>
@@ -491,10 +497,10 @@
     <div class="reveal">
       <div class="section-label">RESERVATION</div>
       <h2 class="section-heading">ご来店予約</h2>
-      <p class="section-heading-jp">完全予約制・ご来店歓迎</p>
+      <p class="section-heading-jp">事前予約おすすめ・ご来店歓迎</p>
       <p class="reserve-cta-body">
-        pretty flowerは完全予約制のアトリエ花屋です。<br>
-        ご来店の際は、事前のご予約をお願いしております。<br><br>
+        pretty flowerはアトリエショップです。<br>
+        ご来店前のご予約をおすすめしております。<br><br>
         ご希望の日時・フラワーギフトの用途などを<br>
         フォームからお知らせください。<br>
         確認後、折り返しご連絡いたします。
@@ -517,6 +523,16 @@
       <h2 class="section-heading">よくあるご質問</h2>
       <p class="section-heading-jp">お気軽にお問い合わせください</p>
     </div>
+
+    <div class="faq-cats reveal">
+      <a href="#faq-order" class="faq-cat">🌹<span>お花・オーダー</span></a>
+      <a href="#faq-delivery" class="faq-cat">🚚<span>配送</span></a>
+      <a href="#faq-visit" class="faq-cat">🏠<span>来店・予約</span></a>
+      <a href="#faq-shop" class="faq-cat">🛍️<span>オンラインショップ</span></a>
+      <a href="#faq-payment" class="faq-cat">💳<span>お支払い</span></a>
+    </div>
+
+    <div id="faq-order"></div>
     <div class="faq-list reveal">
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
@@ -573,7 +589,7 @@
         <tr><th>店名</th><td>pretty flower（プリティフラワー）</td></tr>
         <tr><th>所在地</th><td>福岡県北九州市戸畑区境川2-13-19-1</td></tr>
         <tr><th>電話</th><td>093-967-8903</td></tr>
-        <tr><th>営業スタイル</th><td>アトリエ型・完全予約制</td></tr>
+        <tr><th>営業スタイル</th><td>アトリエショップ・事前予約おすすめ</td></tr>
         <tr><th>専門</th><td>フラワーギフト（オーダーメイド）</td></tr>
         <tr><th>資格</th><td>国家検定フラワー装飾士</td></tr>
         <tr><th>予約</th><td><a href="https://docs.google.com/forms/d/e/1FAIpQLSfN2zu1qsLyIZq6UsC-y3YcHAIOK-3uzUvVhBMIECDWwKOLPA/viewform" target="_blank" style="color:var(--rose-muted);text-decoration:none;">来店予約フォームへ →</a></td></tr>
@@ -594,7 +610,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-logo"><img src="logo.png" alt="pretty flower"></div>
-        <div class="footer-logo-sub">北九州市戸畑区 ／ アトリエ花屋 ／ ギフト専門</div>
+        <div class="footer-logo-sub">北九州市戸畑区 ／ アトリエショップ ／ ギフト専門</div>
       </div>
       <div class="footer-links">
         <a href="about.html">店主について</a>
