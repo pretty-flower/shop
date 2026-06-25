@@ -176,7 +176,7 @@ function renderCal(){
   for(var d=1;d<=last.getDate();d++){
     var dt=new Date(calYear,calMonth,d);
     var dow=dt.getDay();
-    var disabled=dt<minDate;
+    var disabled=dt<minDate||(dow===0||dow===1||dow===2);
     var sel=S.calDate&&S.calDate.getFullYear()===calYear&&S.calDate.getMonth()===calMonth&&S.calDate.getDate()===d;
     var cls='cal-day'+(dow===0?' sun':dow===6?' sat':'')+(disabled?' disabled':''+(sel?' on':''));
     if(disabled){
@@ -335,6 +335,8 @@ function back(){S.step--;render();}
 
 function tryNext(){
   if(!S.name.trim()){alert('お名前をご入力ください');return;}
+  if(!S.tel.trim()){alert('電話番号をご入力ください');return;}
+  if(!S.email.trim()){alert('メールアドレスをご入力ください');return;}
   if(!S.calDate){alert('来店日を選んでください');return;}
   if(!S.time){alert('来店時間を選んでください');return;}
   go();
