@@ -5,6 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>よくあるご質問｜pretty flower</title>
   <link rel="icon" href="logo2.jpg" type="image/jpeg">
+  <link rel="canonical" href="https://pretty-flower.github.io/shop/faq.html">
+  <meta name="keywords" content="pretty flower よくある質問,北九州市 花屋 FAQ,フラワーギフト 質問,来店予約 花屋">
+  <meta property="og:title" content="よくあるご質問｜pretty flower">
+  <meta property="og:description" content="北九州市戸畑区のアトリエショップ pretty flower のよくあるご質問。お花の種類・配送・メッセージカードなどについてご説明します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pretty-flower.github.io/shop/faq.html">
+  <meta property="og:image" content="https://pretty-flower.github.io/shop/flower1.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "お花の種類は選べますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ご希望のイメージからお選びいただけます。ご注文時にお選びください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "写真と同じお花が届きますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "写真はイメージです。季節や仕入れ状況により花材・色味が異なります。その時期に一番美しいお花をお届けします。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "メッセージカードはどうやって申し込みますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "定型文もご用意しています。ご希望のメッセージを入れる場合は、備考欄に20文字程度でご記入ください。無料でお付けします。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "配送エリア外からご注文いただいた場合はどうなりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "配送エリア外のご注文はキャンセルとなります。お届けは九州・四国・中国・関西エリア（離島除く）のみとなります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "時間帯指定はできますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい、ヤマト運輸の時間帯からご指定いただけます。"
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
@@ -156,5 +213,44 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
   </script>
+
+  <!-- ▲ トップに戻るボタン -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="トップに戻る">▲</button>
+  <style>
+    #back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bark, #5a4535);
+      color: var(--cream, #faf7f2);
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s, transform 0.35s, background 0.2s;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      font-family: sans-serif;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { background: var(--rose-muted, #c4967a); }
+  </style>
+  <script>
+    (function(){
+      var btn = document.getElementById("back-to-top");
+      window.addEventListener("scroll", function(){
+        btn.classList.toggle("visible", window.scrollY > 300);
+      });
+    })();
+  </script>
+
 </body>
 </html>
