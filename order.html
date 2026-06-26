@@ -7,13 +7,39 @@
   <meta name="description" content="pretty flower（北九州市戸畑区）の来店予約フォーム。ご希望の日時・ギフト内容をお知らせください。">
   <link rel="icon" href="logo2.jpg" type="image/jpeg">
   <link rel="canonical" href="https://pretty-flower.github.io/shop/order.html">
+  <meta name="keywords" content="pretty flower 来店予約,北九州市 花屋 予約,戸畑区 フラワーショップ 予約,フラワーギフト オーダー">
   <meta property="og:title" content="来店予約｜pretty flower">
-  <meta property="og:description" content="北九州市戸畑区のアトリエショップ pretty flower の来店予約フォーム。">
+  <meta property="og:description" content="北九州市戸畑区のアトリエショップ pretty flower の来店予約フォーム。ギフト用の花束・アレンジメントをオーダーメイドで制作します。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pretty-flower.github.io/shop/order.html">
   <meta property="og:image" content="https://pretty-flower.github.io/shop/flower1.png">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FlowerShop",
+    "name": "pretty flower",
+    "description": "北九州市戸畑区の国家検定フラワー装飾士が営むアトリエショップ。ギフト専門のフラワーアレンジメント・花束をオーダーメイドで制作。事前予約おすすめ。",
+    "url": "https://pretty-flower.github.io/shop/",
+    "telephone": "093-967-8903",
+    "email": "prettyflower.mail@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "境川2-13-19-1",
+      "addressLocality": "北九州市戸畑区",
+      "addressRegion": "福岡県",
+      "postalCode": "804-0065",
+      "addressCountry": "JP"
+    },
+    "hasMap": "https://pretty-flower.github.io/shop/order.html",
+    "sameAs": [
+      "https://www.instagram.com/prettyflower0204/",
+      "https://pretty0204.thebase.in/",
+      "https://lin.ee/n4jGnVo"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
@@ -26,11 +52,12 @@
     }
     body { font-family: 'Shippori Mincho', serif; background: var(--cream); color: var(--deep); min-height: 100vh; }
 
+    /* HEADER */
     header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--sand); background: var(--cream); position: sticky; top: 0; z-index: 10; }
     .back-link { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.2em; color: var(--taupe); text-decoration: none; transition: color 0.2s; }
     .back-link:hover { color: var(--bark); }
-    .header-logo img { height: 36px; }
 
+    /* PAGE HEADER */
     .page-header { background: var(--deep); color: var(--cream); padding: 72px 40px 64px; text-align: center; position: relative; overflow: hidden; }
     .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(196,150,122,0.15) 0%, transparent 60%); }
     .page-header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.5em; color: var(--rose-muted); margin-bottom: 20px; position: relative; }
@@ -39,126 +66,415 @@
     .page-header-jp { font-size: 14px; letter-spacing: 0.35em; color: var(--clay); margin-top: 12px; position: relative; }
     .page-header-note { margin-top: 32px; font-size: 13px; line-height: 2; color: var(--clay); position: relative; }
 
+    /* FORM WRAP */
     .form-wrap { max-width: 480px; margin: 0 auto; padding: 48px 20px 80px; }
 
-    .notice { font-size: 12px; color: #9a7060; background: #faf4f0; border: .5px solid #e8d8d0; border-radius: 8px; padding: 8px 12px; text-align: center; margin-bottom: 1.5rem; }
+    /* pretty flower ステップ式フォームのスタイル */
+    *{box-sizing:border-box}
+    .notice{font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:8px 12px;text-align:center;margin:.75rem 0 1rem}
+    .steps{display:flex;align-items:center;justify-content:center;gap:4px;margin:.75rem 0 1.5rem}
+    .dot{width:8px;height:8px;border-radius:50%;background:#ddd;transition:all .3s}
+    .dot.active{background:#b8a89a;width:24px;border-radius:4px}
+    .dot.done{background:#b8a89a;opacity:.4}
+    .card{background:#fff;border:.5px solid #e8e0d8;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+    .sec{font-size:12px;color:#a08878;letter-spacing:.1em;margin-bottom:1rem}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{border:.5px solid #e0d8d0;border-radius:20px;padding:9px 18px;cursor:pointer;font-size:13px;background:#fff;transition:all .2s}
+    .chip.on{border:1.5px solid #b8a89a;background:#faf7f4;color:#7a6055;font-weight:500}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .tile{border:.5px solid #e0d8d0;border-radius:8px;padding:12px 8px;cursor:pointer;text-align:center;background:#fff;transition:all .2s}
+    .tile.on{border:1.5px solid #b8a89a;background:#faf7f4}
+    .ticon{font-size:22px;margin-bottom:5px}
+    .tname{font-size:13px;font-weight:500;color:#5a4a3a}
+    .tdesc{font-size:11px;color:#a08878;margin-top:2px;line-height:1.4}
+    .pg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .pc{border:.5px solid #e0d8d0;border-radius:10px;cursor:pointer;overflow:hidden;background:#fff;transition:all .2s}
+    .pc.on{border:1.5px solid #b8a89a;background:#faf7f4}
+    .pph{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#f5f0ea,#e8ddd4);display:flex;align-items:center;justify-content:center;font-size:28px}
+    .pi{padding:10px}
+    .ptag{font-size:14px;font-weight:500;color:#5a4a3a}
+    .psz{font-size:11px;color:#a08878;margin-top:3px}
+    .dg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .db{border:.5px solid #e0d8d0;border-radius:8px;padding:10px 6px;cursor:pointer;text-align:center;background:#fff;transition:all .2s}
+    .db.on{border:1.5px solid #b8a89a;background:#faf7f4}
+    .dday{font-size:11px;color:#a08878}
+    .dnum{font-size:18px;font-weight:500;color:#5a4a3a}
+    .tg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:1rem}
+    .tb{border:.5px solid #e0d8d0;border-radius:8px;padding:10px;cursor:pointer;text-align:center;background:#fff;font-size:14px;transition:all .2s}
+    .tb.on{border:1.5px solid #b8a89a;background:#faf7f4}
+    .oi{display:flex;align-items:flex-start;gap:10px;padding:10px;border:.5px solid #e0d8d0;border-radius:8px;cursor:pointer;background:#fff;margin-bottom:8px;transition:all .2s}
+    .oi.on{border:1.5px solid #b8a89a;background:#faf7f4}
+    .chk{width:18px;height:18px;border:1.5px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:12px;color:white}
+    .chk.on{background:#b8a89a;border-color:#b8a89a}
+    .sr{display:flex;justify-content:space-between;padding:8px 0;border-bottom:.5px solid #f0ebe4;font-size:13px}
+    .sr.last{border-bottom:none;font-weight:600;font-size:15px;padding-top:12px}
+    .sl{color:#a08878}
+    .btn{width:100%;padding:14px;background:#b8a89a;color:#fff;border:none;border-radius:12px;font-size:15px;cursor:pointer;margin-top:.5rem;transition:background .2s;font-family:'Shippori Mincho',serif;}
+    .btn:hover{background:#a89888}
+    .btn:disabled{background:#ccc;cursor:default}
+    .bbk{background:none;border:none;color:#a08878;font-size:13px;cursor:pointer;padding:10px 0;display:block;text-align:center;width:100%;margin-top:4px}
+    .lbl{font-size:12px;color:#a08878;margin-top:14px;display:block}
+    .req{color:#c08878;font-size:10px;margin-left:4px}
+    input,textarea{width:100%;border:.5px solid #e0d8d0;border-radius:8px;padding:10px 12px;font-size:14px;background:#fff;color:#333;margin-top:6px;font-family:sans-serif}
+    textarea{resize:none;height:100px}
+    input:focus,textarea:focus{outline:none;border-color:#b8a89a}
+    .done{text-align:center;padding:2.5rem 1rem}
+    .dicon{font-size:48px;margin-bottom:1rem}
+    .dtitle{font-size:20px;font-weight:500;color:#5a4a3a;margin-bottom:10px}
+    .dmsg{font-size:14px;color:#888;line-height:1.8}
+    .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .cal-nav button{background:none;border:none;font-size:18px;cursor:pointer;color:#a08878;padding:4px 8px}
+    .cal-nav span{font-size:14px;font-weight:500;color:#5a4a3a}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+    .cal-dow{font-size:11px;color:#a08878;padding:4px 0}
+    .cal-dow.sun{color:#c08878}
+    .cal-dow.sat{color:#7090b8}
+    .cal-day{border:.5px solid #e0d8d0;border-radius:6px;padding:8px 4px;cursor:pointer;font-size:14px;background:#fff;transition:all .2s;min-height:36px;display:flex;align-items:center;justify-content:center}
+    .cal-day.on{border:1.5px solid #b8a89a;background:#faf7f4;font-weight:600;color:#7a6055}
+    .cal-day.disabled{color:#ccc;cursor:default;background:#fafafa;border-color:#f0ece8}
+    .cal-day.empty{border:none;background:none;cursor:default}
+    .cal-day.sun{color:#c08878}
+    .cal-day.sat{color:#7090b8}
+    .cal-day.on.sun,.cal-day.on.sat{color:#7a6055}
 
-    .card { background: #fff; border: .5px solid #e8e0d8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+    /* FOOTER */
+    footer { background: var(--deep); color: var(--clay); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer a { color: var(--clay); text-decoration: none; font-size: 11px; letter-spacing: 0.15em; transition: color 0.2s; }
+    footer a:hover { color: var(--cream); }
 
-    .field-group { margin-bottom: 1.25rem; }
-    .field-label { font-size: 12px; color: #a08878; letter-spacing: .1em; display: block; margin-bottom: 6px; }
-    .req { color: #c08878; font-size: 10px; margin-left: 4px; }
-
-    .field-row { display: flex; gap: 8px; }
-    .field-row input { flex: 1; }
-
-    input[type="text"], input[type="email"], input[type="tel"] {
-      width: 100%; border: .5px solid #e0d8d0; border-radius: 8px;
-      padding: 10px 12px; font-size: 14px; background: #fff; color: #333;
-      font-family: 'Shippori Mincho', serif;
-    }
-    input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
-      outline: none; border-color: #b8a89a;
-    }
-
-    .submit-btn {
-      width: 100%; padding: 14px; background: #b8a89a; color: #fff;
-      border: none; border-radius: 12px; font-size: 15px; cursor: pointer;
-      margin-top: 1rem; transition: background .2s;
-      font-family: 'Shippori Mincho', serif; letter-spacing: 0.1em;
-    }
-    .submit-btn:hover { background: #a89888; }
-
-    .powered { text-align: center; margin-top: 1rem; font-size: 11px; color: #c9b8a0; }
-    .powered a { color: #c9b8a0; text-decoration: none; }
-
-    footer { background: var(--deep); color: var(--clay); padding: 32px 40px; text-align: center; font-size: 12px; letter-spacing: 0.2em; }
-    footer a { color: var(--clay); text-decoration: none; margin: 0 12px; }
-
-    #back-to-top {
-      position: fixed; bottom: 28px; right: 24px; width: 48px; height: 48px;
-      border-radius: 50%; background: var(--bark); color: var(--cream);
-      border: none; font-size: 16px; cursor: pointer;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18); opacity: 0; transform: translateY(16px);
-      transition: opacity 0.35s, transform 0.35s, background 0.2s; z-index: 999;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #back-to-top.visible { opacity: 1; transform: translateY(0); }
-    #back-to-top:hover { background: var(--rose-muted); }
-
-    @media(max-width:600px) {
+    @media (max-width: 600px) {
       header { padding: 16px 20px; }
-      .page-header { padding: 48px 20px 40px; }
+      .page-header { padding: 52px 24px 48px; }
+      footer { padding: 28px 20px; flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <a href="index.html" class="back-link">← トップに戻る</a>
-  <div class="header-logo"><a href="index.html"><img src="logo.png" alt="pretty flower"></a></div>
-</header>
+  <!-- HEADER -->
+  <header>
+    <a href="index.html"><img src="logo.png" alt="pretty flower" style="height:44px;width:auto;"></a>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+  </header>
 
-<div class="page-header">
-  <p class="page-header-eyebrow">RESERVATION</p>
-  <h1>来店<em>予約</em></h1>
-  <p class="page-header-jp">ご来店予約フォーム</p>
-  <p class="page-header-note">
-    お名前・メールアドレス・電話番号をご入力の上、送信してください。<br>
-    送信後、自動返信メールをお送りします。<br>
-    日時・ご用途等はメールまたはLINEにてご相談ください。
-  </p>
-</div>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="page-header-eyebrow">RESERVATION</p>
+    <h1>ご来店<br><em>予約</em></h1>
+    <p class="page-header-jp">来店予約フォーム</p>
+    <p class="page-header-note">
+      ご来店の2日前までにご予約ください。<br>
+      確認のご連絡を1〜2営業日以内に差し上げます。
+    </p>
+  </div>
 
-<div class="form-wrap">
-  <div class="notice">※ 送信後、ご入力のメールアドレスに確認メールが届きます</div>
+  <!-- FORM -->
+  <div class="form-wrap">
+    <div class="steps" id="steps"></div>
+    <div id="main"></div>
+  </div>
 
-  <form action="https://ssl.form-mailer.jp/fm/service/Forms/confirm" method="post" name="form1" enctype="multipart/form-data" accept-charset="UTF-8">
-    <input type="hidden" name="key" value="35c007ac885487">
-    <input type="hidden" name="code" value="utf8">
-
-    <div class="card">
-      <div class="field-group">
-        <label class="field-label">お名前<span class="req">※必須</span></label>
-        <div class="field-row">
-          <input name="field_7747264_sei" type="text" placeholder="姓（例：山田）" required>
-          <input name="field_7747264_mei" type="text" placeholder="名（例：花子）">
-        </div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">メールアドレス<span class="req">※必須</span></label>
-        <input name="field_7747265" type="text" placeholder="info@example.com" required>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">電話番号<span class="req">※必須</span></label>
-        <input name="field_7747269" type="text" placeholder="090-0000-0000" required>
-      </div>
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html"><img src="logo.png" alt="pretty flower" style="height:36px;"></a>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;">
+      <a href="index.html">トップ</a>
+      <a href="about.html">店主について</a>
+      <a href="faq.html">よくある質問</a>
+      <a href="https://pretty0204.thebase.in/" target="_blank">BASE</a>
+      <a href="https://lin.ee/n4jGnVo" target="_blank">LINE</a>
     </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.2em;">© 2024 pretty flower</p>
+  </footer>
 
-    <button type="submit" name="submit" class="submit-btn">予約を送信する ✉️</button>
-
-    <p class="powered"><a href="https://www.form-mailer.jp/" target="_blank">Powered by FormMailer.</a></p>
-  </form>
-</div>
-
-<footer>
-  <a href="index.html">トップ</a>
-  <a href="about.html">店主について</a>
-  <a href="faq.html">FAQ</a>
-  <a href="https://lin.ee/n4jGnVo" target="_blank">LINE</a>
-  <p style="margin-top:16px;">© 2024 pretty flower</p>
-</footer>
-
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="トップに戻る">▲</button>
 <script>
-  (function(){
-    var btn = document.getElementById("back-to-top");
-    window.addEventListener("scroll", function(){
-      btn.classList.toggle("visible", window.scrollY > 300);
-    });
-  })();
+var calYear=new Date().getFullYear();
+var calMonth=new Date().getMonth();
+function renderCal(){
+  var today=new Date();today.setHours(0,0,0,0);
+  var minDate=new Date(today);minDate.setDate(today.getDate()+2);
+  var first=new Date(calYear,calMonth,1);
+  var last=new Date(calYear,calMonth+1,0);
+  var monthNames=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  var h='<div class="cal-nav">';
+  h+='<button onclick="prevMonth()">‹</button>';
+  h+='<span>'+calYear+'年 '+monthNames[calMonth]+'</span>';
+  h+='<button onclick="nextMonth()">›</button>';
+  h+='</div>';
+  h+='<div class="cal-grid">';
+  var dows=['日','月','火','水','木','金','土'];
+  var dowCls=['sun','','','','','','sat'];
+  for(var i=0;i<7;i++) h+='<div class="cal-dow '+dowCls[i]+'">'+dows[i]+'</div>';
+  for(var i=0;i<first.getDay();i++) h+='<div class="cal-day empty"></div>';
+  for(var d=1;d<=last.getDate();d++){
+    var dt=new Date(calYear,calMonth,d);
+    var dow=dt.getDay();
+    var disabled=dt<minDate||(dow===0||dow===1||dow===2);
+    var sel=S.calDate&&S.calDate.getFullYear()===calYear&&S.calDate.getMonth()===calMonth&&S.calDate.getDate()===d;
+    var cls='cal-day'+(dow===0?' sun':dow===6?' sat':'')+(disabled?' disabled':''+(sel?' on':''));
+    if(disabled){
+      h+='<div class="'+cls+'">'+d+'</div>';
+    }else{
+      h+='<div class="'+cls+'" onclick="pickCalDate('+calYear+','+calMonth+','+d+')">'+d+'</div>';
+    }
+  }
+  h+='</div>';
+  return h;
+}
+function prevMonth(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}render();}
+function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}render();}
+function pickCalDate(y,m,d){S.calDate=new Date(y,m,d);S.date=S.calDate;render();}
+
+var S={step:1,purpose1:null,purpose2:null,kuyo:null,style:null,mood:null,price:null,custPrice:'',date:null,calDate:null,time:null,name:'',tel:'',email:'',bag:false,card:false,note:''};
+var p1list=[{id:'gift',name:'ギフト'},{id:'self',name:'自宅用'}];
+var p2list=[{id:'cele',name:'お祝い'},{id:'kuyo',name:'お供え'},{id:'other',name:'その他'}];
+var kuyoC=[{id:'any',name:'おまかせ（色OK）'},{id:'white',name:'白系に淡い差し色'}];
+var styles=[{id:'bq',icon:'💐',name:'花束',desc:''},{id:'ba',icon:'🧺',name:'カゴアレンジ',desc:'アレンジメント'},{id:'st',icon:'🌷',name:'置くだけブーケ',desc:'スタンディング'},{id:'kumi',icon:'🌾',name:'組み束',desc:''}];
+var moods=[{id:'kise',icon:'✨',name:'季節のおまかせ',desc:'旬の花をお任せで'},{id:'fuwa',icon:'🌸',name:'ふわふわ',desc:'淡いピンクなど'},{id:'hira',icon:'🌹',name:'ひらひら',desc:'赤など 華やかな雰囲気'},{id:'yura',icon:'🌿',name:'ゆらゆら',desc:'白・グリーン 爽やか系'},{id:'natu',icon:'🌼',name:'ナチュラル',desc:'イエローなど'}];
+var priceImgs={p3300:'images/p3300.jpg',p5500:'images/p5500.jpg',p8800:'images/p8800.jpg',p11000:'images/p11000.jpg'};
+var prices=[{id:'p3300',label:'3,300円',size:'手のひらサイズ',kumiSize:'長さ約35〜45cm・小ぶり'},{id:'p4400',label:'4,400円',size:'幅約22cm程度',kumiSize:'長さ約45〜50cm・ボリューム感'},{id:'p5500',label:'5,500円',size:'幅約25〜30cm',kumiSize:'長さ約50〜60cm・ボリュームあり'},{id:'p6600',label:'6,600円',size:'幅約30cm・ボリューム',kumiSize:'長さ約60cm・華やかな印象'},{id:'p8800',label:'8,800円',size:'幅約35cm・存在感',kumiSize:'長さ約60cm以上・存在感たっぷり'},{id:'p11000',label:'11,000円',size:'幅約40cm・豪華',kumiSize:'長さ60cm以上・法事・葬儀向け'}];
+var now=new Date();
+var days=['日','月','火','水','木','金','土'];
+
+function purpose(){return S.purpose1||S.purpose2;}
+function totalSteps(){return 6;}
+
+function renderSteps(){
+  var n=totalSteps(),h='';
+  for(var i=1;i<=n;i++){
+    var cls=i===S.step?'dot active':i<S.step?'dot done':'dot';
+    h+='<div class="'+cls+'"></div>';
+  }
+  document.getElementById('steps').innerHTML=h;
+}
+
+function render(){
+  renderSteps();
+  var c=document.getElementById('main');
+  var h='';
+
+  if(S.step===1){
+    h='<div class="card"><div class="sec">用途を選んでください</div><div class="chips">';
+    for(var i=0;i<p1list.length;i++){var p=p1list[i];h+='<div class="chip'+(S.purpose1===p.id?' on':'')+'\" onclick="selP1(\''+p.id+'\')">'+p.name+'</div>';}
+    h+='</div></div>';
+
+  }else if(S.step===2){
+    h='<div class="card"><div class="sec">用途を選んでください</div><div class="chips">';
+    for(var i=0;i<p2list.length;i++){var p=p2list[i];h+='<div class="chip'+(S.purpose2===p.id?' on':'')+'\" onclick="selP2(\''+p.id+'\')">'+p.name+'</div>';}
+    h+='</div></div>';
+    h+='<button class="btn" '+(S.purpose2?'':'disabled')+' onclick="go()">次へ →</button>';
+    h+='<button class="bbk" onclick="back()">← もどる</button>';
+
+  }else if(S.step===3){
+    h='<div class="card"><div class="sec">スタイルを選んでください</div><div class="g3">';
+    for(var i=0;i<styles.length;i++){var s=styles[i];h+='<div class="tile'+(S.style===s.id?' on':'')+'\" onclick="pick(\'style\',\''+s.id+'\')"><div class="ticon">'+s.icon+'</div><div class="tname">'+s.name+'</div>'+(s.desc?'<div class="tdesc">'+s.desc+'</div>':'')+'</div>';}
+    h+='</div></div>';
+    h+='<button class="btn" '+(S.style?'':'disabled')+' onclick="go()">色合いを選ぶ →</button>';
+    h+='<button class="bbk" onclick="back()">← もどる</button>';
+
+  }else if(S.step===4){
+    if(S.purpose2==='kuyo'){
+      h='<div class="card"><div class="sec">色合いを選んでください</div><div class="chips">';
+      for(var i=0;i<kuyoC.length;i++){var k=kuyoC[i];h+='<div class="chip'+(S.kuyo===k.id?' on':'')+'\" onclick="pick(\'kuyo\',\''+k.id+'\')">'+k.name+'</div>';}
+      h+='</div></div>';
+      h+='<button class="btn" '+(S.kuyo?'':'disabled')+' onclick="go()">金額を選ぶ →</button>';
+    }else{
+      h='<div class="card"><div class="sec">色合いを選んでください</div><div class="g2">';
+      for(var i=0;i<moods.length;i++){var m=moods[i];h+='<div class="tile'+(S.mood===m.id?' on':'')+'\" onclick="pick(\'mood\',\''+m.id+'\')"><div class="ticon">'+m.icon+'</div><div class="tname">'+m.name+'</div><div class="tdesc">'+m.desc+'</div></div>';}
+      h+='</div></div>';
+      h+='<button class="btn" '+(S.mood?'':'disabled')+' onclick="go()">金額を選ぶ →</button>';
+    }
+    h+='<button class="bbk" onclick="back()">← もどる</button>';
+
+  }else if(S.step===5){
+    h='<div class="card"><div class="sec">ご予算を選んでください</div><div class="pg">';
+    if(S.style==='kumi'){h+='<div class="pc'+(S.price==='p2200'?' on':'')+'\" onclick="pickPrice(\'p2200\')"><div class="pph">🌾</div><div class="pi"><div class="ptag">2,200円<span style="font-size:11px;color:#a08878"> 税込</span></div><div class="psz">長さ約30〜35cm・小ぶり</div></div></div>';}
+    for(var i=0;i<prices.length;i++){
+      var p=prices[i];
+      var sz=S.style==='kumi'?(p.kumiSize||p.size):p.size;
+      var img=priceImgs[p.id];
+      var top=img?'<img src="'+img+'" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px 8px 0 0">':'<div class="pph">🌸</div>';
+      h+='<div class="pc'+(S.price===p.id?' on':'')+'\" onclick="pickPrice(\''+p.id+'\')">'+top+'<div class="pi"><div class="ptag">'+p.label+'<span style="font-size:11px;color:#a08878"> 税込</span></div><div class="psz">'+sz+'</div></div></div>';
+    }
+    h+='</div>';
+    if(S.style==='kumi'){h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:10px 12px;margin-top:10px;line-height:1.7">季節のお供えに相応しいお花で組みます。<br>対でご希望の場合は、下のご希望欄にご記入ください。</div>';}
+    h+='<label class="lbl" style="margin-top:12px">ご予算を直接入力（任意）</label>';
+    h+='<input type="text" placeholder="例：7,000円くらい" value="'+S.custPrice+'" oninput="S.custPrice=this.value;S.price=null;renderSteps()">';
+    h+='</div>';
+    h+='<button class="btn" '+(!S.price&&!S.custPrice?'disabled':'')+' onclick="go()">日時・お客様情報へ →</button>';
+    h+='<button class="bbk" onclick="back()">← もどる</button>';
+
+  }else if(S.step===6){
+    h='<div class="card"><div class="sec">来店日を選んでください</div>'+renderCal()+'<div class="tg">';
+    var times=['10:00〜11:00','11:00〜12:00','12:00〜13:00','13:00〜14:00','14:00〜15:00','15:00〜16:00','16:00〜17:00','17:00〜18:00'];
+    for(var i=0;i<times.length;i++){var t=times[i];h+='<div class="tb'+(S.time===t?' on':'')+'\" onclick="pickTime(\''+t+'\')">'+t+'</div>';}
+    h+='</div></div>';
+    h+='<div class="card"><div class="sec">お客様情報・ご要望</div>';
+    h+='<label class="lbl">お名前<span class="req">※必須</span></label>';
+    h+='<input type="text" id="nmInput" placeholder="例：山田 花子" value="'+S.name+'" oninput="S.name=this.value">';
+    h+='<label class="lbl">電話番号（連絡の取れる番号）<span class="req">※必須</span></label>';
+    h+='<input type="tel" placeholder="例：090-0000-0000" value="'+S.tel+'" oninput="S.tel=this.value">';
+    h+='<label class="lbl">メールアドレス<span class="req">※必須</span></label>';
+    h+='<input type="email" placeholder="例：hanako@example.com" value="'+S.email+'" oninput="S.email=this.value">';
+    h+='<div style="margin-top:16px">';
+    h+='<div class="oi'+(S.bag?' on':'')+'\" onclick="tog(\'bag\')"><div class="chk'+(S.bag?' on':'')+'\">'+(S.bag?'✓':'')+'</div><div><div style="font-size:13px">紙袋（有料）</div><div style="font-size:11px;color:#a08878">大きさによって現地精算 100〜300円</div></div></div>';
+    h+='<div class="oi'+(S.card?' on':'')+'\" onclick="tog(\'card\')"><div class="chk'+(S.card?' on':'')+'\">'+(S.card?'✓':'')+'</div><div><div style="font-size:13px">メッセージカード（無料）</div><div style="font-size:11px;color:#a08878">必要な場合は備考にご記入ください</div></div></div>';
+    h+='</div>';
+    h+='<label class="lbl">その他のご希望・メッセージカードの内容（任意）</label>';
+    h+='<textarea placeholder="色のご希望、メッセージカードの内容など" oninput="S.note=this.value">'+S.note+'</textarea>';
+    h+='</div>';
+    h+='<button class="btn" id="nextBtn" onclick="tryNext()">内容を確認する →</button>';
+    h+='<button class="bbk" onclick="back()">← もどる</button>';
+
+  }else{
+    var pur=purpose();
+    var purName='';
+    for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
+    if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
+    var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
+    var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
+    var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
+    var pr=null;for(var i=0;i<prices.length;i++){if(prices[i].id===S.price){pr=prices[i];break;}}
+    var d=S.calDate||new Date();
+    h='<div class="card"><div class="sec">ご予約内容の確認</div>';
+    h+='<div class="sr"><span class="sl">お名前</span><span>'+S.name+'</span></div>';
+    if(S.tel) h+='<div class="sr"><span class="sl">電話番号</span><span>'+S.tel+'</span></div>';
+    if(S.email) h+='<div class="sr"><span class="sl">メール</span><span style="font-size:12px">'+S.email+'</span></div>';
+    h+='<div class="sr"><span class="sl">用途</span><span>'+purName+(kc?' / '+kc.name:'')+'</span></div>';
+    if(sty) h+='<div class="sr"><span class="sl">スタイル</span><span>'+sty.icon+' '+sty.name+'</span></div>';
+    if(mood) h+='<div class="sr"><span class="sl">色合い</span><span>'+mood.icon+' '+mood.name+'</span></div>';
+    h+='<div class="sr"><span class="sl">ご予算</span><span>'+(S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice)+'</span></div>';
+    h+='<div class="sr"><span class="sl">来店日時</span><span>'+(d.getMonth()+1)+'/'+d.getDate()+'('+days[d.getDay()]+') '+S.time+'</span></div>';
+    if(S.bag) h+='<div class="sr"><span class="sl">紙袋</span><span>あり（現地精算）</span></div>';
+    if(S.card) h+='<div class="sr"><span class="sl">メッセージカード</span><span>あり（無料）</span></div>';
+    if(S.note) h+='<div class="sr"><span class="sl">備考</span><span style="text-align:right;max-width:180px;font-size:12px">'+S.note+'</span></div>';
+    h+='<div class="sr last"><span>ご予算</span><span>'+(S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice)+'</span></div>';
+    h+='</div>';
+    h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:8px 12px;text-align:center;margin-bottom:1rem">この内容でよろしければ送信してください。</div>';
+    h+='<button class="btn" id="sbtn" onclick="sendForm()">予約を送信する ✉️</button>';
+    h+='<button class="bbk" onclick="back()">← 修正する</button>';
+  }
+  c.innerHTML=h;
+}
+
+function pick(k,v){S[k]=v;render();}
+function pickTime(t){S.time=t;render();}
+function pickPrice(v){S.price=v;S.custPrice='';render();}
+function selP1(v){S.purpose1=v;S.purpose2=null;S.step=2;render();}
+function selP2(v){S.purpose2=v;S.purpose1=null;S.kuyo=null;S.style=null;S.mood=null;render();}
+function tog(k){S[k]=!S[k];render();}
+function go(){S.step++;render();}
+function back(){S.step--;render();}
+
+function tryNext(){
+  if(!S.name.trim()){alert('お名前をご入力ください');return;}
+  if(!S.tel.trim()){alert('電話番号をご入力ください');return;}
+  if(!S.email.trim()){alert('メールアドレスをご入力ください');return;}
+  if(!S.calDate){alert('来店日を選んでください');return;}
+  if(!S.time){alert('来店時間を選んでください');return;}
+  go();
+}
+
+function sendForm(){
+  var pur=purpose();
+  var purName='';
+  for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
+  if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
+  var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
+  var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
+  var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
+  var pr=null;for(var i=0;i<prices.length;i++){if(prices[i].id===S.price){pr=prices[i];break;}}
+  var d=S.calDate||new Date();
+  var dateStr=(d.getMonth()+1)+'/'+d.getDate()+'('+days[d.getDay()]+') '+S.time;
+  var noteText=(purName+(kc?' / '+kc.name:''))
+    +(sty?' | '+sty.icon+sty.name:'')
+    +(mood?' | '+mood.icon+mood.name:'')
+    +' | '+(S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice)
+    +' | '+dateStr
+    +(S.bag?' | 紙袋あり':'')
+    +(S.card?' | カードあり':'')
+    +(S.note?' | '+S.note:'');
+
+  // フォームメーラー公式コードをそのまま使用して送信
+  var form=document.createElement('form');
+  form.action='https://ssl.form-mailer.jp/fm/service/Forms/confirm';
+  form.method='post';
+  form.name='form1';
+  form.enctype='multipart/form-data';
+  form.acceptCharset='UTF-8';
+
+  var hidden={
+    'key':'35c007ac885487',
+    'code':'utf8',
+    'field_7747264_sei': S.name,
+    'field_7747264_mei': '',
+    'field_7747265': S.email||'',
+    'field_7747269': S.tel||''
+  };
+
+  for(var k in hidden){
+    var i=document.createElement('input');
+    i.type='hidden'; i.name=k; i.value=hidden[k];
+    form.appendChild(i);
+  }
+
+  var sb=document.createElement('input');
+  sb.type='hidden'; sb.name='submit'; sb.value='確認画面へ';
+  form.appendChild(sb);
+
+  document.body.appendChild(form);
+  form.submit();
+}
+
+function submitToGoogle(){
+  var pur=purpose();
+  var purName='';
+  for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
+  if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
+  var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
+  var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
+  var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
+  var pr=null;for(var i=0;i<prices.length;i++){if(prices[i].id===S.price){pr=prices[i];break;}}
+  var d=S.calDate||new Date();
+  var dateStr=d.getFullYear()+'-'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1)+'-'+(d.getDate()<10?'0':'')+d.getDate();
+
+  var params=new URLSearchParams();
+  params.append('entry.2126194840', purName+(kc?' / '+kc.name:''));
+  params.append('entry.686498998', mood?mood.name:(sty?sty.name:''));
+  params.append('entry.1240209201', dateStr);
+  params.append('entry.1312457891', S.time||'');
+  params.append('entry.1548757782', S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice);
+  params.append('entry.1424076277', S.name);
+  params.append('entry.1396544758', S.tel||'');
+
+  var img=new Image();
+  img.src='https://docs.google.com/forms/d/e/1FAIpQLSfN2zu1qsLyIZq6UsC-y3YcHAIOK-3uzUvVhBMIECDWwKOLPA/formResponse?'+params.toString()+'&submit=Submit';
+}
+
+render();
 </script>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="トップに戻る">▲</button>
+  <style>
+    #back-to-top {
+      position: fixed; bottom: 28px; right: 24px; width: 48px; height: 48px;
+      border-radius: 50%; background: var(--bark, #5a4535); color: var(--cream, #faf7f2);
+      border: none; font-size: 16px; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18); opacity: 0; transform: translateY(16px);
+      transition: opacity 0.35s, transform 0.35s, background 0.2s; z-index: 999;
+      display: flex; align-items: center; justify-content: center; line-height: 1; font-family: sans-serif;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { background: var(--rose-muted, #c4967a); }
+  </style>
+  <script>
+    (function(){
+      var btn = document.getElementById("back-to-top");
+      window.addEventListener("scroll", function(){
+        btn.classList.toggle("visible", window.scrollY > 300);
+      });
+    })();
+  </script>
 </body>
 </html>
