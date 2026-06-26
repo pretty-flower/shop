@@ -449,14 +449,18 @@ function submitToFormmailer(){
 
   var form=document.createElement('form');
   form.method='POST';
-  form.action='https://ssl.form-mailer.jp/fms/35c007ac885487';
+  form.action='https://ssl.form-mailer.jp/frm/service/Forms/confirm';
   form.target='fm_hidden';
+  form.acceptCharset='UTF-8';
+  form.enctype='multipart/form-data';
 
   var fields={
-    'メールアドレス': S.email||'',
-    '名前[姓]': S.name,
-    '名前[名]': '',
-    '電話番号': S.tel||''
+    'key': '35c007ac885487',
+    'field_7747264_sei': S.name,
+    'field_7747264_mei': '',
+    'field_7747265': S.email||'',
+    'field_7747269': S.tel||'',
+    'code': 'utf8'
   };
 
   for(var key in fields){
