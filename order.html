@@ -352,7 +352,15 @@ function render(){
     h+='<div class="sr last"><span>ご予算</span><span>'+(S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice)+'</span></div>';
     h+='</div>';
     h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:8px 12px;text-align:center;margin-bottom:1rem">この内容でよろしければ送信してください。</div>';
-    h+='<button class="btn" id="sbtn" onclick="sendForm()">予約を送信する ✉️</button>';
+    h+='<form action="https://ssl.form-mailer.jp/fm/service/Forms/confirm" method="post" name="form1" enctype="multipart/form-data" accept-charset="UTF-8" style="margin:0">';
+    h+='<input type="hidden" name="key" value="35c007ac885487">';
+    h+='<input type="hidden" name="code" value="utf8">';
+    h+='<input type="hidden" name="field_7747264_sei" value="'+S.name+'">';
+    h+='<input type="hidden" name="field_7747264_mei" value="">';
+    h+='<input type="hidden" name="field_7747265" value="'+(S.email||'')+'">';
+    h+='<input type="hidden" name="field_7747269" value="'+(S.tel||'')+'">';
+    h+='<button type="submit" name="submit" class="btn">予約を送信する ✉️</button>';
+    h+='</form>';
     h+='<button class="bbk" onclick="back()">← 修正する</button>';
   }
   c.innerHTML=h;
@@ -376,56 +384,7 @@ function tryNext(){
   go();
 }
 
-function sendForm(){
-  var pur=purpose();
-  var purName='';
-  for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
-  if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
-  var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
-  var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
-  var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
-  var pr=null;for(var i=0;i<prices.length;i++){if(prices[i].id===S.price){pr=prices[i];break;}}
-  var d=S.calDate||new Date();
-  var dateStr=(d.getMonth()+1)+'/'+d.getDate()+'('+days[d.getDay()]+') '+S.time;
-  var noteText=(purName+(kc?' / '+kc.name:''))
-    +(sty?' | '+sty.icon+sty.name:'')
-    +(mood?' | '+mood.icon+mood.name:'')
-    +' | '+(S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice)
-    +' | '+dateStr
-    +(S.bag?' | 紙袋あり':'')
-    +(S.card?' | カードあり':'')
-    +(S.note?' | '+S.note:'');
-
-  // フォームメーラー公式コードをそのまま使用して送信
-  var form=document.createElement('form');
-  form.action='https://ssl.form-mailer.jp/fm/service/Forms/confirm';
-  form.method='post';
-  form.name='form1';
-  form.enctype='multipart/form-data';
-  form.acceptCharset='UTF-8';
-
-  var hidden={
-    'key':'35c007ac885487',
-    'code':'utf8',
-    'field_7747264_sei': S.name,
-    'field_7747264_mei': '',
-    'field_7747265': S.email||'',
-    'field_7747269': S.tel||''
-  };
-
-  for(var k in hidden){
-    var i=document.createElement('input');
-    i.type='hidden'; i.name=k; i.value=hidden[k];
-    form.appendChild(i);
-  }
-
-  var sb=document.createElement('input');
-  sb.type='hidden'; sb.name='submit'; sb.value='確認画面へ';
-  form.appendChild(sb);
-
-  document.body.appendChild(form);
-  form.submit();
-}
+// sendForm削除済み - HTMLネイティブformで送信
 
 function submitToGoogle(){
   var pur=purpose();
