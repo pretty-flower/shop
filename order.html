@@ -392,16 +392,65 @@ function sendForm(){
   var d=S.calDate||new Date();
   var dateStr=(d.getMonth()+1)+'/'+d.getDate()+'('+days[d.getDay()]+') '+S.time;
 
-  // フォームメーラーにiframe経由で送信
+  // Web3Formsで真実さんへ通知
+  var body={
+    access_key: '6369b342-cce7-44f7-8a34-b3a7f1c8550b',
+    subject: '【ご来店予約】'+S.name+'様 '+dateStr,
+    from_name: 'pretty flower 予約フォーム',
+    replyto: S.email||'',
+    name: S.name,
+    tel: S.tel||'未入力',
+    email: S.email||'未入力',
+    purpose: purName+(kc?' / '+kc.name:''),
+    style: sty?sty.icon+' '+sty.name:'',
+    mood: mood?mood.icon+' '+mood.name:'',
+    price: S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice,
+    datetime: dateStr,
+    bag: S.bag?'あり（現地精算）':'なし',
+    card: S.card?'あり（無料）':'なし',
+    note: S.note||'なし'
+  };
+
+  fetch('https://api.web3forms.com/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(body)
+  })
+  .then(function(res){
+    // 完了画面表示
+    document.getElementById('main').innerHTML='<div class="done"><div class="dicon">🌿</div><div class="dtitle">ご予約ありがとうございます</div><div class="dmsg">'+S.name+'さん、ご予約ありがとうございます。<br><br>内容を確認の上、こちらから確認事項がある際は1〜2営業日以内にメールにて改めてご連絡いたします。<br>ない場合は、確定として承ります。<br><br>ご不明点やご質問がありましたら、お気軽にお問い合わせください。</div></div>';
+    document.getElementById('steps').innerHTML='';
+    // フォームメーラーにも送信（お客様自動返信用）
+    submitToFormmailer();
+  })
+  .catch(function(){
+    btn.textContent='予約を送信する ✉️';
+    btn.disabled=false;
+    alert('通信エラーが発生しました。お手数ですがお電話でご連絡ください。');
+  });
+}
+
+function submitToFormmailer(){
+  var pur=purpose();
+  var purName='';
+  for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
+  if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
+  var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
+  var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
+  var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
+  var pr=null;for(var i=0;i<prices.length;i++){if(prices[i].id===S.price){pr=prices[i];break;}}
+  var d=S.calDate||new Date();
+  var dateStr=(d.getMonth()+1)+'/'+d.getDate()+'('+days[d.getDay()]+') '+S.time;
+
   var iframe=document.createElement('iframe');
-  iframe.name='fm_target';
+  iframe.name='fm_hidden';
   iframe.style.display='none';
   document.body.appendChild(iframe);
 
   var form=document.createElement('form');
   form.method='POST';
   form.action='https://ssl.form-mailer.jp/fms/35c007ac885487';
-  form.target='fm_target';
+  form.target='fm_hidden';
 
   var fields={
     'メールアドレス': S.email||'',
@@ -424,15 +473,8 @@ function sendForm(){
     input.value=fields[key];
     form.appendChild(input);
   }
-
   document.body.appendChild(form);
   form.submit();
-
-  // 完了画面を表示
-  setTimeout(function(){
-    document.getElementById('main').innerHTML='<div class="done"><div class="dicon">🌿</div><div class="dtitle">ご予約ありがとうございます</div><div class="dmsg">'+S.name+'さん、ご予約ありがとうございます。<br><br>ご予約の内容で承ります。<br>確認事項がある際は1〜2営業日以内にご連絡いたします。<br><br>ご不明点はお気軽にお問い合わせください。</div></div>';
-    document.getElementById('steps').innerHTML='';
-  }, 1000);
 }
 
 function submitToGoogle(){
