@@ -415,7 +415,7 @@ function sendForm(){
   })
   .then(function(res){
     if(res.ok){
-      document.getElementById('main').innerHTML='<div class="done"><div class="dicon">🌿</div><div class="dtitle">ご予約ありがとうございます</div><div class="dmsg">'+S.name+'さん、ご予約ありがとうございます。<br><br>内容を確認の上、こちらから確認事項がある際は1〜2営業日以内にメールにて改めてご連絡いたします。<br>ない場合は、確定として承ります。<br><br>ご不明点やご質問がありましたらお気軽にお問い合わせください。</div></div>';
+      document.getElementById('main').innerHTML='<div class="done"><div class="dicon">🌿</div><div class="dtitle">ご予約ありがとうございます</div><div class="dmsg">'+S.name+'さん、ご予約ありがとうございます。<br><br>内容を確認の上、こちらから確認事項がある際は1〜2営業日以内にメールにて改めてご連絡いたします。<br>ない場合は、確定として承ります。<br><br>ご不明点やご質問がありましたら、お気軽にお問い合わせください。</div></div>';
       document.getElementById('steps').innerHTML='';submitToGoogle();
     }else{
       btn.textContent='予約を送信する ✉️';
@@ -457,5 +457,27 @@ function submitToGoogle(){
 
 render();
 </script>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="トップに戻る">▲</button>
+  <style>
+    #back-to-top {
+      position: fixed; bottom: 28px; right: 24px; width: 48px; height: 48px;
+      border-radius: 50%; background: var(--bark, #5a4535); color: var(--cream, #faf7f2);
+      border: none; font-size: 16px; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18); opacity: 0; transform: translateY(16px);
+      transition: opacity 0.35s, transform 0.35s, background 0.2s; z-index: 999;
+      display: flex; align-items: center; justify-content: center; line-height: 1; font-family: sans-serif;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { background: var(--rose-muted, #c4967a); }
+  </style>
+  <script>
+    (function(){
+      var btn = document.getElementById("back-to-top");
+      window.addEventListener("scroll", function(){
+        btn.classList.toggle("visible", window.scrollY > 300);
+      });
+    })();
+  </script>
 </body>
 </html>
