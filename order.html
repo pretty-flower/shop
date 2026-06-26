@@ -393,6 +393,10 @@ function sendForm(){
   var dateStr=(d.getMonth()+1)+'/'+d.getDate()+'('+days[d.getDay()]+') '+S.time;
 
   var body={
+    access_key: '6369b342-cce7-44f7-8a34-b3a7f1c8550b',
+    subject: '【ご来店予約】'+S.name+'様 '+dateStr,
+    from_name: 'pretty flower 予約フォーム',
+    replyto: S.email||'',
     name: S.name,
     tel: S.tel||'未入力',
     email: S.email||'未入力',
@@ -403,12 +407,10 @@ function sendForm(){
     datetime: dateStr,
     bag: S.bag?'あり（現地精算）':'なし',
     card: S.card?'あり（無料）':'なし',
-    note: S.note||'なし',
-    _subject: '【ご来店予約】'+S.name+'様 '+dateStr,
-    _replyto: S.email||''
+    note: S.note||'なし'
   };
 
-  fetch('https://formspree.io/f/mvznrvgo',{
+  fetch('https://api.web3forms.com/submit',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(body)
@@ -450,6 +452,7 @@ function submitToGoogle(){
   params.append('entry.1548757782', S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice);
   params.append('entry.1424076277', S.name);
   params.append('entry.1396544758', S.tel||'');
+  params.append('entry.1056598612', S.email||'');
 
   var img=new Image();
   img.src='https://docs.google.com/forms/d/e/1FAIpQLSfN2zu1qsLyIZq6UsC-y3YcHAIOK-3uzUvVhBMIECDWwKOLPA/formResponse?'+params.toString()+'&submit=Submit';
