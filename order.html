@@ -293,8 +293,7 @@ function render(){
     for(var i=0;i<prices.length;i++){
       var p=prices[i];
       var sz=S.style==='kumi'?(p.kumiSize||p.size):p.size;
-      var img=priceImgs[p.id];
-      var top=img?'<img src="'+img+'" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px 8px 0 0">':'<div class="pph">🌸</div>';
+      var top='<div class="pph">🌸</div>';
       h+='<div class="pc'+(S.price===p.id?' on':'')+'\" onclick="pickPrice(\''+p.id+'\')">'+top+'<div class="pi"><div class="ptag">'+p.label+'<span style="font-size:11px;color:#a08878"> 税込</span></div><div class="psz">'+sz+'</div></div></div>';
     }
     h+='</div>';
@@ -359,6 +358,10 @@ function render(){
     h+='<input type="hidden" name="field_7747264_mei" value="">';
     h+='<input type="hidden" name="field_7747265" value="'+(S.email||'')+'">';
     h+='<input type="hidden" name="field_7747269" value="'+(S.tel||'')+'">';
+    h+='<input type="hidden" name="field_7747397" value="'+purName+(kc?' / '+kc.name:'')+'">';
+    h+='<input type="hidden" name="field_7747398" value="'+(S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice)+'">';
+    h+='<input type="hidden" name="field_7747399" value="'+(d.getMonth()+1)+'/'+d.getDate()+'('+days[d.getDay()]+') '+S.time+'">';
+    h+='<input type="hidden" name="field_7747400" value="'+(sty?'スタイル:'+sty.name+' ':'')+(mood?'色合い:'+mood.name+' ':'')+(S.bag?'紙袋あり ':'')+( S.card?'カードあり ':'')+( S.note?S.note:'')+'">';
     h+='<button type="submit" name="submit" class="btn">予約を送信する ✉️</button>';
     h+='</form>';
     h+='<button class="bbk" onclick="back()">← 修正する</button>';
