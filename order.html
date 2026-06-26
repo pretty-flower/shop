@@ -454,16 +454,9 @@ function submitToFormmailer(){
 
   var fields={
     'メールアドレス': S.email||'',
-    'お名前': S.name,
-    '電話番号': S.tel||'',
-    'ご用途': purName+(kc?' / '+kc.name:''),
-    'スタイル': sty?sty.icon+' '+sty.name:'',
-    '色合い': mood?mood.icon+' '+mood.name:'',
-    'ご予算': S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice,
-    '来店日時': dateStr,
-    '紙袋': S.bag?'あり（現地精算）':'なし',
-    'メッセージカード': S.card?'あり（無料）':'なし',
-    '備考': S.note||'なし'
+    '名前[姓]': S.name,
+    '名前[名]': '',
+    '電話番号': S.tel||''
   };
 
   for(var key in fields){
