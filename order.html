@@ -351,12 +351,7 @@ function render(){
     if(S.note) h+='<div class="sr"><span class="sl">備考</span><span style="text-align:right;max-width:180px;font-size:12px">'+S.note+'</span></div>';
     h+='<div class="sr last"><span>ご予算</span><span>'+(S.price==='p2200'?'2,200円（一対）':pr?pr.label:S.custPrice)+'</span></div>';
     h+='</div>';
-    h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:12px 14px;margin-bottom:1rem;line-height:1.8">';
-    h+='この内容でよろしければ「予約を送信する」を押してください。<br>';
-    h+='<span style="color:#b8a89a">✦</span> ボタンを押すと<strong style="color:#9a7060">別のフォーム（確認画面）に移動します</strong>。<br>';
-    h+='<span style="color:#b8a89a">✦</span> 確認画面の「送信する」を押すと予約が完了します。<br>';
-    h+='<span style="color:#b8a89a">✦</span> 完了後、ご登録のメールアドレスに自動返信メールをお送りします。';
-    h+='</div>';
+    h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:12px 14px;margin-bottom:1rem;line-height:1.8">この内容でよろしければ「予約を送信する」を押してください。<br><span style="color:#b8a89a">✦</span> ボタンを押すと<strong style="color:#9a7060">別のフォーム（確認画面）に移動します</strong>。<br><span style="color:#b8a89a">✦</span> 確認画面の「送信する」を押すと予約が完了します。<br><span style="color:#b8a89a">✦</span> 完了後、ご登録のメールアドレスに自動返信メールをお送りします。</div>';
     h+='<button class="btn" id="sbtn" onclick="sendForm()">予約を送信する ✉️</button>';
     h+='<button class="bbk" onclick="back()">← 修正する</button>';
   }
