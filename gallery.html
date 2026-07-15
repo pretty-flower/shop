@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>参考画像ギャラリー｜pretty flower</title>
+  <meta name="description" content="pretty flower（北九州市戸畑区）の予約フォーム用・仕上がり参考画像ギャラリー。">
+  <link rel="icon" href="logo2.jpg" type="image/jpeg">
+  <link rel="canonical" href="https://pretty-flower.github.io/shop/gallery.html">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #faf7f2; --warm-white: #f5f0e8; --sand: #e8dfd0;
+      --clay: #c9b8a0; --taupe: #8b7660; --bark: #5a4535; --deep: #2d1f14;
+      --rose-muted: #c4967a;
+    }
+    body { font-family: 'Shippori Mincho', serif; background: var(--cream); color: var(--deep); min-height: 100vh; }
+
+    header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--sand); background: var(--cream); position: sticky; top: 0; z-index: 10; }
+    .back-link { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.2em; color: var(--taupe); text-decoration: none; transition: color 0.2s; }
+    .back-link:hover { color: var(--bark); }
+
+    .page-header { background: var(--deep); color: var(--cream); padding: 72px 40px 56px; text-align: center; position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(196,150,122,0.15) 0%, transparent 60%); }
+    .page-header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.5em; color: var(--rose-muted); margin-bottom: 20px; position: relative; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 300; line-height: 1.1; position: relative; }
+    .page-header h1 em { font-style: italic; color: var(--rose-muted); }
+    .page-header-jp { font-size: 15px; letter-spacing: 0.3em; color: var(--clay); margin-top: 12px; position: relative; }
+    .page-header-note { margin-top: 24px; font-size: 15px; line-height: 1.9; color: var(--clay); position: relative; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    .gallery-wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+    .gsection { margin-bottom: 40px; }
+    .gsection-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+    .gtag { background: #b8a89a; color: #fff; font-size: 14px; font-weight: 600; padding: 5px 14px; border-radius: 20px; }
+    .gname { font-size: 18px; color: var(--bark); font-weight: 500; }
+    .gprice { margin-left: auto; font-size: 16px; color: var(--taupe); }
+    .gdivider { text-align: center; margin: 56px 0 32px; padding-top: 40px; border-top: 1px solid var(--sand); }
+    .gdivider-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.5em; color: var(--rose-muted); margin-bottom: 10px; }
+    .gdivider h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 26px; color: var(--bark); }
+    .gdivider p { font-size: 13px; color: var(--taupe); margin-top: 10px; line-height: 1.8; }
+    .gtag-osonae { background: #9aa591; }
+    .ggrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .ggrid3 { grid-template-columns: repeat(3, 1fr); }
+    .gph { width: 100%; height: 100%; aspect-ratio: 4/3; border-radius: 10px; background: linear-gradient(135deg,#f5f0ea,#e8ddd4); display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--clay); border: .5px solid var(--sand); object-fit: cover; }
+    .gph-osonae { aspect-ratio: 3/4; object-fit: contain; background: linear-gradient(135deg,#f5f0ea,#e8ddd4); }
+    .gph-square { aspect-ratio: 1/1; object-fit: contain; background: linear-gradient(135deg,#f5f0ea,#e8ddd4); }
+    /* 実際の写真を追加する場合はここを <img src="images/○○.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px"> に差し替えてください */
+
+    @media (max-width: 600px) {
+      header { padding: 16px 20px; }
+      .page-header { padding: 52px 24px 44px; }
+      .ggrid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    footer { background: var(--deep); color: var(--clay); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer a { color: var(--clay); text-decoration: none; font-size: 11px; letter-spacing: 0.15em; transition: color 0.2s; }
+    footer a:hover { color: var(--cream); }
+    @media (max-width: 600px) { footer { padding: 28px 20px; flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html"><img src="logo.png" alt="pretty flower" style="height:44px;width:auto;"></a>
+    <a href="order.html" class="back-link">← 予約フォームに戻る</a>
+  </header>
+
+  <div class="page-header">
+    <p class="page-header-eyebrow">GALLERY</p>
+    <h1>参考<em>画像</em></h1>
+    <p class="page-header-jp">仕上がりイメージ</p>
+    <p class="page-header-note">
+      サイズ・ご予算ごとの仕上がりイメージです。<br>
+      実際のお花はお任せで一つひとつお作りするため、季節や在庫によって雰囲気が変わることがあります。
+    </p>
+  </div>
+
+  <div class="gallery-wrap">
+
+    <div class="gsection">
+      <div class="gsection-head"><span class="gtag">S</span><span class="gname">小さな贈りもの</span><span class="gprice">3,000円・4,000円クラス</span></div>
+      <div class="ggrid ggrid3"><img src="images/s-01.jpg" class="gph gph-square"><img src="images/s-02.jpg" class="gph gph-square"><img src="images/s-03.jpg" class="gph gph-square"><img src="images/s-04.jpg" class="gph gph-square"><img src="images/s-05.jpg" class="gph gph-square"><img src="images/s-06.jpg" class="gph gph-square"><img src="images/s-07.jpg" class="gph gph-square"><img src="images/s-08.jpg" class="gph gph-square"></div>
+    </div>
+
+    <div class="gsection">
+      <div class="gsection-head"><span class="gtag">M</span><span class="gname">おすすめ</span><span class="gprice">5,000円・6,000円クラス</span></div>
+      <p style="font-size:13px;color:var(--taupe);margin:-6px 0 12px;">5,000円・6,000円クラスをおすすめしています</p>
+      <div class="ggrid ggrid3"><img src="images/m-01.jpg" class="gph gph-square"><img src="images/m-02.jpg" class="gph gph-square"><img src="images/m-03.jpg" class="gph gph-square"><img src="images/m-04.jpg" class="gph gph-square"><img src="images/m-05.jpg" class="gph gph-square"><img src="images/m-06.jpg" class="gph gph-square"></div>
+    </div>
+
+    <div class="gsection">
+      <div class="gsection-head"><span class="gtag">L</span><span class="gname">ちょっと豪華</span><span class="gprice">7,000円・8,000円クラス</span></div>
+      <div class="ggrid ggrid3"><img src="images/l-01.jpg" class="gph gph-square"><img src="images/l-02.jpg" class="gph gph-square"><img src="images/lplus-01.jpg" class="gph gph-square"><img src="images/lplus-02.jpg" class="gph gph-square"><img src="images/l-03.jpg" class="gph gph-square"><img src="images/l-04.jpg" class="gph gph-square"><img src="images/l-05.jpg" class="gph gph-square"><img src="images/l-06.jpg" class="gph gph-square"></div>
+    </div>
+
+    <div class="gsection">
+      <div class="gsection-head"><span class="gtag">贈答</span><span class="gname">とっておきの贈りもの</span><span class="gprice">10,000円〜</span></div>
+      <div class="ggrid ggrid3"><img src="images_zoto/zoto-01.jpg" class="gph gph-square"><img src="images_zoto/zoto-02.jpg" class="gph gph-square"><img src="images_zoto/zoto-03.jpg" class="gph gph-square"><img src="images_zoto/zoto-04.jpg" class="gph gph-square"><img src="images_zoto/zoto-05.jpg" class="gph gph-square"><img src="images_zoto/zoto-06.jpg" class="gph gph-square"><img src="images_zoto/zoto-07.jpg" class="gph gph-square"></div>
+    </div>
+
+    <div class="gdivider">
+      <p class="gdivider-eyebrow">MEMORIAL</p>
+      <h2>お<em>供え</em></h2>
+      <p>ご法要・お悔やみの気持ちに寄り添うお花です。<br>白を基調に、落ち着いた雰囲気でお仕立てします。</p>
+    </div>
+
+    <div class="gsection">
+      <div class="gsection-head"><span class="gtag gtag-osonae">基本</span><span class="gname">一基</span><span class="gprice">5,000円</span></div>
+      <div class="ggrid ggrid3"><img src="images_osonae/base-01.jpg" class="gph gph-osonae"><img src="images_osonae/base-02.jpg" class="gph gph-osonae"><img src="images_osonae/base-03.jpg" class="gph gph-osonae"></div>
+    </div>
+
+    <div class="gsection">
+      <div class="gsection-head"><span class="gtag gtag-osonae">大きめ</span><span class="gname">ボリュームアップ</span><span class="gprice">7,000円</span></div>
+      <div class="ggrid ggrid3"><img src="images_osonae/oki-01.jpg" class="gph gph-osonae"><img src="images_osonae/oki-02.jpg" class="gph gph-osonae"><img src="images_osonae/oki-03.jpg" class="gph gph-osonae"></div>
+    </div>
+
+    <div class="gsection">
+      <div class="gsection-head"><span class="gtag gtag-osonae">特大</span><span class="gname">ご法要用</span><span class="gprice">10,000円</span></div>
+      <div class="ggrid ggrid3"><img src="images_osonae/tokudai-01.jpg" class="gph gph-osonae"><img src="images_osonae/tokudai-02.jpg" class="gph gph-osonae"><img src="images_osonae/tokudai-03.jpg" class="gph gph-osonae"></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html"><img src="logo.png" alt="pretty flower" style="height:36px;"></a>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;">
+      <a href="index.html">トップ</a>
+      <a href="order.html">来店予約</a>
+      <a href="faq.html">よくある質問</a>
+      <a href="https://pretty0204.thebase.in/" target="_blank">BASE</a>
+      <a href="https://lin.ee/n4jGnVo" target="_blank">LINE</a>
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.2em;">© 2024 pretty flower</p>
+  </footer>
+
+</body>
+</html>
