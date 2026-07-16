@@ -195,12 +195,6 @@
 <script>
 var calYear=new Date().getFullYear();
 var calMonth=new Date().getMonth();
-// 休業日設定（年が変わったら日付を更新してください）
-var closedDates=['2026-08-14','2026-08-15','2026-08-16']; // お盆休み：終日休業
-var openExceptions=['2026-08-10','2026-08-11']; // 通常は定休日（日・月・火）だが営業する日
-var partialClosedDates={'2026-08-13':{closedFrom:'13:00',note:'8/13は午後休業のため、午前のみのご案内となります。'}}; // 一部時間帯のみ休業
-function pad2(n){return n<10?'0'+n:''+n;}
-function dateKey(dt){return dt.getFullYear()+'-'+pad2(dt.getMonth()+1)+'-'+pad2(dt.getDate());}
 function renderCal(){
   var today=new Date();today.setHours(0,0,0,0);
   var minDate=new Date(today);minDate.setDate(today.getDate()+2);
@@ -220,12 +214,9 @@ function renderCal(){
   for(var d=1;d<=last.getDate();d++){
     var dt=new Date(calYear,calMonth,d);
     var dow=dt.getDay();
-    var dstr=dateKey(dt);
-    var isOpenEx=openExceptions.indexOf(dstr)!==-1;
-    var isClosed=closedDates.indexOf(dstr)!==-1;
-    var disabled=dt<minDate||isClosed||(!isOpenEx&&(dow===0||dow===1||dow===2));
+    var disabled=dt<minDate||(dow===0||dow===1||dow===2);
     var sel=S.calDate&&S.calDate.getFullYear()===calYear&&S.calDate.getMonth()===calMonth&&S.calDate.getDate()===d;
-    var cls='cal-day'+(dow===0?' sun':dow===6?' sat':'')+(disabled?' disabled':(sel?' on':''));
+    var cls='cal-day'+(dow===0?' sun':dow===6?' sat':'')+(disabled?' disabled':''+(sel?' on':''));
     if(disabled){
       h+='<div class="'+cls+'">'+d+'</div>';
     }else{
@@ -233,20 +224,11 @@ function renderCal(){
     }
   }
   h+='</div>';
-  if(S.calDate){
-    var pc0=partialClosedDates[dateKey(S.calDate)];
-    if(pc0){ h+='<div style="font-size:11px;color:#9a7060;margin-top:8px">'+pc0.note+'</div>'; }
-  }
   return h;
 }
 function prevMonth(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}render();}
 function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}render();}
-function pickCalDate(y,m,d){
-  S.calDate=new Date(y,m,d);S.date=S.calDate;
-  var pc=partialClosedDates[dateKey(S.calDate)];
-  if(pc&&S.time&&!(S.time.split('〜')[0]<pc.closedFrom)){S.time=null;}
-  render();
-}
+function pickCalDate(y,m,d){S.calDate=new Date(y,m,d);S.date=S.calDate;if(S.time&&timesForDate(S.calDate).indexOf(S.time)===-1){S.time=null;}render();}
 
 var S={step:1,purpose1:null,purpose2:null,kuyo:null,style:null,mood:null,price:null,custPrice:'',date:null,calDate:null,time:null,name:'',tel:'',email:'',bag:false,card:false,note:''};
 var p1list=[{id:'gift',name:'ギフト'},{id:'self',name:'自宅用'}];
@@ -254,9 +236,18 @@ var p2list=[{id:'cele',name:'お祝い'},{id:'kuyo',name:'お供え'},{id:'other
 var kuyoC=[{id:'any',name:'おまかせ（色OK）'},{id:'white',name:'白系に淡い差し色'}];
 var styles=[{id:'bq',icon:'💐',name:'花束',desc:''},{id:'ba',icon:'🧺',name:'カゴアレンジ',desc:'アレンジメント'},{id:'st',icon:'🌷',name:'置くだけブーケ',desc:'スタンディング'},{id:'kumi',icon:'🌾',name:'組み束',desc:''}];
 var moods=[{id:'kise',icon:'✨',name:'季節のおまかせ',desc:'旬の花をお任せで'},{id:'fuwa',icon:'🌸',name:'ふわふわ',desc:'淡いピンクなど'},{id:'hira',icon:'🌹',name:'ひらひら',desc:'赤など 華やかな雰囲気'},{id:'yura',icon:'🌿',name:'ゆらゆら',desc:'白・グリーン 爽やか系'},{id:'natu',icon:'🌼',name:'ナチュラル',desc:'イエローなど'}];
-var prices=[{id:'p3300',label:'3,300円',size:'手のひらサイズ',kumiSize:'長さ約35〜45cm・小ぶり',tag:'S',tagDesc:'小さな贈りもの',scene:'ちょっとしたお礼・気軽なプレゼントに。',kumiTagDesc:'小さなお供え',kumiScene:'気兼ねないお供えに。'},{id:'p4400',label:'4,400円',size:'幅約22cm程度',kumiSize:'長さ約45〜50cm・ボリューム感',tag:'M',tagDesc:'季節を贈る',scene:'季節のお花を少し華やかに楽しみたい方へ。',kumiTagDesc:'季節のお供え',kumiScene:'季節を感じられるお供えに。'},{id:'p5500',label:'5,500円',size:'幅約25〜30cm',kumiSize:'長さ約50〜60cm・ボリュームあり',tag:'L',tagDesc:'人気No.1✨',scene:'お誕生日・記念日・母の日など、迷ったらこちらがおすすめです。',kumiTagDesc:'法事や枕花など',kumiScene:'迷った時はこちらがおすすめです。'},{id:'p6600',label:'6,600円',size:'幅約30cm・ボリューム',kumiSize:'長さ約60cm・華やかな印象',tag:'L+',tagDesc:'ワンランク上',scene:'いつもより少し贈りものにボリュームを持たせたい時に。'},{id:'p8800',label:'8,800円',size:'幅約35cm・存在感',kumiSize:'長さ約60cm以上・存在感たっぷり',tag:'LL',tagDesc:'華やぎを添えて',scene:'ボリューム感があり、特別な日の贈りものに。',kumiScene:'ボリューム感があり、特別な日のお供えに。'},{id:'p11000',label:'11,000円',size:'幅約40cm・豪華',kumiSize:'長さ60cm以上・法事・葬儀向け',tag:'XL',tagDesc:'とっておきの贈りもの',scene:'開店祝い・周年祝いなど、特別なお祝いに。ご希望に合わせてお作りします。',kumiTagDesc:'大切なお供え',kumiScene:'初盆や一回忌、お世話になった方など特別なお供えに。'}];
+var prices=[{id:'p3300',label:'3,300円',size:'手のひらサイズ',kumiSize:'長さ約35〜45cm・小ぶり',tag:'S',tagDesc:'小さな贈りもの',scene:'ちょっとしたお礼・気軽なプレゼントに。'},{id:'p4400',label:'4,400円',size:'幅約22cm程度',kumiSize:'長さ約45〜50cm・ボリューム感',tag:'M',tagDesc:'季節を贈る',scene:'季節のお花を少し華やかに楽しみたい方へ。'},{id:'p5500',label:'5,500円',size:'幅約25〜30cm',kumiSize:'長さ約50〜60cm・ボリュームあり',tag:'L',tagDesc:'人気No.1✨',scene:'お誕生日・記念日・母の日など、迷ったらこちらがおすすめです。'},{id:'p6600',label:'6,600円',size:'幅約30cm・ボリューム',kumiSize:'長さ約60cm・華やかな印象',tag:'L+',tagDesc:'ワンランク上',scene:'いつもより少し贈りものにボリュームを持たせたい時に。'},{id:'p8800',label:'8,800円',size:'幅約35cm・存在感',kumiSize:'長さ約60cm以上・存在感たっぷり',tag:'LL',tagDesc:'華やぎを添えて',scene:'ボリューム感があり、特別な日の贈りものに。'},{id:'p11000',label:'11,000円',size:'幅約40cm・豪華',kumiSize:'長さ60cm以上・法事・葬儀向け',tag:'XL',tagDesc:'とっておきの贈りもの',scene:'開店祝い・周年祝いなど、特別なお祝いに。ご希望に合わせてお作りします。'}];
 var now=new Date();
 var days=['日','月','火','水','木','金','土'];
+// 特定日だけ受付時間を短縮したい場合はここに追加（YYYY-MM-DD形式）
+var dateTimeOverrides={
+  '2026-07-18':['10:00〜11:00','11:00〜12:00','12:00〜13:00','13:00〜14:00','14:00〜15:00','15:00〜16:00']
+};
+function timesForDate(d){
+  if(!d) return ['10:00〜11:00','11:00〜12:00','12:00〜13:00','13:00〜14:00','14:00〜15:00','15:00〜16:00','16:00〜17:00','17:00〜18:00'];
+  var key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  return dateTimeOverrides[key]||['10:00〜11:00','11:00〜12:00','12:00〜13:00','13:00〜14:00','14:00〜15:00','15:00〜16:00','16:00〜17:00','17:00〜18:00'];
+}
 
 function purpose(){return S.purpose1||S.purpose2;}
 function totalSteps(){return 6;}
@@ -312,15 +303,13 @@ function render(){
     h='<div class="card"><div class="sec">ご予算を選んでください</div>';
     h+='<a href="gallery.html" target="_blank" class="gallery-link">📷 参考画像はこちら</a>';
     h+='<div class="pc-list">';
-    if(S.style==='kumi'){h+='<div class="pcard'+(S.price==='p2200'?' on':'')+'" onclick="pickPrice(\'p2200\')"><div class="pcard-head"><span class="ptagbadge">SS</span><span class="pcprice">2,200円<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div><div class="pcscene">ご自宅のお仏壇などに。</div><div class="pcsize">長さ約30〜35cm・小ぶり</div></div>';}
+    if(S.style==='kumi'){h+='<div class="pcard'+(S.price==='p2200'?' on':'')+'" onclick="pickPrice(\'p2200\')"><div class="pcard-head"><span class="pcprice">2,200円<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div><div class="pcsize">長さ約30〜35cm・小ぶり</div></div>';}
     for(var i=0;i<prices.length;i++){
       var p=prices[i];
       var sz=S.style==='kumi'?(p.kumiSize||p.size):p.size;
-      var tagDesc=S.purpose2==='kuyo'&&p.kumiTagDesc?p.kumiTagDesc:p.tagDesc;
-      var scene=S.purpose2==='kuyo'&&p.kumiScene?p.kumiScene:p.scene;
       h+='<div class="pcard'+(S.price===p.id?' on':'')+'" onclick="pickPrice(\''+p.id+'\')">';
-      h+='<div class="pcard-head"><span class="ptagbadge">'+p.tag+'</span><span class="ptagname">'+tagDesc+'</span><span class="pcprice">'+p.label+'<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div>';
-      h+='<div class="pcscene">'+scene+'</div>';
+      h+='<div class="pcard-head"><span class="ptagbadge">'+p.tag+'</span><span class="ptagname">'+p.tagDesc+'</span><span class="pcprice">'+p.label+'<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div>';
+      h+='<div class="pcscene">'+p.scene+'</div>';
       h+='<div class="pcsize">'+sz+'</div>';
       h+='</div>';
     }
@@ -334,9 +323,7 @@ function render(){
 
   }else if(S.step===6){
     h='<div class="card"><div class="sec">来店日を選んでください</div>'+renderCal()+'<div class="tg">';
-    var times=['10:00〜11:00','11:00〜12:00','12:00〜13:00','13:00〜14:00','14:00〜15:00','15:00〜16:00','16:00〜17:00','17:00〜18:00'];
-    var pcSel=S.calDate?partialClosedDates[dateKey(S.calDate)]:null;
-    if(pcSel){ times=times.filter(function(t){return t.split('〜')[0]<pcSel.closedFrom;}); }
+    var times=timesForDate(S.calDate);
     for(var i=0;i<times.length;i++){var t=times[i];h+='<div class="tb'+(S.time===t?' on':'')+'\" onclick="pickTime(\''+t+'\')">'+t+'</div>';}
     h+='</div></div>';
     h+='<div class="card"><div class="sec">お客様情報・ご要望</div>';
