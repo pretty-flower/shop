@@ -95,6 +95,10 @@
     .btn-primary:hover { background: var(--deep); }
     .btn-line { display: inline-flex; align-items: center; gap: 10px; background: #06c755; color: white; text-decoration: none; padding: 18px 34px; font-family: 'Shippori Mincho', serif; font-size: 15px; letter-spacing: 0.15em; transition: opacity 0.2s; }
     .btn-line:hover { opacity: 0.85; }
+    .hero-cta-sub-label { font-size: 11px; letter-spacing: 0.15em; color: var(--clay); margin-top: 6px; }
+    .hero-cta-secondary { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--bark); border: 1px solid var(--clay); text-decoration: none; padding: 13px 26px; font-family: 'Shippori Mincho', serif; font-size: 13px; letter-spacing: 0.12em; transition: all 0.3s; }
+    .btn-outline:hover { background: var(--warm-white); border-color: var(--bark); }
     .hero-credentials { margin-top: 56px; display: flex; gap: 32px; flex-wrap: wrap; }
     .credential-item { display: flex; flex-direction: column; gap: 4px; }
     .credential-num { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: var(--gold); line-height: 1; }
@@ -319,7 +323,11 @@
       </p>
       <div class="hero-cta-group">
         <a href="order.html" class="btn-primary">来店予約はこちら →</a>
-        <a href="https://lin.ee/n4jGnVo" class="btn-line">💬 LINE公式アカウント</a>
+        <p class="hero-cta-sub-label">お問い合わせ・ご相談はこちらから</p>
+        <div class="hero-cta-secondary">
+          <a href="contact.html" class="btn-outline">✉️ お問い合わせ</a>
+          <a href="https://lin.ee/n4jGnVo" class="btn-line">💬 LINE公式アカウント</a>
+        </div>
       </div>
       <div class="hero-credentials">
         <div class="credential-item">
