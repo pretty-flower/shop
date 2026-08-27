@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログ｜pretty flower（北九州市戸畑区のアトリエショップ）</title>
+  <meta name="description" content="北九州市戸畑区のアトリエ花屋 pretty flower のブログ。季節のお花、ギフトの選び方、アトリエの日々をお届けします。">
+  <link rel="icon" href="logo2.jpg" type="image/jpeg">
+  <link rel="canonical" href="https://pretty-flower.github.io/shop/blog.html">
+  <meta name="keywords" content="北九州市 花屋,戸畑区 フラワーショップ,花のブログ,季節の花,フラワーギフト,pretty flower">
+  <meta property="og:title" content="ブログ｜pretty flower">
+  <meta property="og:description" content="北九州市戸畑区のアトリエ花屋 pretty flower のブログ。季節のお花、ギフトの選び方、アトリエの日々をお届けします。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pretty-flower.github.io/shop/blog.html">
+  <meta property="og:image" content="https://pretty-flower.github.io/shop/flower1.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #faf7f2; --warm-white: #f5f0e8; --sand: #e8dfd0;
+      --clay: #c9b8a0; --taupe: #8b7660; --bark: #5a4535;
+      --deep: #2d1f14; --sage: #7a8c75; --rose-muted: #c4967a;
+      --gold: #c9a84c;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Shippori Mincho', serif; background: var(--cream); color: var(--deep); overflow-x: hidden; }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 10px 40px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(250,247,242,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139,118,96,0.15);
+    }
+    .header-logo img { height: 52px; width: auto; display: block; }
+    nav { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    nav a { font-size: 11px; letter-spacing: 0.18em; color: var(--taupe); text-decoration: none; font-family: 'Cormorant Garamond', serif; transition: color 0.2s; white-space: nowrap; }
+    nav a:hover { color: var(--bark); }
+    nav a.active { color: var(--bark); border-bottom: 1px solid var(--bark); padding-bottom: 4px; }
+    .nav-reserve { font-family: 'Shippori Mincho', serif !important; font-size: 12px !important; background: var(--bark); color: var(--cream) !important; padding: 8px 18px; transition: background 0.3s !important; }
+    .nav-reserve:hover { background: var(--deep) !important; }
+
+    .page-hero { padding: 150px 80px 60px; background: var(--warm-white); }
+    .section-label { font-family: 'Cormorant Garamond', serif; font-size: 10px; letter-spacing: 0.5em; color: var(--rose-muted); margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
+    .section-label::after { content: ''; display: block; width: 40px; height: 1px; background: var(--rose-muted); }
+    .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,3vw,42px); font-weight: 300; color: var(--bark); margin-bottom: 6px; }
+    .section-heading-jp { font-size: 13px; letter-spacing: 0.3em; color: var(--taupe); margin-bottom: 24px; }
+    .page-hero-desc { font-size: 14px; line-height: 2.2; color: var(--taupe); max-width: 560px; }
+
+    .blog-list { padding: 20px 80px 100px; background: var(--warm-white); }
+    .news-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .news-card { background: var(--cream); border: 1px solid var(--sand); overflow: hidden; transition: box-shadow 0.3s; text-decoration: none; display: block; }
+    .news-card:hover { box-shadow: 0 4px 20px rgba(45,31,20,0.1); }
+    .news-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.5s; }
+    .news-card:hover img { transform: scale(1.04); }
+    .news-card-body { padding: 18px 22px 24px; }
+    .news-card-label { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 8px; }
+    .news-card-title { font-size: 15px; line-height: 1.8; color: var(--bark); letter-spacing: 0.05em; margin-bottom: 10px; }
+    .news-card-sub { font-size: 11px; color: var(--taupe); font-family: 'Cormorant Garamond', serif; letter-spacing: 0.15em; }
+    .coming-soon { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border: 1px dashed var(--sand); padding: 40px 20px; text-align: center; color: var(--clay); font-size: 12px; letter-spacing: 0.1em; }
+
+    @media (max-width: 900px) {
+      header { padding: 10px 20px; }
+      nav { gap: 14px; }
+      nav a:not(.nav-reserve):not(:last-child) { display: none; }
+      .page-hero, .blog-list { padding-left: 24px; padding-right: 24px; }
+      .news-grid { grid-template-columns: 1fr; }
+    }
+
+    footer { background: var(--deep); color: var(--clay); padding: 52px 80px 36px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(139,118,96,0.22); flex-wrap: wrap; gap: 32px; }
+    .footer-logo img { height: 48px; width: auto; }
+    .footer-logo-sub { font-size: 11px; letter-spacing: 0.15em; margin-top: 10px; color: var(--clay); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+    .footer-links a { color: var(--clay); text-decoration: none; font-size: 11px; letter-spacing: 0.15em; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.2em; }
+    @media (max-width: 900px) {
+      footer { padding: 44px 24px 28px; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-logo">
+      <a href="index.html"><img src="logo.png" alt="pretty flower"></a>
+    </div>
+    <nav>
+      <a href="index.html#news">お知らせ</a>
+      <a href="order.html">🏠 来店・予約</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="blog.html" class="active">ブログ</a>
+      <a href="index.html#shops">🛍️ オンラインショップ</a>
+      <a href="about.html">pretty flowerについて</a>
+      <a href="faq.html">FAQ</a>
+      <a href="order.html" class="nav-reserve">来店予約</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="section-label">JOURNAL</div>
+    <h1 class="section-heading">Blog</h1>
+    <p class="section-heading-jp">ブログ</p>
+    <p class="page-hero-desc">
+      季節のお花のこと、ギフト選びのヒント、アトリエでの日々のことを<br>
+      少しずつ綴っていきます。
+    </p>
+  </section>
+
+  <section class="blog-list">
+    <div class="news-grid">
+      <a href="blog-01-aki-no-gift-flower.html" class="news-card">
+        <img src="flower1.png" alt="秋のフラワーギフトの選び方">
+        <div class="news-card-body">
+          <div class="news-card-label">2026.08.27</div>
+          <div class="news-card-title">敬老の日・秋の贈り物に。季節のフラワーギフトの選び方</div>
+          <div class="news-card-sub">→ 記事を読む</div>
+        </div>
+      </a>
+      <div class="coming-soon">
+        次の記事は準備中です<br>お楽しみに
+      </div>
+      <div class="coming-soon">
+        次の記事は準備中です<br>お楽しみに
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><img src="logo.png" alt="pretty flower"></div>
+        <div class="footer-logo-sub">北九州市戸畑区 ／ アトリエショップ ／ ギフト専門</div>
+      </div>
+      <div class="footer-links">
+        <a href="about.html">店主について</a>
+        <a href="blog.html">ブログ</a>
+        <a href="index.html#shops">ショップ一覧</a>
+        <a href="faq.html">よくあるご質問</a>
+        <a href="index.html#info">店舗情報</a>
+        <a href="order.html">来店予約</a>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="https://www.instagram.com/prettyflower0204/">Instagram</a>
+        <a href="https://lin.ee/n4jGnVo">LINE</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 pretty flower All rights reserved.</p>
+      <p style="font-size:11px; letter-spacing:0.15em;">Kitakyushu, Fukuoka</p>
+    </div>
+  </footer>
+
+</body>
+</html>
