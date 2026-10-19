@@ -106,6 +106,10 @@
     .pcprice{margin-left:auto;font-size:14px;font-weight:600;color:#5a4a3a;white-space:nowrap}
     .pcscene{font-size:12px;color:#7a6055;line-height:1.6;margin-bottom:4px}
     .pcsize{font-size:11px;color:#a08878}
+    .pcard.has-img{display:flex;gap:12px;align-items:center}
+    .pcimg{width:76px;height:76px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#f5f0eb}
+    .pcbody{flex:1;min-width:0}
+    .pcnote{font-size:11px;color:#a08878;text-align:center;margin:10px 0 0}
     .gallery-link{display:block;text-align:center;font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:10px;margin-bottom:12px;text-decoration:none}
     .gallery-link:hover{background:#f5ece5}
     .dg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -264,6 +268,27 @@ var kuyoC=[{id:'any',name:'おまかせ（色OK）'},{id:'white',name:'白系に
 var styles=[{id:'bq',icon:'💐',name:'花束',desc:''},{id:'ba',icon:'🧺',name:'カゴアレンジ',desc:'アレンジメント'},{id:'st',icon:'🌷',name:'置くだけブーケ',desc:'スタンディング'},{id:'kumi',icon:'🌾',name:'組み束',desc:''}];
 var moods=[{id:'kise',icon:'✨',name:'季節のおまかせ',desc:'旬の花をお任せで'},{id:'fuwa',icon:'🌸',name:'ふわふわ',desc:'淡いピンクなど'},{id:'hira',icon:'🌹',name:'ひらひら',desc:'赤など 華やかな雰囲気'},{id:'yura',icon:'🌿',name:'ゆらゆら',desc:'白・グリーン 爽やか系'},{id:'natu',icon:'🌼',name:'ナチュラル',desc:'イエローなど'}];
 var prices=[{id:'p3300',label:'3,300円',size:'手のひらサイズ',kumiSize:'長さ約35〜45cm・小ぶり',tag:'S',tagDesc:'小さな贈りもの',scene:'ちょっとしたお礼・気軽なプレゼントに。',kumiTagDesc:'小さなお供え',kumiScene:'気兼ねないお供えに。'},{id:'p4400',label:'4,400円',size:'幅約22cm程度',kumiSize:'長さ約45〜50cm・ボリューム感',tag:'M',tagDesc:'季節を贈る',scene:'季節のお花を少し華やかに楽しみたい方へ。',kumiTagDesc:'季節のお供え',kumiScene:'季節を感じられるお供えに。'},{id:'p5500',label:'5,500円',size:'幅約25〜30cm',kumiSize:'長さ約50〜60cm・ボリュームあり',tag:'L',tagDesc:'人気No.1✨',scene:'お誕生日・記念日・母の日など、迷ったらこちらがおすすめです。',kumiTagDesc:'法事や枕花など',kumiScene:'迷った時はこちらがおすすめです。'},{id:'p6600',label:'6,600円',size:'幅約30cm・ボリューム',kumiSize:'長さ約60cm・華やかな印象',tag:'L+',tagDesc:'ワンランク上',scene:'いつもより少し贈りものにボリュームを持たせたい時に。'},{id:'p8800',label:'8,800円',size:'幅約35cm・存在感',kumiSize:'長さ約60cm以上・存在感たっぷり',tag:'LL',tagDesc:'華やぎを添えて',scene:'ボリューム感があり、特別な日の贈りものに。',kumiScene:'ボリューム感があり、特別な日のお供えに。'},{id:'p11000',label:'11,000円',size:'幅約40cm・豪華',kumiSize:'長さ60cm以上・法事・葬儀向け',tag:'XL',tagDesc:'とっておきの贈りもの',scene:'開店祝い・周年祝いなど、特別なお祝いに。ご希望に合わせてお作りします。',kumiTagDesc:'大切なお供え',kumiScene:'初盆や一回忌、お世話になった方など特別なお供えに。'}];
+// ご予算の参考写真（色合い・お供えの色で切り替え）
+var pricePhotos={
+  kise:{p3300:'s-08',p4400:'s-06',p5500:'m-05',p6600:'m-06',p8800:'l-04',p11000:'zoto-06'},
+  fuwa:{p3300:'s-07',p4400:'s-01',p5500:'m-02',p6600:'m-03',p8800:'l-02',p11000:'zoto-02'},
+  hira:{p3300:'s-01',p4400:'s-06',p5500:'m-04',p6600:'lplus-02',p8800:'l-01',p11000:'zoto-05'},
+  yura:{p3300:'s-03',p4400:'s-02',p5500:'m-01',p6600:'lplus-01',p8800:'l-05',p11000:'zoto-03'},
+  natu:{p3300:'s-05',p4400:'s-04',p5500:'m-05',p6600:'m-05',p8800:'l-04',p11000:'zoto-07'},
+  kuyo_any:{p3300:'base-01',p4400:'oki-02',p5500:'oki-01',p6600:'special-03',p8800:'tokudai-02',p11000:'tokudai-01'},
+  kuyo_white:{p3300:'base-02',p4400:'oki-03',p5500:'base-03',p6600:'lplus-01',p8800:'base-01',p11000:'tokudai-01'}
+};
+function pricePhoto(id){
+  if(id==='p2200') return 'ss-01';
+  if(S.style==='kumi') return null;
+  var key=S.purpose2==='kuyo'?'kuyo_'+(S.kuyo||'any'):(S.mood||'kise');
+  var m=pricePhotos[key];
+  return m&&m[id]?m[id]:null;
+}
+function photoTag(id){
+  var f=pricePhoto(id);
+  return f?'<img class="pcimg" src="'+f+'.jpg" alt="" loading="lazy">':'';
+}
 var now=new Date();
 var days=['日','月','火','水','木','金','土'];
 
@@ -321,19 +346,21 @@ function render(){
     h='<div class="card"><div class="sec">ご予算を選んでください</div>';
     h+='<a href="gallery.html" target="_blank" class="gallery-link">📷 参考画像はこちら</a>';
     h+='<div class="pc-list">';
-    if(S.style==='kumi'){h+='<div class="pcard'+(S.price==='p2200'?' on':'')+'" onclick="pickPrice(\'p2200\')"><div class="pcard-head"><span class="ptagbadge">SS</span><span class="pcprice">2,200円<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div><div class="pcscene">ご自宅のお仏壇などに。</div><div class="pcsize">長さ約30〜35cm・小ぶり</div></div>';}
+    if(S.style==='kumi'){h+='<div class="pcard has-img'+(S.price==='p2200'?' on':'')+'" onclick="pickPrice(\'p2200\')">'+photoTag('p2200')+'<div class="pcbody"><div class="pcard-head"><span class="ptagbadge">SS</span><span class="pcprice">2,200円<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div><div class="pcscene">ご自宅のお仏壇などに。</div><div class="pcsize">長さ約30〜35cm・小ぶり</div></div></div>';}
     for(var i=0;i<prices.length;i++){
       var p=prices[i];
       var sz=S.style==='kumi'?(p.kumiSize||p.size):p.size;
       var tagDesc=S.purpose2==='kuyo'&&p.kumiTagDesc?p.kumiTagDesc:p.tagDesc;
       var scene=S.purpose2==='kuyo'&&p.kumiScene?p.kumiScene:p.scene;
-      h+='<div class="pcard'+(S.price===p.id?' on':'')+'" onclick="pickPrice(\''+p.id+'\')">';
+      var img=photoTag(p.id);
+      h+='<div class="pcard'+(img?' has-img':'')+(S.price===p.id?' on':'')+'" onclick="pickPrice(\''+p.id+'\')">'+img+'<div class="pcbody">';
       h+='<div class="pcard-head"><span class="ptagbadge">'+p.tag+'</span><span class="ptagname">'+tagDesc+'</span><span class="pcprice">'+p.label+'<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div>';
       h+='<div class="pcscene">'+scene+'</div>';
       h+='<div class="pcsize">'+sz+'</div>';
-      h+='</div>';
+      h+='</div></div>';
     }
     h+='</div>';
+    h+='<div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。</div>';
     if(S.style==='kumi'){h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:10px 12px;margin-top:10px;line-height:1.7">季節のお供えに相応しいお花で組みます。<br>対でご希望の場合は、下のご希望欄にご記入ください。</div>';}
     h+='<label class="lbl" style="margin-top:12px">ご予算を直接入力（任意）</label>';
     h+='<input type="text" placeholder="例：7,000円くらい" value="'+S.custPrice+'" oninput="S.custPrice=this.value;S.price=null;renderSteps()">';
