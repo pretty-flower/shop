@@ -340,7 +340,7 @@ function render(){
     }else{
       h='<div class="card"><div class="sec">色合いを選んでください</div><div class="g2">';
       for(var i=0;i<moods.length;i++){var m=moods[i];h+='<div class="tile'+(S.mood===m.id?' on':'')+'\" onclick="pick(\'mood\',\''+m.id+'\')"><img class="timg" src="'+moodPhotos[m.id]+'.jpg" alt="'+m.name+'" loading="lazy"><div class="tname">'+m.name+'</div><div class="tdesc">'+m.desc+'</div></div>';}
-      h+='</div><div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。</div></div>';
+      h+='</div><div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合いでお作りします。</div></div>';
       h+='<button class="btn" '+(S.mood?'':'disabled')+' onclick="go()">金額を選ぶ →</button>';
     }
     h+='<button class="bbk" onclick="back()">← もどる</button>';
@@ -363,7 +363,7 @@ function render(){
       h+='</div></div>';
     }
     h+='</div>';
-    h+='<div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。</div>';
+    h+='<div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。'+(S.style!=='kumi'?'<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合い・ボリュームでお作りします。':'')+'</div>';
     if(S.style==='kumi'){h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:10px 12px;margin-top:10px;line-height:1.7">季節のお供えに相応しいお花で組みます。<br>対でご希望の場合は、下のご希望欄にご記入ください。</div>';}
     h+='<label class="lbl" style="margin-top:12px">ご予算を直接入力（任意）</label>';
     h+='<input type="text" placeholder="例：7,000円くらい" value="'+S.custPrice+'" oninput="S.custPrice=this.value;S.price=null;renderSteps()">';
