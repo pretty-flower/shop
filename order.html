@@ -270,8 +270,9 @@ var styles=[{id:'bq',icon:'💐',name:'花束',desc:''},{id:'ba',icon:'🧺',nam
 var moods=[{id:'kise',icon:'✨',name:'季節のおまかせ',desc:'旬の花をお任せで'},{id:'fuwa',icon:'🌸',name:'ふわふわ',desc:'淡いピンクなど'},{id:'hira',icon:'🌹',name:'ひらひら',desc:'赤など 華やかな雰囲気'},{id:'yura',icon:'🌿',name:'ゆらゆら',desc:'白・グリーン 爽やか系'},{id:'natu',icon:'🌼',name:'ナチュラル',desc:'イエローなど'}];
 var prices=[{id:'p3300',label:'3,300円',size:'手のひらサイズ',kumiSize:'長さ約35〜45cm・小ぶり',tag:'S',tagDesc:'小さな贈りもの',scene:'ちょっとしたお礼・気軽なプレゼントに。',kumiTagDesc:'小さなお供え',kumiScene:'気兼ねないお供えに。'},{id:'p4400',label:'4,400円',size:'幅約22cm程度',kumiSize:'長さ約45〜50cm・ボリューム感',tag:'M',tagDesc:'季節を贈る',scene:'季節のお花を少し華やかに楽しみたい方へ。',kumiTagDesc:'季節のお供え',kumiScene:'季節を感じられるお供えに。'},{id:'p5500',label:'5,500円',size:'幅約25〜30cm',kumiSize:'長さ約50〜60cm・ボリュームあり',tag:'L',tagDesc:'人気No.1✨',scene:'お誕生日・記念日・母の日など、迷ったらこちらがおすすめです。',kumiTagDesc:'法事や枕花など',kumiScene:'迷った時はこちらがおすすめです。'},{id:'p6600',label:'6,600円',size:'幅約30cm・ボリューム',kumiSize:'長さ約60cm・華やかな印象',tag:'L+',tagDesc:'ワンランク上',scene:'いつもより少し贈りものにボリュームを持たせたい時に。'},{id:'p8800',label:'8,800円',size:'幅約35cm・存在感',kumiSize:'長さ約60cm以上・存在感たっぷり',tag:'LL',tagDesc:'華やぎを添えて',scene:'ボリューム感があり、特別な日の贈りものに。',kumiScene:'ボリューム感があり、特別な日のお供えに。'},{id:'p11000',label:'11,000円',size:'幅約40cm・豪華',kumiSize:'長さ60cm以上・法事・葬儀向け',tag:'XL',tagDesc:'とっておきの贈りもの',scene:'開店祝い・周年祝いなど、特別なお祝いに。ご希望に合わせてお作りします。',kumiTagDesc:'大切なお供え',kumiScene:'初盆や一回忌、お世話になった方など特別なお供えに。'}];
 // 色合いボタンの写真
-var moodPhotos={kise:'s-08',fuwa:'s-07',hira:'hira-s',yura:'yura-l',natu:'natu-l'};
+var moodPhotos={kise:'ba-kise',fuwa:'ba-fuwa',hira:'hira-s',yura:'yura-l',natu:'natu-l'};
 var moodPhotosBq={kise:'bq-kise',fuwa:'bq-fuwa',hira:'bq-hira',yura:'bq-yura',natu:'bq-natu'};
+var moodPhotosSt={kise:'st-kise',fuwa:'st-fuwa',hira:'st-hira',yura:'st-yura',natu:'st-natu'};
 // ご予算の参考写真（色合い・お供えの色で切り替え）
 var pricePhotos={
   kise:{p3300:'s-08',p4400:'s-06',p5500:'m-05',p6600:'m-06',p8800:'l-04',p11000:'zoto-06'},
@@ -284,7 +285,7 @@ var pricePhotos={
 };
 function pricePhoto(id){
   if(id==='p2200') return 'ss-01';
-  if(S.style==='kumi') return null;
+  if(S.style==='kumi') return {p3300:'kumi-3300',p5500:'kumi-5500'}[id]||null;
   var key=S.purpose2==='kuyo'?'kuyo_'+(S.kuyo||'any'):(S.mood||'kise');
   var m=pricePhotos[key];
   return m&&m[id]?m[id]:null;
@@ -340,8 +341,8 @@ function render(){
       h+='<button class="btn" '+(S.kuyo?'':'disabled')+' onclick="go()">金額を選ぶ →</button>';
     }else{
       h='<div class="card"><div class="sec">色合いを選んでください</div><div class="g2">';
-      for(var i=0;i<moods.length;i++){var m=moods[i];h+='<div class="tile'+(S.mood===m.id?' on':'')+'\" onclick="pick(\'mood\',\''+m.id+'\')"><img class="timg" src="'+(S.style==='bq'?moodPhotosBq:moodPhotos)[m.id]+'.jpg" alt="'+m.name+'" loading="lazy"><div class="tname">'+m.name+'</div><div class="tdesc">'+m.desc+'</div></div>';}
-      h+='</div><div class="pcnote">'+(S.style==='bq'?'写真は制作例です。花材・ラッピングは季節や仕入れにより異なります。':'写真は制作例です。花材・器は季節や仕入れにより異なります。<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合いでお作りします。')+'</div></div>';
+      for(var i=0;i<moods.length;i++){var m=moods[i];h+='<div class="tile'+(S.mood===m.id?' on':'')+'\" onclick="pick(\'mood\',\''+m.id+'\')"><img class="timg" src="'+(S.style==='bq'?moodPhotosBq:S.style==='st'?moodPhotosSt:moodPhotos)[m.id]+'.jpg" alt="'+m.name+'" loading="lazy"><div class="tname">'+m.name+'</div><div class="tdesc">'+m.desc+'</div></div>';}
+      h+='</div><div class="pcnote">'+((S.style==='bq'||S.style==='st')?'写真は制作例です。花材・ラッピングは季節や仕入れにより異なります。':'写真は制作例です。花材・器は季節や仕入れにより異なります。<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合いでお作りします。')+'</div></div>';
       h+='<button class="btn" '+(S.mood?'':'disabled')+' onclick="go()">金額を選ぶ →</button>';
     }
     h+='<button class="bbk" onclick="back()">← もどる</button>';
