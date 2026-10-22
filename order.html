@@ -182,7 +182,8 @@
     <h1>ご来店<br><em>予約</em></h1>
     <p class="page-header-jp">来店予約フォーム</p>
     <p class="page-header-note">
-      ご来店の2日前までにご予約ください。<br>
+      ご来店の3営業日前までにご予約ください（営業日は水〜土曜日）。<br>
+      当日のご来店も大丈夫です（20〜30分ほどお時間をいただき、当日入荷のお花でお作りします）。<br>
       確認のご連絡を1〜2営業日以内に差し上げます。
     </p>
   </div>
@@ -215,9 +216,11 @@ var openExceptions=['2026-08-10','2026-08-11','2026-11-16','2026-11-17']; // 通
 var partialClosedDates={'2026-08-13':{closedFrom:'13:00',note:'8/13は午後休業のため、午前のみのご案内となります。'},'2026-11-16':{openFrom:'12:00',closedFrom:'16:00',note:'11/16は12:00〜16:00の営業です。'},'2026-11-17':{openFrom:'12:00',closedFrom:'16:00',note:'11/17は12:00〜16:00の営業です。'},'2026-11-19':{openFrom:'10:00',closedFrom:'13:00',note:'11/19は10:00〜13:00の営業です。'}}; // 一部時間帯のみ休業
 function pad2(n){return n<10?'0'+n:''+n;}
 function dateKey(dt){return dt.getFullYear()+'-'+pad2(dt.getMonth()+1)+'-'+pad2(dt.getDate());}
+function isOpenDay(dt){var k=dateKey(dt),w=dt.getDay();if(closedDates.indexOf(k)!==-1)return false;return openExceptions.indexOf(k)!==-1||!(w===0||w===1||w===2);}
 function renderCal(){
   var today=new Date();today.setHours(0,0,0,0);
-  var minDate=new Date(today);minDate.setDate(today.getDate()+2);
+  var minDate=new Date(today);var bd=0; // 3営業日前まで：今日から数えて3つ目の営業日から選べる
+  while(bd<3){minDate.setDate(minDate.getDate()+1);if(isOpenDay(minDate))bd++;}
   var first=new Date(calYear,calMonth,1);
   var last=new Date(calYear,calMonth+1,0);
   var monthNames=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
