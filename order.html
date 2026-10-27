@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- updated: 2026-10-08 -->
+<!-- updated: 2026-10-27 -->
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -288,9 +288,15 @@ var pricePhotos={
   kuyo_any:{p3300:'base-01',p4400:'oki-02',p5500:'oki-01',p6600:'special-03',p8800:'tokudai-02',p11000:'tokudai-01'},
   kuyo_white:{p3300:'base-02',p4400:'oki-03',p5500:'base-03',p6600:'lplus-01',p8800:'base-01',p11000:'tokudai-01'}
 };
+// 花束・置くだけブーケのご予算の写真（サイズごと）。置くだけブーケは器の都合で5,500円まで
+var stylePricePhotos={
+  bq:{p3300:'bq-s',p4400:'bq-m',p5500:'bq-l',p6600:'bq-lplus',p8800:'bq-ll',p11000:'bq-xl'},
+  st:{p3300:'st-s',p4400:'st-m',p5500:'st-l'}
+};
 function pricePhoto(id){
   if(id==='p2200') return 'ss-01';
   if(S.style==='kumi') return {p3300:'kumi-3300',p5500:'kumi-5500'}[id]||null;
+  if(S.purpose2!=='kuyo'&&stylePricePhotos[S.style]&&stylePricePhotos[S.style][id]) return stylePricePhotos[S.style][id];
   var key=S.purpose2==='kuyo'?'kuyo_'+(S.kuyo||'any'):(S.mood||'kise');
   var m=pricePhotos[key];
   return m&&m[id]?m[id]:null;
@@ -359,6 +365,7 @@ function render(){
     if(S.style==='kumi'){h+='<div class="pcard has-img'+(S.price==='p2200'?' on':'')+'" onclick="pickPrice(\'p2200\')">'+photoTag('p2200')+'<div class="pcbody"><div class="pcard-head"><span class="ptagbadge">SS</span><span class="pcprice">2,200円<span style="font-size:11px;color:#a08878;font-weight:400"> 税込</span></span></div><div class="pcscene">ご自宅のお仏壇などに。</div><div class="pcsize">長さ約30〜35cm・小ぶり</div></div></div>';}
     for(var i=0;i<prices.length;i++){
       var p=prices[i];
+      if(S.style==='st'&&stOver(p.id)) continue;
       var sz=S.style==='kumi'?(p.kumiSize||p.size):p.size;
       var tagDesc=S.purpose2==='kuyo'&&p.kumiTagDesc?p.kumiTagDesc:p.tagDesc;
       var scene=S.purpose2==='kuyo'&&p.kumiScene?p.kumiScene:p.scene;
@@ -370,7 +377,8 @@ function render(){
       h+='</div></div>';
     }
     h+='</div>';
-    h+='<div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。'+(S.style!=='kumi'?'<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合い・ボリュームでお作りします。':'')+'</div>';
+    if((S.style==='bq'||S.style==='st')&&S.purpose2!=='kuyo') h+='<div class="pcnote">写真は制作例です。花材・ラッピングは季節や仕入れにより異なります。'+(S.style==='st'?'<br>置くだけブーケは器の大きさの都合で、5,500円くらいまでのご用意です。':'')+'</div>';
+    else h+='<div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。'+(S.style!=='kumi'?'<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合い・ボリュームでお作りします。':'')+'</div>';
     if(S.style==='kumi'){h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:10px 12px;margin-top:10px;line-height:1.7">季節のお供えに相応しいお花で組みます。<br>対でご希望の場合は、下のご希望欄にご記入ください。</div>';}
     h+='<label class="lbl" style="margin-top:12px">ご予算を直接入力（任意）</label>';
     h+='<input type="text" placeholder="例：7,000円くらい" value="'+S.custPrice+'" oninput="S.custPrice=this.value;S.price=null;renderSteps()">';
@@ -433,7 +441,8 @@ function render(){
   c.innerHTML=h;
 }
 
-function pick(k,v){S[k]=v;render();}
+function pick(k,v){S[k]=v;if(k==='style'&&v==='st'&&stOver(S.price))S.price=null;render();}
+function stOver(id){return id==='p6600'||id==='p8800'||id==='p11000';} // 置くだけブーケで選べない値段
 function pickTime(t){S.time=t;render();}
 function pickPrice(v){S.price=v;S.custPrice='';render();}
 function selP1(v){S.purpose1=v;S.purpose2=null;S.step=2;render();}
