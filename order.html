@@ -274,7 +274,7 @@ var styles=[{id:'bq',icon:'💐',name:'花束',desc:''},{id:'ba',icon:'🧺',nam
 var moods=[{id:'kise',icon:'✨',name:'季節のおまかせ',desc:'旬の花をお任せで'},{id:'fuwa',icon:'🌸',name:'ふわふわ',desc:'淡いピンクなど'},{id:'hira',icon:'🌹',name:'ひらひら',desc:'赤など 華やかな雰囲気'},{id:'yura',icon:'🌿',name:'ゆらゆら',desc:'白・グリーン 爽やか系'},{id:'natu',icon:'🌼',name:'ナチュラル',desc:'イエローなど'}];
 var prices=[{id:'p3300',label:'3,300円',size:'手のひらサイズ',kumiSize:'長さ約35〜45cm・小ぶり',tag:'S',tagDesc:'小さな贈りもの',scene:'ちょっとしたお礼・気軽なプレゼントに。',kumiTagDesc:'小さなお供え',kumiScene:'気兼ねないお供えに。'},{id:'p4400',label:'4,400円',size:'幅約22cm程度',kumiSize:'長さ約45〜50cm・ボリューム感',tag:'M',tagDesc:'季節を贈る',scene:'季節のお花を少し華やかに楽しみたい方へ。',kumiTagDesc:'季節のお供え',kumiScene:'季節を感じられるお供えに。'},{id:'p5500',label:'5,500円',size:'幅約25〜30cm',kumiSize:'長さ約50〜60cm・ボリュームあり',tag:'L',tagDesc:'人気No.1✨',scene:'お誕生日・記念日・母の日など、迷ったらこちらがおすすめです。',kumiTagDesc:'法事や枕花など',kumiScene:'迷った時はこちらがおすすめです。'},{id:'p6600',label:'6,600円',size:'幅約30cm・ボリューム',kumiSize:'長さ約60cm・華やかな印象',tag:'L+',tagDesc:'ワンランク上',scene:'いつもより少し贈りものにボリュームを持たせたい時に。'},{id:'p8800',label:'8,800円',size:'幅約35cm・存在感',kumiSize:'長さ約60cm以上・存在感たっぷり',tag:'LL',tagDesc:'華やぎを添えて',scene:'ボリューム感があり、特別な日の贈りものに。',kumiScene:'ボリューム感があり、特別な日のお供えに。'},{id:'p11000',label:'11,000円',size:'幅約40cm・豪華',kumiSize:'長さ60cm以上・法事・葬儀向け',tag:'XL',tagDesc:'とっておきの贈りもの',scene:'開店祝い・周年祝いなど、特別なお祝いに。ご希望に合わせてお作りします。',kumiTagDesc:'大切なお供え',kumiScene:'初盆や一回忌、お世話になった方など特別なお供えに。'}];
 // 色合いボタンの写真
-var kuyoStylePhotos={bq:'bq-yura',ba:'base-02'}; // お供えを選んだときのスタイルの写真
+var kuyoStylePhotos={bq:'bq-yura',ba:'base-02',st:'base-03'}; // お供えを選んだときのスタイルの写真
 var moodPhotos={kise:'ba-kise',fuwa:'ba-fuwa',hira:'hira-s',yura:'yura-l',natu:'natu-l'};
 var moodPhotosBq={kise:'bq-kise',fuwa:'bq-fuwa',hira:'bq-hira',yura:'bq-yura',natu:'bq-natu'};
 var moodPhotosSt={kise:'st-kise',fuwa:'st-fuwa',hira:'st-hira',yura:'st-yura',natu:'st-natu'};
@@ -296,6 +296,7 @@ var stylePricePhotos={
 function pricePhoto(id){
   if(id==='p2200') return 'ss-01';
   if(S.style==='kumi') return {p3300:'kumi-3300',p5500:'kumi-5500'}[id]||null;
+  if(S.purpose2==='kuyo'&&S.style==='st') return (S.kuyo==='white'?{p3300:'kuyo-st-w-s',p4400:'kuyo-st-w-m',p5500:'base-03'}:{p3300:'kuyo-st-s',p4400:'kuyo-st-m',p5500:'kuyo-st-l'})[id]||null; // お供えの置くだけブーケ（おまかせ／白系）
   if(S.purpose2!=='kuyo'&&stylePricePhotos[S.style]&&stylePricePhotos[S.style][id]) return stylePricePhotos[S.style][id];
   var key=S.purpose2==='kuyo'?'kuyo_'+(S.kuyo||'any'):(S.mood||'kise');
   var m=pricePhotos[key];
@@ -377,7 +378,7 @@ function render(){
       h+='</div></div>';
     }
     h+='</div>';
-    if((S.style==='bq'||S.style==='st')&&S.purpose2!=='kuyo') h+='<div class="pcnote">写真は制作例です。花材・ラッピングは季節や仕入れにより異なります。'+(S.style==='st'?'<br>置くだけブーケは器の大きさの都合で、5,500円くらいまでのご用意です。':'')+'</div>';
+    if(S.style==='st'||(S.style==='bq'&&S.purpose2!=='kuyo')) h+='<div class="pcnote">写真は制作例です。花材・ラッピングは季節や仕入れにより異なります。'+(S.style==='st'?'<br>置くだけブーケは器の大きさの都合で、5,500円くらいまでのご用意です。':'')+'</div>';
     else h+='<div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。'+(S.style!=='kumi'?'<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合い・ボリュームでお作りします。':'')+'</div>';
     if(S.style==='kumi'){h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:10px 12px;margin-top:10px;line-height:1.7">季節のお供えに相応しいお花で組みます。<br>対でご希望の場合は、下のご希望欄にご記入ください。</div>';}
     h+='<label class="lbl" style="margin-top:12px">ご予算を直接入力（任意）</label>';
