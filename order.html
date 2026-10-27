@@ -297,6 +297,7 @@ function pricePhoto(id){
   if(id==='p2200') return 'ss-01';
   if(S.style==='kumi') return {p3300:'kumi-3300',p5500:'kumi-5500'}[id]||null;
   if(S.purpose2==='kuyo'&&S.style==='st') return (S.kuyo==='white'?{p3300:'kuyo-st-w-s',p4400:'kuyo-st-w-m',p5500:'base-03'}:{p3300:'kuyo-st-s',p4400:'kuyo-st-m',p5500:'kuyo-st-l'})[id]||null; // お供えの置くだけブーケ（おまかせ／白系）
+  if(S.purpose2==='kuyo'&&S.style==='bq') return (S.kuyo==='white'?{p3300:'kuyo-bq-s',p4400:'kuyo-bq-m',p5500:'kuyo-bq-l',p6600:'kuyo-bq-lplus',p8800:'kuyo-bq-w-ll',p11000:'kuyo-bq-xl'}:{p3300:'kuyo-bq-s',p4400:'kuyo-bq-om-m',p5500:'kuyo-bq-l',p6600:'kuyo-bq-lplus',p8800:'kuyo-bq-ll',p11000:'kuyo-bq-xl'})[id]||null; // お供えの花束（おまかせ／白系）
   if(S.purpose2!=='kuyo'&&stylePricePhotos[S.style]&&stylePricePhotos[S.style][id]) return stylePricePhotos[S.style][id];
   var key=S.purpose2==='kuyo'?'kuyo_'+(S.kuyo||'any'):(S.mood||'kise');
   var m=pricePhotos[key];
@@ -378,7 +379,7 @@ function render(){
       h+='</div></div>';
     }
     h+='</div>';
-    if(S.style==='st'||(S.style==='bq'&&S.purpose2!=='kuyo')) h+='<div class="pcnote">写真は制作例です。花材・ラッピングは季節や仕入れにより異なります。'+(S.style==='st'?'<br>置くだけブーケは器の大きさの都合で、5,500円くらいまでのご用意です。':'')+'</div>';
+    if(S.style==='st'||S.style==='bq') h+='<div class="pcnote">写真は制作例です。花材・ラッピングは季節や仕入れにより異なります。'+(S.style==='st'?'<br>置くだけブーケは器の大きさの都合で、5,500円くらいまでのご用意です。':'')+'</div>';
     else h+='<div class="pcnote">写真は制作例です。花材・器は季節や仕入れにより異なります。'+(S.style!=='kumi'?'<br>写真はアレンジメントの例です。ほかのスタイルも、同じくらいの色合い・ボリュームでお作りします。':'')+'</div>';
     if(S.style==='kumi'){h+='<div style="font-size:12px;color:#9a7060;background:#faf4f0;border:.5px solid #e8d8d0;border-radius:8px;padding:10px 12px;margin-top:10px;line-height:1.7">季節のお供えに相応しいお花で組みます。<br>対でご希望の場合は、下のご希望欄にご記入ください。</div>';}
     h+='<label class="lbl" style="margin-top:12px">ご予算を直接入力（任意）</label>';
