@@ -295,7 +295,7 @@ var stylePricePhotos={
 };
 function pricePhoto(id){
   if(id==='p2200') return 'ss-01';
-  if(S.style==='kumi') return {p3300:'kumi-3300',p5500:'kumi-5500'}[id]||null;
+  if(S.style==='kumi') return {p3300:'kumi-3300',p4400:'kumi-4400',p5500:'kumi-5500'}[id]||null;
   if(S.purpose2==='kuyo'&&S.style==='st') return (S.kuyo==='white'?{p3300:'kuyo-st-w-s',p4400:'kuyo-st-w-m',p5500:'base-03'}:{p3300:'kuyo-st-s',p4400:'kuyo-st-m',p5500:'kuyo-st-l'})[id]||null; // お供えの置くだけブーケ（おまかせ／白系）
   if(S.purpose2==='kuyo'&&S.style==='bq') return (S.kuyo==='white'?{p3300:'kuyo-bq-s',p4400:'kuyo-bq-m',p5500:'kuyo-bq-l',p6600:'kuyo-bq-lplus',p8800:'kuyo-bq-w-ll',p11000:'kuyo-bq-xl'}:{p3300:'kuyo-bq-s',p4400:'kuyo-bq-om-m',p5500:'kuyo-bq-l',p6600:'kuyo-bq-lplus',p8800:'kuyo-bq-ll',p11000:'kuyo-bq-xl'})[id]||null; // お供えの花束（おまかせ／白系）
   if(S.purpose2!=='kuyo'&&stylePricePhotos[S.style]&&stylePricePhotos[S.style][id]) return stylePricePhotos[S.style][id];
