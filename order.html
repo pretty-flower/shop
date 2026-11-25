@@ -163,7 +163,12 @@
 
     @media (max-width: 600px) {
       header { padding: 16px 20px; }
-      .page-header { padding: 52px 24px 48px; }
+      .page-header { padding: 22px 18px 18px; }
+      .page-header-eyebrow { display: none; }
+      .page-header h1 { font-size: 28px; }
+      .page-header h1 br { display: none; }
+      .page-header-jp { margin-top: 4px; font-size: 12px; }
+      .page-header-note { margin-top: 10px; font-size: 12px; line-height: 1.8; }
       footer { padding: 28px 20px; flex-direction: column; text-align: center; }
     }
   </style>
@@ -267,9 +272,9 @@ function pickCalDate(y,m,d){
   render();
 }
 
-var S={step:1,purpose1:null,purpose2:null,kuyo:null,style:null,mood:null,price:null,custPrice:'',date:null,calDate:null,time:null,name:'',tel:'',email:'',bag:false,card:false,note:''};
+var S={step:1,use:null,purpose1:null,purpose2:null,kuyo:null,style:null,mood:null,price:null,custPrice:'',date:null,calDate:null,time:null,name:'',tel:'',email:'',bag:false,card:false,note:''};
 var p1list=[{id:'gift',name:'ギフト'},{id:'self',name:'自宅用'}];
-var p2list=[{id:'cele',name:'お祝い'},{id:'kuyo',name:'お供え'},{id:'other',name:'その他'}];
+var p2list=[{id:'cele',name:'お祝い・ギフト'},{id:'kuyo',name:'お供え'},{id:'newyear',name:'お正月'},{id:'other',name:'その他'}];
 var kuyoC=[{id:'any',name:'おまかせ（色OK）'},{id:'white',name:'白系に淡い差し色'}];
 var styles=[{id:'bq',icon:'💐',name:'花束',desc:''},{id:'ba',icon:'🧺',name:'カゴアレンジ',desc:'アレンジメント'},{id:'st',icon:'🌷',name:'置くだけブーケ',desc:'スタンディング'},{id:'kumi',icon:'🌾',name:'組み束',desc:''}];
 var moods=[{id:'kise',icon:'✨',name:'季節のおまかせ',desc:'旬の花をお任せで'},{id:'fuwa',icon:'🌸',name:'ふわふわ',desc:'淡いピンクなど'},{id:'hira',icon:'🌹',name:'ひらひら',desc:'赤など 華やかな雰囲気'},{id:'yura',icon:'🌿',name:'ゆらゆら',desc:'白・グリーン 爽やか系'},{id:'natu',icon:'🌼',name:'ナチュラル',desc:'イエローなど'}];
@@ -311,13 +316,37 @@ function photoTag(id){
 var now=new Date();
 var days=['日','月','火','水','木','金','土'];
 
-function purpose(){return S.purpose1||S.purpose2;}
-function totalSteps(){return 6;}
+function purpose(){return S.purpose2;}
+// 最初の写真（押すと用途とスタイルがいっしょに決まる）。お正月は12月だけ・写真ができたら photo を入れる
+var starts=[
+  {p:'newyear',s:'ba',name:'お正月のアレンジ',desc:'12月だけのご予約',img:'newyear-ba',month:12},
+  {p:'cele',s:'bq',name:'花束',desc:'お祝い・ギフト',img:'style-bq'},
+  {p:'cele',s:'ba',name:'カゴアレンジ',desc:'お祝い・ギフト',img:'style-ba'},
+  {p:'cele',s:'st',name:'置くだけブーケ',desc:'お祝い・ギフト',img:'style-st'},
+  {p:'kuyo',s:'ba',name:'お供えのアレンジ',desc:'器ごと置けます',img:'base-02'},
+  {p:'kuyo',s:'bq',name:'お供えの花束',desc:'',img:'bq-yura'},
+  {p:'kuyo',s:'st',name:'お供えの置くだけブーケ',desc:'',img:'base-03'},
+  {p:'kuyo',s:'kumi',name:'組み束',desc:'仏花・お墓参りに',img:'style-kumi'},
+];
+function visibleStarts(){
+  var m=new Date().getMonth()+1, t=(location.search.match(/[?&]t=([a-z]+)/)||[])[1];
+  var f=function(tt){return starts.filter(function(x){
+    if(x.month&&x.month!==m) return false;
+    if(!x.img) return false;
+    if(tt==='kuyo') return x.p==='kuyo';
+    if(tt==='newyear') return x.p==='newyear';
+    return true;
+  });};
+  var r=f(t); return r.length?r:f(null);
+}
+function pickStart(i){var x=visibleStarts()[i];S.purpose2=x.p;S.style=x.s;S.kuyo=null;S.mood=null;if(S.style==='st'&&stOver(S.price))S.price=null;S.step=4;render();window.scrollTo(0,0);}
+var stepOrder=[1,4,5,6,7];
+function totalSteps(){return 4;}
 
 function renderSteps(){
-  var n=totalSteps(),h='';
+  var n=totalSteps(),h='',cur=stepOrder.indexOf(S.step)+1;
   for(var i=1;i<=n;i++){
-    var cls=i===S.step?'dot active':i<S.step?'dot done':'dot';
+    var cls=i===cur?'dot active':i<cur?'dot done':'dot';
     h+='<div class="'+cls+'"></div>';
   }
   document.getElementById('steps').innerHTML=h;
@@ -329,9 +358,11 @@ function render(){
   var h='';
 
   if(S.step===1){
-    h='<div class="card"><div class="sec">用途を選んでください</div><div class="chips">';
-    for(var i=0;i<p1list.length;i++){var p=p1list[i];h+='<div class="chip'+(S.purpose1===p.id?' on':'')+'\" onclick="selP1(\''+p.id+'\')">'+p.name+'</div>';}
-    h+='</div></div>';
+    var vs=visibleStarts();
+    h='<div class="card"><div class="sec">どんなお花にしますか？</div><div class="g2">';
+    for(var i=0;i<vs.length;i++){var x=vs[i];h+='<div class="tile'+(S.purpose2===x.p&&S.style===x.s?' on':'')+'\" onclick="pickStart('+i+')"><img class="timg" src="'+x.img+'.jpg" alt="'+x.name+'"><div class="tname">'+x.name+'</div>'+(x.desc?'<div class="tdesc">'+x.desc+'</div>':'')+'</div>';}
+    h+='</div><div class="pcnote">写真を押すと、色合い・ご予算の写真に進みます。写真は制作例です。花材・器は季節や仕入れにより異なります。</div></div>';
+    if(/[?&]t=/.test(location.search)) h+='<a class="bbk" style="display:block;text-align:center;text-decoration:none" href="order.html">ほかのお花も見る</a>';
 
   }else if(S.step===2){
     h='<div class="card"><div class="sec">用途を選んでください</div><div class="chips">';
@@ -403,6 +434,9 @@ function render(){
     h+='<input type="tel" placeholder="例：090-0000-0000" value="'+S.tel+'" oninput="S.tel=this.value">';
     h+='<label class="lbl">メールアドレス<span class="req">※必須</span></label>';
     h+='<input type="email" placeholder="例：hanako@example.com" value="'+S.email+'" oninput="S.email=this.value">';
+    h+='<label class="lbl">どなたへのお花ですか？</label><div class="chips">';
+    h+='<div class="chip'+(S.use==='gift'?' on':'')+'" onclick="S.use=\'gift\';render()">ギフト（贈りもの）</div>';
+    h+='<div class="chip'+(S.use==='self'?' on':'')+'" onclick="S.use=\'self\';render()">ご自宅用</div></div>';
     h+='<div style="margin-top:16px">';
     h+='<div class="oi'+(S.bag?' on':'')+'\" onclick="tog(\'bag\')"><div class="chk'+(S.bag?' on':'')+'\">'+(S.bag?'✓':'')+'</div><div><div style="font-size:13px">紙袋（有料）</div><div style="font-size:11px;color:#a08878">大きさによって現地精算 100〜300円</div></div></div>';
     h+='<div class="oi'+(S.card?' on':'')+'\" onclick="tog(\'card\')"><div class="chk'+(S.card?' on':'')+'\">'+(S.card?'✓':'')+'</div><div><div style="font-size:13px">メッセージカード（無料）</div><div style="font-size:11px;color:#a08878">必要な場合は備考にご記入ください</div></div></div>';
@@ -418,6 +452,7 @@ function render(){
     var purName='';
     for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
     if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
+  if(S.use) purName+='（'+(S.use==='gift'?'ギフト':'ご自宅用')+'）';
     var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
     var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
     var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
@@ -444,15 +479,15 @@ function render(){
   c.innerHTML=h;
 }
 
-function pick(k,v){S[k]=v;if(k==='style'&&v==='st'&&stOver(S.price))S.price=null;render();}
+function pick(k,v){S[k]=v;if(k==='style'&&v==='st'&&stOver(S.price))S.price=null;if((k==='mood'||k==='kuyo')&&S.step===4){go();return;}render();}
 function stOver(id){return id==='p6600'||id==='p8800'||id==='p11000';} // 置くだけブーケで選べない値段
 function pickTime(t){S.time=t;render();}
-function pickPrice(v){S.price=v;S.custPrice='';render();}
+function pickPrice(v){S.price=v;S.custPrice='';go();}
 function selP1(v){S.purpose1=v;S.purpose2=null;S.step=2;render();}
 function selP2(v){S.purpose2=v;S.purpose1=null;S.kuyo=null;S.style=null;S.mood=null;render();}
 function tog(k){S[k]=!S[k];render();}
-function go(){S.step++;render();}
-function back(){S.step--;render();}
+function go(){var i=stepOrder.indexOf(S.step);S.step=stepOrder[i+1]||S.step+1;render();window.scrollTo(0,0);}
+function back(){var i=stepOrder.indexOf(S.step);S.step=i>0?stepOrder[i-1]:1;render();window.scrollTo(0,0);}
 
 function tryNext(){
   if(!S.name.trim()){alert('お名前をご入力ください');return;}
@@ -472,6 +507,7 @@ function sendForm(){
   var purName='';
   for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
   if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
+  if(S.use) purName+='（'+(S.use==='gift'?'ギフト':'ご自宅用')+'）';
   var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
   var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
   var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
@@ -522,6 +558,7 @@ function submitToGoogle(){
   var purName='';
   for(var i=0;i<p1list.length;i++){if(p1list[i].id===pur){purName=p1list[i].name;break;}}
   if(!purName){for(var i=0;i<p2list.length;i++){if(p2list[i].id===pur){purName=p2list[i].name;break;}}}
+  if(S.use) purName+='（'+(S.use==='gift'?'ギフト':'ご自宅用')+'）';
   var kc=null;for(var i=0;i<kuyoC.length;i++){if(kuyoC[i].id===S.kuyo){kc=kuyoC[i];break;}}
   var sty=null;for(var i=0;i<styles.length;i++){if(styles[i].id===S.style){sty=styles[i];break;}}
   var mood=null;for(var i=0;i<moods.length;i++){if(moods[i].id===S.mood){mood=moods[i];break;}}
