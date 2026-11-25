@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- updated: 2026-10-08 -->
+<!-- updated: 2026-11-25 -->
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -292,6 +292,35 @@
       .footer-top { flex-direction: column; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
+    .notice-box { background: var(--cream); border: 1px solid var(--sand); border-top: 2px solid var(--gold); padding: 28px 32px; margin: 0 0 32px; color: var(--bark); }
+    .notice-box h3 { font-size: 16px; font-weight: 500; letter-spacing: 0.06em; margin: 0 0 10px; color: var(--bark); }
+    .notice-box h3:not(:first-child) { margin-top: 22px; }
+    .notice-box p, .notice-box li { font-size: 13.5px; line-height: 2; letter-spacing: 0.03em; }
+    .notice-box ul { margin: 0 0 0 1.2em; }
+    .notice-box a { color: var(--bark); }
+    .notice-more { margin-top: 18px; }
+    @media (max-width: 900px) { .notice-box { padding: 22px 18px; } }
+    .cal-pop { position: fixed; left: 20px; bottom: 20px; width: 250px; background: var(--cream); border: 1px solid var(--sand); border-top: 2px solid var(--gold); box-shadow: 0 6px 24px rgba(45,31,20,0.18); z-index: 998; padding: 12px; font-family: 'Shippori Mincho', serif; }
+    .cal-pop[hidden] { display: none !important; }
+    .cal-pop img { width: 100%; display: block; margin-bottom: 10px; }
+    .cal-pop-title { font-size: 12px; letter-spacing: 0.1em; color: var(--bark); margin: 0 22px 8px 0; }
+    .cal-pop-btn { display: block; text-align: center; background: var(--bark); color: var(--cream); text-decoration: none; padding: 12px 8px; font-size: 15px; letter-spacing: 0.15em; }
+    .cal-pop-sub { display: flex; gap: 6px; margin-top: 6px; }
+    .cal-pop-sub a { flex: 1; text-align: center; border: 1px solid var(--clay); color: var(--bark); text-decoration: none; padding: 6px 4px; font-size: 11px; letter-spacing: 0.02em; line-height: 1.4; background: #fff; }
+    .cal-pop-x { position: absolute; top: 4px; right: 6px; background: none; border: 0; font-size: 22px; line-height: 1; color: var(--taupe); cursor: pointer; padding: 4px; }
+    .fix-reserve { display: none; }
+    @media (max-width: 600px) {
+      .cal-pop { left: 12px; right: 12px; bottom: 12px; width: auto; max-height: calc(100vh - 24px); overflow: auto; padding: 10px; }
+      .cal-pop img { width: auto; max-width: 100%; max-height: 26vh; margin: 0 auto 6px; }
+      .cal-pop-btn { padding: 11px 8px; font-size: 15px; }
+      .fix-reserve { display: flex; align-items: center; gap: 8px; position: fixed; left: 12px; bottom: 16px; z-index: 997; }
+      .fix-reserve a { text-decoration: none; border-radius: 26px; box-shadow: 0 4px 14px rgba(45,31,20,0.2); }
+      .fix-main { background: var(--bark); color: var(--cream); padding: 12px 22px; font-size: 14px; letter-spacing: 0.15em; }
+      .fix-sub { background: var(--cream); color: var(--bark); border: 1px solid var(--clay); padding: 5px 14px; font-size: 11px; line-height: 1.4; text-align: center; }
+      body.pop-open .fix-reserve, body.pop-open #back-to-top { display: none; }
+    }
+    .notice-btns { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 20px; }
+    .notice-btns .btn-primary { padding: 14px 26px; font-size: 14px; color: var(--cream); }
   </style>
 </head>
 <body>
@@ -308,6 +337,7 @@
       <a href="gallery.html">📷 参考画像</a>
       <a href="faq.html">FAQ</a>
       <a href="#info">アクセス</a>
+      <a href="contact.html">お問い合わせ</a>
       <a href="order.html" class="nav-reserve">来店予約</a>
     </nav>
   </header>
@@ -388,7 +418,33 @@
       <h2 class="section-heading">お知らせ</h2>
       <p class="section-heading-jp">最新情報・季節のご案内</p>
     </div>
+    <div class="notice-box reveal">
+      <h3>年末年始の営業日は？</h3>
+      <ul>
+        <li>店頭のお休み：12月31日（木）〜1月3日（日）</li>
+        <li>1月4日（月）は営業します</li>
+        <li>1月5日（火）〜7日（木）はお休み、1月8日（金）から通常営業です</li>
+      </ul>
+      <h3>12月の店頭のお休みは？</h3>
+      <p>12月1日（火）・11日（金）・12日（土）と、毎週の日・月・火曜日がお休みです。<br>12月7日（月）・8日（火）・19日（土）・28日（月）・29日（火）は営業します。</p>
+      <h3>ネットのお店（楽天など）の発送は？</h3>
+      <p>12月31日〜1月5日は発送をお休みします。1月6日から順に発送いたします。</p>
+      <h3>予約はいつまでに必要ですか？</h3>
+      <p>ご来店の3営業日前までにご予約ください。当日のご来店も大丈夫です。</p>
+      <div class="notice-btns">
+        <a href="order.html" class="btn-primary">お正月のお花を予約する →</a>
+        <a href="contact.html" class="btn-secondary">ご質問だけでもお気軽に →</a>
+      </div>
+    </div>
     <div class="news-grid reveal">
+      <a href="https://www.instagram.com/prettyflower0204/" class="news-card">
+        <img src="calendar-2026-12.jpg" alt="12月営業カレンダー">
+        <div class="news-card-body">
+          <div class="news-card-label">CALENDAR</div>
+          <div class="news-card-title">12月の営業カレンダー</div>
+          <div class="news-card-sub">→ Instagramで最新情報を確認</div>
+        </div>
+      </a>
       <a href="https://www.instagram.com/prettyflower0204/" class="news-card">
         <img src="calendar.png" alt="11月営業カレンダー">
         <div class="news-card-body">
@@ -697,6 +753,7 @@
         <a href="faq.html">よくあるご質問</a>
         <a href="#info">店舗情報</a>
         <a href="order.html">来店予約</a>
+        <a href="contact.html">お問い合わせ</a>
         <a href="https://www.instagram.com/prettyflower0204/">Instagram</a>
         <a href="https://lin.ee/n4jGnVo">LINE</a>
         <a href="https://pretty0204.thebase.in/">BASE</a>
@@ -746,6 +803,35 @@
       var btn = document.getElementById("back-to-top");
       window.addEventListener("scroll", function(){
         btn.classList.toggle("visible", window.scrollY > 300);
+      });
+    })();
+  </script>
+  <div class="fix-reserve"><a href="order.html" class="fix-main">ご予約</a><a href="contact.html" class="fix-sub">ご質問だけでも<br>お気軽に</a></div>
+  <div class="cal-pop" id="cal-pop" hidden>
+    <button type="button" class="cal-pop-x" id="cal-pop-x" aria-label="閉じる">×</button>
+    <img id="cal-pop-img" src="" alt="">
+    <div>
+      <div class="cal-pop-title" id="cal-pop-title">今月の営業カレンダー</div>
+      <a href="order.html" class="cal-pop-btn">来店予約をする</a>
+      <div class="cal-pop-sub">
+        <a href="https://www.rakuten.co.jp/prekira/contents/christmas2026/" target="_blank" rel="noopener">ネットで注文する</a>
+        <a href="contact.html">ご質問だけでも<br>お気軽に</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var cals = {'2026-11':'calendar.png','2026-12':'calendar-2026-12.jpg'};
+      var d = new Date(), key = d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2);
+      var today = key+'-'+('0'+d.getDate()).slice(-2);
+      var src = cals[key]; if(!src) return;
+      try { if(localStorage.getItem('calPopDate')===today) return; } catch(e){ return; }
+      var pop = document.getElementById('cal-pop'), img = document.getElementById('cal-pop-img');
+      img.src = src; img.alt = (d.getMonth()+1)+'月の営業カレンダー';
+      document.getElementById('cal-pop-title').textContent = (d.getMonth()+1)+'月の営業カレンダー';
+      setTimeout(function(){ pop.hidden = false; document.body.classList.add("pop-open"); }, 1500);
+      document.getElementById('cal-pop-x').addEventListener('click', function(){
+        pop.hidden = true; document.body.classList.remove("pop-open"); try { localStorage.setItem('calPopDate', today); } catch(e){}
       });
     })();
   </script>
