@@ -227,6 +227,7 @@ function renderCal(){
   var today=new Date();today.setHours(0,0,0,0);
   var minDate=new Date(today);var bd=0; // 3営業日前まで：今日から数えて3つ目の営業日から選べる
   while(bd<3){minDate.setDate(minDate.getDate()+1);if(isOpenDay(minDate))bd++;}
+  if(S.item&&S.item.minDays){var md=new Date(today);md.setDate(md.getDate()+S.item.minDays);if(md>minDate)minDate=md;}
   var first=new Date(calYear,calMonth,1);
   var last=new Date(calYear,calMonth+1,0);
   var monthNames=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
@@ -246,7 +247,7 @@ function renderCal(){
     var dstr=dateKey(dt);
     var isOpenEx=openExceptions.indexOf(dstr)!==-1;
     var isClosed=closedDates.indexOf(dstr)!==-1;
-    var disabled=dt<minDate||isClosed||(!isOpenEx&&(dow===0||dow===1||dow===2));
+    var disabled=dt<minDate||isClosed||(!isOpenEx&&(dow===0||dow===1||dow===2))||(S.item&&((S.item.from&&dstr<S.item.from)||(S.item.to&&dstr>S.item.to)));
     var sel=S.calDate&&S.calDate.getFullYear()===calYear&&S.calDate.getMonth()===calMonth&&S.calDate.getDate()===d;
     var cls='cal-day'+(dow===0?' sun':dow===6?' sat':'')+(disabled?' disabled':(sel?' on':''));
     if(disabled){
@@ -274,7 +275,7 @@ function pickCalDate(y,m,d){
 
 var S={step:1,use:null,purpose1:null,purpose2:null,kuyo:null,style:null,mood:null,price:null,custPrice:'',date:null,calDate:null,time:null,name:'',tel:'',email:'',bag:false,card:false,note:''};
 var p1list=[{id:'gift',name:'ギフト'},{id:'self',name:'自宅用'}];
-var p2list=[{id:'cele',name:'お祝い・ギフト'},{id:'kuyo',name:'お供え'},{id:'newyear',name:'お正月'},{id:'other',name:'その他'}];
+var p2list=[{id:'cele',name:'お祝い・ギフト'},{id:'kuyo',name:'お供え'},{id:'newyear',name:'お正月'},{id:'xmas',name:'クリスマス'},{id:'other',name:'その他'}];
 var kuyoC=[{id:'any',name:'おまかせ',desc:'色の入ったやさしい雰囲気'},{id:'white',name:'白系',desc:'白に淡い色が少し入ります'}];
 var styles=[{id:'bq',icon:'💐',name:'花束',desc:''},{id:'ba',icon:'🧺',name:'カゴアレンジ',desc:'アレンジメント'},{id:'st',icon:'🌷',name:'置くだけブーケ',desc:'スタンディング'},{id:'kumi',icon:'🌾',name:'組み束',desc:''}];
 var moods=[{id:'kise',icon:'✨',name:'季節のおまかせ',desc:'旬の花をお任せで'},{id:'fuwa',icon:'🌸',name:'ふわふわ',desc:'淡いピンクなど'},{id:'hira',icon:'🌹',name:'ひらひら',desc:'赤など 華やかな雰囲気'},{id:'yura',icon:'🌿',name:'ゆらゆら',desc:'白・グリーン 爽やか系'},{id:'natu',icon:'🌼',name:'ナチュラル',desc:'イエローなど'}];
@@ -319,6 +320,10 @@ var days=['日','月','火','水','木','金','土'];
 function purpose(){return S.purpose2;}
 // 最初の写真（押すと用途とスタイルがいっしょに決まる）。お正月は12月だけ・写真ができたら photo を入れる
 var starts=[
+  // クリスマス（11・12月だけ・値段が決まっている商品。押すとすぐ日時の画面へ）until＝この日まで出す／from・to＝お渡しできる日／minDays＝何日前までにご予約
+  {p:'xmas',name:'グリーンリース',desc:'手作りの生のリース',price:'5,899円（税込）',img:'xmas-wreath',months:[11,12],until:'2026-12-18',to:'2026-12-25',note:'常緑樹のグリーンでお作りする、手作りの生のリースです。'},
+  {p:'xmas',name:'常緑樹のクリスマスアレンジメント',desc:'器ごと飾れます',price:'4,499円（税込）',img:'xmas-green',months:[11,12],until:'2026-12-18',from:'2026-12-22',to:'2026-12-25',note:'ご予約は12月18日まで、お渡しは12月22日から25日です（お店の営業日）。'},
+  {p:'xmas',name:'キャンドルリース',desc:'キャンドル4本付き・直径約40cm',price:'24,999円（税込）',img:'xmas-candle',months:[11,12],until:'2026-12-15',to:'2026-12-25',minDays:10,note:'キャンドルをお取り寄せするため、お受け取り日の10日前までにご予約ください（受付は12月15日まで）。お店でのお受け取りか、近くへのお届けになります。'},
   {p:'newyear',s:'ba',name:'お正月のアレンジ',desc:'12月だけのご予約',img:'newyear-ba',month:12},
   {p:'cele',s:'bq',name:'花束',desc:'お祝い・ギフト',img:'style-bq'},
   {p:'cele',s:'ba',name:'カゴアレンジ',desc:'お祝い・ギフト',img:'style-ba'},
@@ -332,6 +337,8 @@ function visibleStarts(){
   var m=new Date().getMonth()+1, t=(location.search.match(/[?&]t=([a-z]+)/)||[])[1];
   var f=function(tt){return starts.filter(function(x){
     if(x.month&&x.month!==m) return false;
+    if(x.months&&x.months.indexOf(m)<0) return false;
+    if(x.until&&dateKey(new Date())>x.until) return false;
     if(!x.img) return false;
     if(tt==='kuyo') return x.p==='kuyo';
     if(tt==='newyear') return x.p==='newyear';
@@ -339,9 +346,9 @@ function visibleStarts(){
   });};
   var r=f(t); return r.length?r:f(null);
 }
-function pickStart(i){var x=visibleStarts()[i];S.purpose2=x.p;S.style=x.s;S.kuyo=x.p==='kuyo'?'any':null;S.mood=null;S.price=null;S.custPrice='';S.step=x.p==='kuyo'?5:4;render();window.scrollTo(0,0);}
-// お供えは色合いの画面をとばす（ご予算の画面で おまかせ／白系 を切りかえ）
-function so(){return S.purpose2==='kuyo'?[1,5,6,7]:[1,4,5,6,7];}
+function pickStart(i){var x=visibleStarts()[i];S.purpose2=x.p;S.style=x.s||null;S.item=x.price?x:null;S.kuyo=x.p==='kuyo'?'any':null;S.mood=null;S.price=null;S.custPrice=x.price?x.name+' '+x.price:'';S.calDate=null;S.time=null;if(x.from){calYear=+x.from.slice(0,4);calMonth=+x.from.slice(5,7)-1;}else if(x.minDays){var md=new Date();md.setDate(md.getDate()+x.minDays);calYear=md.getFullYear();calMonth=md.getMonth();}S.step=x.price?6:x.p==='kuyo'?5:4;render();window.scrollTo(0,0);}
+// お供えは色合いの画面をとばす（ご予算の画面で おまかせ／白系 を切りかえ）。クリスマスの商品は日時の画面へ
+function so(){return S.item?[1,6,7]:S.purpose2==='kuyo'?[1,5,6,7]:[1,4,5,6,7];}
 function totalSteps(){return so().length-1;}
 
 function renderSteps(){
@@ -361,7 +368,7 @@ function render(){
   if(S.step===1){
     var vs=visibleStarts();
     h='<div class="card"><div class="sec">どんなお花にしますか？</div><div class="g2">';
-    for(var i=0;i<vs.length;i++){var x=vs[i];h+='<div class="tile'+(S.purpose2===x.p&&S.style===x.s?' on':'')+'\" onclick="pickStart('+i+')"><img class="timg" src="'+x.img+'.jpg" alt="'+x.name+'"><div class="tname">'+x.name+'</div>'+(x.desc?'<div class="tdesc">'+x.desc+'</div>':'')+'</div>';}
+    for(var i=0;i<vs.length;i++){var x=vs[i];h+='<div class="tile'+(S.purpose2===x.p&&S.style===x.s?' on':'')+'\" onclick="pickStart('+i+')"><img class="timg" src="'+x.img+'.jpg" alt="'+x.name+'"><div class="tname">'+x.name+'</div>'+(x.desc?'<div class="tdesc">'+x.desc+'</div>':'')+(x.price?'<div class="tdesc" style="color:#5a4a3a;font-weight:500">'+x.price+'</div>':'')+'</div>';}
     h+='</div><div class="pcnote">写真を押すと、色合い・ご予算の写真に進みます。写真は制作例です。花材・器は季節や仕入れにより異なります。</div></div>';
     if(/[?&]t=/.test(location.search)) h+='<a class="bbk" style="display:block;text-align:center;text-decoration:none" href="order.html">ほかのお花も見る</a>';
 
@@ -429,7 +436,9 @@ function render(){
     h+='<button class="bbk" onclick="back()">← もどる</button>';
 
   }else if(S.step===6){
-    h='<div class="card"><div class="sec">来店日を選んでください</div>'+renderCal()+'<div class="tg">';
+    h='';
+    if(S.item){h+='<div class="card" style="display:flex;gap:12px;align-items:center"><img src="'+S.item.img+'.jpg" alt="'+S.item.name+'" style="width:84px;height:84px;object-fit:cover;border-radius:8px;flex-shrink:0"><div><div class="tname" style="text-align:left">'+S.item.name+'</div><div style="font-size:14px;color:#5a4a3a;margin:2px 0 4px">'+S.item.price+'</div><div style="font-size:11px;color:#9a7060;line-height:1.7">'+S.item.note+'<br>写真は制作例です。お電話（093-967-8903）でもご予約いただけます。</div></div></div>';}
+    h+='<div class="card"><div class="sec">'+(S.item?'お受け取りの日を選んでください':'来店日を選んでください')+'</div>'+renderCal()+'<div class="tg">';
     var times=['10:00〜11:00','11:00〜12:00','12:00〜13:00','13:00〜14:00','14:00〜15:00','15:00〜16:00','16:00〜17:00','17:00〜18:00'];
     var pcSel=S.calDate?partialClosedDates[dateKey(S.calDate)]:null;
     if(pcSel){ times=times.filter(function(t){return inHours(t,pcSel);}); }
